@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.android_kt_wandroid"
+        compileSdkVersion rootProject.ext.android.compileSdkVersion
+        buildToolsVersion rootProject.ext.android.buildToolsVersion
+        defaultConfig {
+            minSdkVersion rootProject.ext.android.minSdkVersion
+            targetSdkVersion rootProject.ext.android.targetSdkVersion
+            versionCode rootProject.ext.android.versionCode
+            versionName rootProject.ext.android.versionName
+
+            renderscriptTargetApi 19
+            renderscriptSupportModeEnabled true
+
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [AROUTER_MODULE_NAME: project.getName()]
+                }
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':common_base')
+    if (!isRunAlone.toBoolean()) {
+        implementation project(':module_usercenter')
+        implementation project(':module_main')
+        implementation project(':module_gank')
+    }
+    // 如果 app 主工程中使用了 Arouter 注解，那就需要这个 annotationProcessor
+    annotationProcessor rootProject.ext.dependencies['arouter-compiler']
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
