@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -65,4 +67,8 @@ dependencies {
     api rootProject.ext.dependencies['andpermission']
     api rootProject.ext.dependencies['eventbus']
     api rootProject.ext.dependencies['aspectj']
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
