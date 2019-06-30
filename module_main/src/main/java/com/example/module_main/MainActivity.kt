@@ -1,12 +1,16 @@
 package com.example.module_main
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.common_base.AConstance
+import com.example.common_base.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+@Route(path = AConstance.ACTIVITY_URL_MAIN)
+class MainActivity : BaseActivity() {
+    override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun initView() {
+    }
+
+    override fun initData() {
     }
 }

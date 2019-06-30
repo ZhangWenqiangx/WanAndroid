@@ -1,13 +1,22 @@
 package com.example.module_usercenter.activity
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common_base.AConstance
+import com.example.common_base.base.BaseActivity
 import com.example.module_usercenter.R
 
-class SplashActivity : AppCompatActivity() {
+@Route(path = AConstance.ACTIVITY_URL_SPLASH)
+class SplashActivity : BaseActivity() {
+    override fun getLayoutId(): Int = R.layout.activity_splash
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+    override fun initView() {}
+
+    override fun initData() {}
+
+    override fun onResume() {
+        super.onResume()
+        ARouter.getInstance().build(AConstance.ACTIVITY_URL_MAIN).navigation()
+        finish()
     }
 }

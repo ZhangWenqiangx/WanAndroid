@@ -1,4 +1,4 @@
-package com.example.common_base
+package com.example.common_base.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
