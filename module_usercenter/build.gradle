@@ -6,6 +6,7 @@ if (isRunAlone.toBoolean()) {
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -16,9 +17,9 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
     }
@@ -49,7 +50,7 @@ android {
 dependencies {
     implementation project(':common_base')
     // arouter-compiler
-    annotationProcessor rootProject.ext.dependencies['arouter-compiler']
+    kapt rootProject.ext.dependencies['arouter-compiler']
     annotationProcessor rootProject.ext.dependencies['glide-compiler']
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

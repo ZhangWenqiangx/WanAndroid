@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -11,10 +12,9 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-                includeCompileClasspath = true
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
     }
@@ -57,7 +57,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies['butterknife-compiler']
     // arouter
     api rootProject.ext.dependencies['arouter-api']
-    annotationProcessor rootProject.ext.dependencies['arouter-compiler']
+    kapt rootProject.ext.dependencies['arouter-compiler']
     api rootProject.ext.dependencies['banner']
     api rootProject.ext.dependencies['greendao']
     api rootProject.ext.dependencies['retrofit-cookie']
