@@ -8,14 +8,14 @@ import android.support.v7.app.AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    abstract fun getLayoutId():Int
+    abstract fun getLayoutResId():Int
 
     protected abstract fun initView()
     protected abstract fun initData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        setContentView(getLayoutResId())
 
         setStatusBarColor()
 
