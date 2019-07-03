@@ -117,7 +117,5 @@ dependencies {
     // arouter-compiler
     kapt rootProject.ext.dependencies['arouter-compiler']
     annotationProcessor rootProject.ext.dependencies['glide-compiler']
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
+    implementation "org.jetbrains.anko:anko:0.10.8"
 }

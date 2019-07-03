@@ -19,8 +19,6 @@ public abstract class BaseMVPActivity<P extends IPresenter> extends BaseActivity
         unbinder = ButterKnife.bind(this);
     }
 
-    protected abstract int getLayoutResId();
-
     protected abstract P createPresenter();
 
     @Override
