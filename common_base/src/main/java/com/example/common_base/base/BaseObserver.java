@@ -67,7 +67,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
      */
     @Override
     public void onError(Throwable e) {
-
+        //todo 自定义处理消息异常
     }
 
     @Override
