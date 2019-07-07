@@ -8,7 +8,6 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.AConstance
@@ -17,9 +16,8 @@ import com.example.common_base.constants.Constants
 import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
-import com.example.module_usercenter.contract.LoginPresenter
+import com.example.module_usercenter.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 @Route(path = AConstance.ACTIVITY_URL_LOGIN)
@@ -27,8 +25,10 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
 
     override fun onClick(v: View?) {
         when (v){
-            et_login_password -> login()
+            btn_login -> login()
             tv_register -> ARouter.getInstance().build(AConstance.ACTIVITY_URL_REGISTER).navigation()
+
+            else -> print("none of the above")
         }
     }
 
@@ -44,7 +44,8 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
 
     override fun getLayoutResId(): Int = R.layout.activity_login
 
-    override fun createPresenter(): LoginPresenter = LoginPresenter()
+    override fun createPresenter(): LoginPresenter =
+        LoginPresenter()
 
     override fun initView() {}
 
@@ -60,6 +61,9 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
         et_login_username.setSelection(userName.length)
         et_login_password.setText(passWord)
         et_login_password.setSelection(passWord.length)
+
+        btn_login.setOnClickListener(this)
+        tv_register.setOnClickListener(this)
 
         //密码框右侧的密码可见不可见按钮
         cb_login_pwd_visible.setOnCheckedChangeListener { _, isChecked ->
@@ -86,7 +90,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
         }
     }
 
-    private fun login(){
+    fun login(){
         val phone = et_login_username.text.trim().toString()
         val pwd = et_login_password.text.trim().toString()
         if (TextUtils.isEmpty(phone)) {

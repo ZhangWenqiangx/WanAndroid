@@ -6,7 +6,7 @@ import com.example.common_base.base.BaseActivity
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)
 class MainActivity : BaseActivity() {
-    override fun getLayoutId(): Int = R.layout.activity_main
+    override fun getLayoutResId(): Int = R.layout.activity_main
 
     override fun initView() {
     }

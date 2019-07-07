@@ -2,6 +2,7 @@ package com.example.common_base.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 
 /**
  * Description:所有activity得父类抽取了一些公用方法

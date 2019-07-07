@@ -8,7 +8,7 @@ import com.example.module_usercenter.R
 
 @Route(path = AConstance.ACTIVITY_URL_SPLASH)
 class SplashActivity : BaseActivity() {
-    override fun getLayoutId(): Int = R.layout.activity_splash
+    override fun getLayoutResId(): Int = R.layout.activity_splash
 
     override fun initView() {}
 

@@ -5,7 +5,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowBackground">@drawable/m_splash_bg</item>
     </style>
 
 
@@ -29,7 +29,7 @@
     </style>
 
 
-    <style name="PrimaryButtonStyle">
+    <style name="PrimaryButtonStyle" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">44dp</item>
         <item name="android:layout_marginTop">20dp</item>

@@ -26,52 +26,7 @@
         android:orientation="horizontal"
         android:padding="0dp">
 
-        <com.xing.commonbase.widget.BadgeRadioButton
-            android:id="@+id/rb_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_menu_home"
-            android:gravity="center"
-            android:text="首页"
-            android:textSize="10sp" />
 
-
-        <com.xing.commonbase.widget.BadgeRadioButton
-            android:id="@+id/rb_project"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_menu_project"
-            android:gravity="center"
-            android:text="项目"
-            android:textSize="10sp" />
-
-
-        <com.xing.commonbase.widget.BadgeRadioButton
-            android:id="@+id/rb_system"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_menu_system"
-            android:gravity="center"
-            android:text="体系"
-            android:textSize="10sp" />
-
-
-        <com.xing.commonbase.widget.BadgeRadioButton
-            android:id="@+id/rb_mine"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_menu_mine"
-            android:gravity="center"
-            android:text="我的"
-            android:textSize="10sp" />
 
     </RadioGroup>
 

@@ -25,8 +25,7 @@
             android:drawablePadding="10dp"
             android:hint="@string/please_input_username"
             android:imeOptions="actionNext"
-            android:nextFocusForward="@+id/et_forget_pwd_verify_code" />
-
+            android:nextFocusForward="@+id/et_register_password" />
 
         <View
             android:layout_width="match_parent"
