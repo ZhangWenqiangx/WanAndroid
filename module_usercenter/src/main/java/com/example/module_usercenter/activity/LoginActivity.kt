@@ -10,7 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.common_base.AConstance
+import com.example.common_base.constants.AConstance
 import com.example.common_base.base.BaseMVPActivity
 import com.example.common_base.constants.Constants
 import com.example.module_usercenter.R
@@ -90,7 +90,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
         }
     }
 
-    fun login(){
+    private fun login(){
         val phone = et_login_username.text.trim().toString()
         val pwd = et_login_password.text.trim().toString()
         if (TextUtils.isEmpty(phone)) {

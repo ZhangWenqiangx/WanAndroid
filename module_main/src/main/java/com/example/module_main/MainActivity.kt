@@ -1,7 +1,7 @@
 package com.example.module_main
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.common_base.AConstance
+import com.example.common_base.constants.AConstance
 import com.example.common_base.base.BaseActivity
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)

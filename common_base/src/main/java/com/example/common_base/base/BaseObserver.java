@@ -5,7 +5,7 @@ import com.example.common_base.mvp.IView;
 import io.reactivex.observers.DisposableObserver;
 
 /**
- * Description:
+ * Description:数据请求的类
  */
 public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>> {
 
