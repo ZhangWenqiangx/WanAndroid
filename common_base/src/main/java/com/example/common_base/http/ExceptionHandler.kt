@@ -12,7 +12,7 @@ import java.net.SocketTimeoutException
 import javax.net.ssl.SSLHandshakeException
 
 /**
- * Description:关于请求数据异常的处理
+ * Description:关于请求数据异常的处理.
  */
 class ExceptionHandler {
 
