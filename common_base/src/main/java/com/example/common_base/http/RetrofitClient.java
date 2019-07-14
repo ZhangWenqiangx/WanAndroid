@@ -41,7 +41,6 @@ public class RetrofitClient {
                 .build();
     }
 
-
     public static RetrofitClient getInstance() {
         if (instance == null) {
             synchronized (RetrofitClient.class) {

@@ -1,6 +1,7 @@
 package com.example.common_base.base;
 
 import com.example.common_base.http.ApiException;
+import com.example.common_base.http.ExceptionHandler;
 import com.example.common_base.mvp.IView;
 import io.reactivex.observers.DisposableObserver;
 
@@ -67,7 +68,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
      */
     @Override
     public void onError(Throwable e) {
-        //todo 自定义处理消息异常
+        ExceptionHandler.Companion.handlerException(e);
     }
 
     @Override
@@ -76,4 +77,5 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
             baseView.hideLoading();
         }
     }
+
 }

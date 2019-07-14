@@ -33,7 +33,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
     }
 
     override fun loginSuccess(loginResult: LoginResult) {
-        presenter.saveUsernamePwd(et_login_username.text.trim().toString(),et_login_password.text.trim().toString())
+        presenter.saveUserNamePwd(et_login_username.text.trim().toString(),et_login_password.text.trim().toString())
         ARouter.getInstance().build(AConstance.ACTIVITY_URL_MAIN).navigation()
         finish()
     }
@@ -54,8 +54,8 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
         //设置下划线
         tv_register.paint.flags = Paint.UNDERLINE_TEXT_FLAG
         //拿取以登录过的账号密码显示
-        val userName = presenter.readUsernamePwd(Constants.USERNAME)
-        val passWord = presenter.readUsernamePwd(Constants.PASSWORD)
+        val userName = presenter.readUserNamePwd(Constants.USERNAME)
+        val passWord = presenter.readUserNamePwd(Constants.PASSWORD)
 
         et_login_username.setText(userName)
         et_login_username.setSelection(userName.length)

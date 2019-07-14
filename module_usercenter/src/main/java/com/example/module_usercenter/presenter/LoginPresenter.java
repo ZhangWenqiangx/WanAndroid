@@ -16,8 +16,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
 
     @Override
     public void login(@NotNull String username, @NotNull String password) {
-        addSubscirbe(create(UserCenterApiService.class).login(username, password), new BaseObserver<LoginResult>(getView()){
 
+        addSubscirbe(create(UserCenterApiService.class).login(username, password), new BaseObserver<LoginResult>(getView()){
             @Override
             protected void onSuccess(LoginResult data) {
                 if(isViewAttached()){
@@ -27,12 +27,12 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
         });
     }
 
-    public void saveUsernamePwd(String name,String pwd) {
+    public void saveUserNamePwd(String name, String pwd) {
         SpUtil.INSTANCE.write(Constants.INSTANCE.getUSER_LOGIN(),Constants.INSTANCE.getUSERNAME(),name);
         SpUtil.INSTANCE.write(Constants.INSTANCE.getUSER_LOGIN(),Constants.INSTANCE.getPASSWORD(),pwd);
     }
 
-    public String readUsernamePwd(String key) {
+    public String readUserNamePwd(String key) {
         return SpUtil.INSTANCE.read(Constants.INSTANCE.getUSER_LOGIN(),key,"");
     }
 }
