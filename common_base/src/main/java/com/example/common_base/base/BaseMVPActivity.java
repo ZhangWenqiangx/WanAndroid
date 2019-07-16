@@ -2,6 +2,7 @@ package com.example.common_base.base;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.example.common_base.annotation.ClickFilterHook;
 import com.example.common_base.mvp.IPresenter;
 import com.example.common_base.mvp.IView;
 

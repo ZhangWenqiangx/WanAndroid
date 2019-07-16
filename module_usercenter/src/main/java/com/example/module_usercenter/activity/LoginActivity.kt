@@ -12,6 +12,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.constants.AConstance
 import com.example.common_base.base.BaseMVPActivity
+import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
+import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER
 import com.example.common_base.constants.Constants
 import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
@@ -26,7 +28,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
     override fun onClick(v: View?) {
         when (v){
             btn_login -> login()
-            tv_register -> ARouter.getInstance().build(AConstance.ACTIVITY_URL_REGISTER).navigation()
+            tv_register -> ARouter.getInstance().build(ACTIVITY_URL_REGISTER).navigation()
 
             else -> print("none of the above")
         }
@@ -34,7 +36,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
 
     override fun loginSuccess(loginResult: LoginResult) {
         presenter.saveUserNamePwd(et_login_username.text.trim().toString(),et_login_password.text.trim().toString())
-        ARouter.getInstance().build(AConstance.ACTIVITY_URL_MAIN).navigation()
+        ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
         finish()
     }
 
