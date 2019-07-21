@@ -1,27 +1,32 @@
 package com.example.module_main.ui.fragment
 
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-
+import android.widget.ImageView
+import com.example.common_base.base.BaseFragment
+import com.example.common_base.widget.ZoomScrollView
 import com.example.module_main.R
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class MineFragment : Fragment() {
+class MineFragment : BaseFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mine, container, false)
+    private lateinit var backGround: ImageView
+    private lateinit var scrollView: ZoomScrollView
+
+    override fun initView(view: View?) {
+        backGround = view!!.findViewById(R.id.iv_avatar_background)
+        scrollView = view!!.findViewById(R.id.sv_scroll)
     }
 
+    override fun initData() {
+        scrollView.setZoomView(backGround)
+    }
+
+    override fun getLayoutResId(): Int = R.layout.fragment_mine
 
 }

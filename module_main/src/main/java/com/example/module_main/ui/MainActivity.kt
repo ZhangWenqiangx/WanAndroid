@@ -1,11 +1,8 @@
 package com.example.module_main.ui
 
-
-import android.graphics.Color
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
-import android.widget.RadioGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common_base.base.BaseActivity
 import com.example.common_base.constants.AConstance

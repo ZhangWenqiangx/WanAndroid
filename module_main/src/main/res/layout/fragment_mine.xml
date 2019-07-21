@@ -1,147 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    tools:context=".fragment.MineFragment">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="false"
+                tools:context=".ui.fragment.MineFragment">
 
-    <com.xing.commonbase.widget.ZoomScrollView
-        android:id="@+id/sv_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gray_f5"
-        app:zoomMax="120dp">
+    <com.example.common_base.widget.ZoomScrollView
+            android:id="@+id/sv_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_f5"
+            app:zoomMax="120dp">
 
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_avatar_background"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/test" />
+                    android:id="@+id/iv_avatar_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test"/>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="-30dp"
-                android:background="@android:color/transparent">
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="-30dp"
+                    android:background="@android:color/transparent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@android:color/white" />
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@android:color/white"/>
 
                 <View
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="12dp"
-                    android:background="@drawable/shape_circle_white" />
-
-                <com.xing.commonbase.widget.CircleImageView
-                    android:id="@+id/civ_avatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="12dp"
-                    android:background="@drawable/shape_circle_white"
-                    android:padding="5dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/test" />
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/shape_circle_white"/>
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginTop="40dp"
-                    android:orientation="vertical">
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:ellipsize="end"
-                        android:maxLength="8"
-                        android:text="我有一个小毛驴"
-                        android:textColor="@color/black_333"
-                        android:textSize="18sp" />
+                        android:layout_marginLeft="130dp"
+                        android:layout_marginTop="40dp"
+                        android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="5dp"
-                        android:ellipsize="end"
-                        android:text="做出成绩来，全世界都会和颜悦色。"
-                        android:textColor="@color/black_999"
-                        android:textSize="14sp" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:ellipsize="end"
+                            android:maxLength="8"
+                            android:text="我有一个小毛驴"
+                            android:textColor="@color/black_333"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:text="做出成绩来，全世界都会和颜悦色。"
+                            android:textColor="@color/black_999"
+                            android:textSize="14sp"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
 
-            <com.xing.commonbase.widget.ItemView
-                android:id="@+id/iv_mine_favorite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:itemTitle="@string/favorite"
-                app:leftIcon="@drawable/ic_mine_favorite" />
-
-            <com.xing.commonbase.widget.ItemView
-                android:id="@+id/iv_mine_meizi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemTitle="@string/happy_a_minute"
-                app:leftIcon="@drawable/ic_mine_happy" />
-
-            <com.xing.commonbase.widget.ItemView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemTitle="@string/setting"
-                app:leftIcon="@drawable/ic_mine_setting" />
-
-            <com.xing.commonbase.widget.ItemView
-                android:id="@+id/iv_mine_about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerVisible="false"
-                app:itemTitle="@string/about"
-                app:leftIcon="@drawable/ic_mine_about" />
 
         </LinearLayout>
 
-    </com.xing.commonbase.widget.ZoomScrollView>
+    </com.example.common_base.widget.ZoomScrollView>
 
     <!--  标题栏  -->
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@android:color/white"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:visibility="gone">
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@android:color/white"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="我的"
-            android:textColor="@color/black_333"
-            android:textSize="18sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我的"
+                android:textColor="@color/black_333"
+                android:textSize="18sp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_favorite" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_favorite"/>
 
     </RelativeLayout>
 
