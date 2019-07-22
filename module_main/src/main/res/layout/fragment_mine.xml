@@ -76,6 +76,35 @@
 
             </RelativeLayout>
 
+            <com.example.common_base.widget.ItemView
+                    android:id="@+id/iv_mine_favorite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:itemTitle="@string/favorite"
+                    app:leftIcon="@drawable/ic_mine_favorite" />
+
+            <com.example.common_base.widget.ItemView
+                    android:id="@+id/iv_mine_meizi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemTitle="@string/happy_a_minute"
+                    app:leftIcon="@drawable/ic_mine_happy" />
+
+            <com.example.common_base.widget.ItemView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:itemTitle="@string/setting"
+                    app:leftIcon="@drawable/ic_mine_setting" />
+
+            <com.example.common_base.widget.ItemView
+                    android:id="@+id/iv_mine_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerVisible="false"
+                    app:itemTitle="@string/about"
+                    app:leftIcon="@drawable/ic_mine_about" />
+
 
         </LinearLayout>
 
