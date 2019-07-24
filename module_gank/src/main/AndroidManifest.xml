@@ -3,9 +3,11 @@
           package="com.example.module_gank">
 
     <application>
-        <activity android:name=".ImgPreActivity"
-                  android:exported="false"/>
-
+        <activity android:name=".activity.ImgMeiZiActivity">
+        </activity>
+        <activity
+                android:name=".activity.ImgPreActivity"
+                android:exported="false"/>
     </application>
 
 </manifest>

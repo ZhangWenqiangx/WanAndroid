@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.BaseFragment
+import com.example.common_base.constants.AConstance
 import com.example.common_base.widget.ZoomScrollView
 import com.example.module_main.R
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -27,7 +28,7 @@ class MineFragment : BaseFragment() {
     override fun initData() {
         scrollView.setZoomView(backGround)
 
-        iv_mine_about.setOnClickListener { ARouter.getInstance().build("/gank/ImageMeiziActivity").navigation() }
+        iv_mine_about.setOnClickListener { ARouter.getInstance().build(AConstance.ACTIVITY_URL_IMGPRE_MEIZI).navigation() }
         iv_mine_favorite.setOnClickListener { ARouter.getInstance().build("/main/FavoriteActivity").navigation() }
         iv_mine_meizi.setOnClickListener { ARouter.getInstance().build("/main/AboutActivity").navigation() }
 
