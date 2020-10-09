@@ -33,7 +33,7 @@
                 android:drawableTop="@drawable/selector_menu_home"
                 android:gravity="center"
                 android:text="首页"
-                android:textSize="10sp"/>
+                android:textSize="@dimen/sp_11"/>
 
 
         <com.example.common_base.widget.BadgeRadioButton
@@ -45,7 +45,7 @@
                 android:drawableTop="@drawable/selector_menu_project"
                 android:gravity="center"
                 android:text="项目"
-                android:textSize="10sp"/>
+                android:textSize="@dimen/sp_11"/>
 
 
         <com.example.common_base.widget.BadgeRadioButton
@@ -57,7 +57,7 @@
                 android:drawableTop="@drawable/selector_menu_system"
                 android:gravity="center"
                 android:text="体系"
-                android:textSize="10sp"/>
+                android:textSize="@dimen/sp_11"/>
 
 
         <com.example.common_base.widget.BadgeRadioButton
@@ -69,7 +69,7 @@
                 android:drawableTop="@drawable/selector_menu_mine"
                 android:gravity="center"
                 android:text="我的"
-                android:textSize="10sp"/>
+                android:textSize="@dimen/sp_11"/>
 
     </RadioGroup>
 

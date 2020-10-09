@@ -12,13 +12,15 @@ import com.scwang.smartrefresh.layout.util.DensityUtil.dp2px
 
 /**
  * Description:
+ * 类似:
+ *  icon  Title        >
+ *        ——————————————
  */
-class ItemView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
-    LinearLayout(context, attrs, defStyleAttr) {
+class ItemView : LinearLayout {
 
     private var leftIcon: Int = 0
     private var rightIcon: Int = 0
-    private var dividerView: ImageView? = null
+    private var dividerView: View? = null
     private var leftImageView: ImageView? = null
     private var titleTextView: TextView? = null
     private var rightImageView: ImageView? = null
@@ -28,17 +30,29 @@ class ItemView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
     private var dividerLeftMargin: Float = 0.toFloat()
     private var dividerRightMargin: Float = 0.toFloat()
 
+    constructor(context: Context?) : super(context)
 
-    init {
-        readAttrs(context,attrs)
-        init(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        readAttrs(context, attrs)
+        initAttrs(context)
     }
 
-    private fun init(context: Context?) {
-        val view = LayoutInflater.from(context).inflate(R.layout.layout_item_view, this, false)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        readAttrs(context, attrs)
+        initAttrs(context)
+    }
+
+    private fun initAttrs(context: Context?) {
+        //inflate 代表本次生成的布局  root->容器 attachToRoot->是否添加到此容器
+        val view = LayoutInflater.from(context).inflate(R.layout.layout_item_view, this, true)
         leftImageView = view.findViewById(R.id.iv_item_left_icon)
         titleTextView = view.findViewById(R.id.tv_item_title)
         rightImageView = view.findViewById(R.id.iv_right_icon)
+        //下划线处理
         dividerView = view.findViewById(R.id.v_divider)
         val layoutParams = dividerView!!.layoutParams as LayoutParams
         layoutParams.leftMargin = dividerLeftMargin.toInt()
@@ -57,14 +71,15 @@ class ItemView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
         dividerView!!.visibility = if (dividerVisible) View.VISIBLE else View.GONE
     }
 
-    private fun readAttrs(context: Context?,attrs: AttributeSet?) {
+    private fun readAttrs(context: Context?, attrs: AttributeSet?) {
         val typedArray = context?.obtainStyledAttributes(attrs, R.styleable.ItemView)
-        leftIcon = typedArray!!.getResourceId(R.styleable.ItemView_leftIcon,0)
+        leftIcon = typedArray!!.getResourceId(R.styleable.ItemView_leftIcon, 0)
         rightIcon = typedArray.getResourceId(R.styleable.ItemView_rightIcon, 0)
         title = typedArray.getString(R.styleable.ItemView_itemTitle)
         itemBackgroundColor = typedArray.getColor(R.styleable.ItemView_itemBackgroundColor, 0)
         dividerVisible = typedArray.getBoolean(R.styleable.ItemView_dividerVisible, true)
-        dividerLeftMargin = typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, dp2px(40F).toFloat())
+        dividerLeftMargin =
+            typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, dp2px(40F).toFloat())
         dividerRightMargin = typedArray.getDimension(R.styleable.ItemView_dividerRightMargin, 0f)
         typedArray.recycle()
     }

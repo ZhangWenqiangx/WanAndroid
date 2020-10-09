@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.example.android_kt_wandroid"
         compileSdkVersion rootProject.ext.android.compileSdkVersion
         buildToolsVersion rootProject.ext.android.buildToolsVersion
