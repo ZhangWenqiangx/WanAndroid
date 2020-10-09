@@ -27,7 +27,10 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
 
     override fun onClick(v: View?) {
         when (v){
-            btn_login -> login()
+            btn_login -> {
+//                login()
+                ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
+            }
             tv_register -> ARouter.getInstance().build(ACTIVITY_URL_REGISTER).navigation()
 
             else -> print("none of the above")
@@ -46,8 +49,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
 
     override fun getLayoutResId(): Int = R.layout.activity_login
 
-    override fun createPresenter(): LoginPresenter =
-        LoginPresenter()
+    override fun createPresenter(): LoginPresenter = LoginPresenter()
 
     override fun initView() {}
 

@@ -3,8 +3,9 @@ package com.example.android_kt_wandroid
 import android.app.Application
 import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common_base.base.BaseApplication
 
-class MainApplication : Application() {
+class MainApplication : BaseApplication() {
 
     companion object {
         lateinit var mContext: Context

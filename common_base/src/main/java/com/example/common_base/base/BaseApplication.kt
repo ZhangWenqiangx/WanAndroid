@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 /**
  * Description:
  */
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
 
     companion object{
         lateinit var sApplication:Application
