@@ -5,7 +5,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/m_splash_bg</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
 

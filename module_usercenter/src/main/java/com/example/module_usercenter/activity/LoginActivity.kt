@@ -28,8 +28,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(),LoginContract.View,View.
     override fun onClick(v: View?) {
         when (v){
             btn_login -> {
-//                login()
-                ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
+                login()
             }
             tv_register -> ARouter.getInstance().build(ACTIVITY_URL_REGISTER).navigation()
 
