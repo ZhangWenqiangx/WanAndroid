@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/black_61</item>
     </style>
 
+    <declare-styleable name="LoadingView">
+        <attr name="borderWidth" format="dimension" />
+        <attr name="maxAngle" format="integer" />
+        <attr name="borderColor" format="color" />
+        <attr name="duration" format="integer" />
+    </declare-styleable>
+
 </resources>
