@@ -44,14 +44,16 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
         boolean error = baseResponse.isError();
         String errorMsg = baseResponse.getErrorMsg();
 
-        if(!error){                                     //gank 返回boolean
+        //gank 返回boolean
+        if(!error){
             T results = baseResponse.getResults();
             onSuccess(results);
-        }else if (errorCode == 0 || errorCode == 200){  //wandroid 返回的是0 or 200
-            T results = baseResponse.getResults();
+        }else if (errorCode == 0 || errorCode == 200){
+            //wandroid 返回的是0 or 200
+            T results = baseResponse.getData();
             onSuccess(results);
         }else {
-            onError(new ApiException(errorCode,errorMsg));  //错误回调
+            onError(new ApiException(errorCode,errorMsg));
         }
 
     }

@@ -2,6 +2,9 @@ package com.example.common_base.mvp;
 
 import com.example.common_base.base.BaseObserver;
 import com.example.common_base.http.RetrofitClient;
+
+import org.jetbrains.annotations.NotNull;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -11,9 +14,10 @@ import java.lang.ref.WeakReference;
 
 public class BasePresenter<V extends IView> implements IPresenter<V> {
 
-    //    protected V view;
     protected WeakReference<V> viewRef;
-    // 管理订阅关系，用于取消订阅
+    /**
+     * 管理订阅关系，用于取消订阅
+     */
     protected CompositeDisposable compositeDisposable;
 
     public BasePresenter() {
@@ -25,6 +29,7 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
      *
      * @param view  被绑定的view
      */
+    @Override
     public void attachView(V view) {
         viewRef = new WeakReference<>(view);
         V v = viewRef.get();
@@ -33,6 +38,7 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
     /**
      * 解除绑定 View,一般在 onDestroy 中调用
      */
+    @Override
     public void detachView() {
         this.viewRef = null;
         unSubscribe();
@@ -43,10 +49,13 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
      *
      * @return
      */
+    @Override
     public boolean isViewAttached() {
         return viewRef.get() != null;
     }
 
+    @Override
+    @NotNull
     public V getView() {
         return viewRef.get();
     }
