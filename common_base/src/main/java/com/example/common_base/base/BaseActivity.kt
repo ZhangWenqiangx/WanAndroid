@@ -1,15 +1,19 @@
 package com.example.common_base.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
+import com.example.common_base.mvp.IView
+import com.example.common_base.widget.LoadingDialog
 
 /**
  * Description:所有activity得父类抽取了一些公用方法
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IView {
 
-    abstract fun getLayoutResId():Int
+    val mLoadingView by lazy { createLoadingDialog() }
+
+    abstract fun getLayoutResId(): Int
 
     protected abstract fun initView()
     protected abstract fun initData()
@@ -18,16 +22,19 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
 
-        setStatusBarColor()
-
         initView()
         initData()
     }
 
-    /**
-     * 初始化statusBar颜色
-     */
-    private fun setStatusBarColor(){
+    override fun showLoading() {
+        mLoadingView.show()
+    }
 
+    override fun hideLoading() {
+        mLoadingView.dismiss()
+    }
+
+    open fun createLoadingDialog(): Dialog {
+        return LoadingDialog.Builder(this).create()
     }
 }

@@ -17,4 +17,41 @@
     <color name="white_f8">#f8f8f8</color>
     <color name="white_bf">#bfbfbf</color>
     <color name="white_f1">#f1f1f1</color>
+
+    <!--常用颜色值-->
+    <color name="colorSecondary">#eef1ff</color>
+    <color name="colorTertiary">#0ac850</color>
+    <color name="colorFourth">#ec5252</color>
+    <color name="colorFifth">#eeeeee</color>
+    <color name="colorSixth">#f8f8f8</color>
+    <color name="colorSeventh">#bfbfbf</color>
+    <color name="colorEighth">#797979</color>
+    <color name="colorNinth">#38c860</color>
+    <color name="colorTenth">#dddddd</color>
+    <color name="colorEleventh">#e4f5ff</color>
+    <color name="colorTwelfth">#cccccc</color>
+    <color name="colorThirteenth">#e86b00</color>
+    <color name="colorFourteenth">#dcdcdc</color>
+    <color name="colorFifteenth">#bababa</color>
+    <color name="colorSixteenth">#000000</color>
+    <color name="colorSeventeenth">#c9c9c9</color>
+    <color name="colorEighteenth">#aaaaaa</color>
+    <color name="colorNineteenth">#38c850</color>
+    <color name="colorTwentieth">#c5c5c5</color>
+    <color name="colorTwentyOne">#222222</color>
+    <color name="colorTwentyTwo">#ff00ff</color>
+    <color name="colorTwentyThree">#ffcaca</color>
+    <color name="colorTwentyFourth">#fe6700</color>
+    <color name="colorTwentyFifth">#e76506</color>
+    <color name="colorBlackPrimary">#333333</color>
+    <color name="colorBlackSecondary">#666666</color>
+    <color name="colorBlackTertiary">#999999</color>
+    <color name="colorHighlight">#fe6600</color>
+    <color name="colorGray">#d2d2d2</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorLightBlue">#E5F5FF</color>
+    <color name="colorLightBlue1">#85FFFE</color>
+    <color name="colorDeepBlue">#0B24FB</color>
+    <color name="colorLightYellow">#F9CC95</color>
+    <color name="colorGreen">#0AC850</color>
 </resources>

@@ -49,11 +49,11 @@ class LoadingView @JvmOverloads constructor(
             context.obtainStyledAttributes(attrs, R.styleable.LoadingView)
         borderWidth = typedArray.getDimensionPixelOffset(
             R.styleable.LoadingView_borderWidth,
-            context.resources.getDimensionPixelOffset(R.dimen.dp_5)
+            context.resources.getDimensionPixelOffset(R.dimen.dp_3)
         ).toFloat()
         borderColor = typedArray.getColor(
             R.styleable.LoadingView_borderColor,
-            Color.GRAY
+            Color.BLACK
         )
         maxAngle = typedArray.getInt(R.styleable.LoadingView_maxAngle, 100)
         duration = typedArray.getInt(R.styleable.LoadingView_duration, 2000)
