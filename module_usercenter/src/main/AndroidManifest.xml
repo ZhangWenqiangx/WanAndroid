@@ -15,9 +15,11 @@
         </activity>
 
         <activity
+                android:theme="@style/AppTheme"
                 android:name=".activity.LoginActivity"
                 android:exported="false"/>
         <activity
+                android:theme="@style/AppTheme"
                 android:name=".activity.RegisterActivity"
                 android:exported="false"/>
     </application>

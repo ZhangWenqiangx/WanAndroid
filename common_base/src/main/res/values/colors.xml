@@ -54,4 +54,6 @@
     <color name="colorDeepBlue">#0B24FB</color>
     <color name="colorLightYellow">#F9CC95</color>
     <color name="colorGreen">#0AC850</color>
+
+    <color name="color_111">#111</color>
 </resources>

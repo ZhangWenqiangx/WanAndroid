@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_f5"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar" />
+    <TextView
+            android:layout_marginTop="@dimen/dp_120"
+            android:layout_marginLeft="@dimen/dp_20"
+            style="@style/CommonLevel1TitleStyle"
+            android:text="@string/register" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,12 +57,16 @@
             android:imeOptions="actionNext"
             android:inputType="textPassword" />
 
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_ea" />
         <Button
+                android:layout_marginTop="@dimen/dp_25"
             android:id="@+id/btn_register"
             style="@style/PrimaryButtonStyle"
             android:text="@string/register" />
 
     </LinearLayout>
-
 
 </LinearLayout>

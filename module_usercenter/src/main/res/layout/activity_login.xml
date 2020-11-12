@@ -8,12 +8,29 @@
     android:orientation="vertical">
 
     <LinearLayout
+            android:layout_marginTop="@dimen/dp_120"
+            android:id="@+id/ll_wel_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:orientation="vertical">
+
+        <TextView
+                style="@style/CommonLevel1TitleStyle"
+                android:text="@string/str_hello" />
+
+        <TextView
+                style="@style/CommonLevel1TitleStyle"
+                android:text="@string/str_welcome_login" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="15dp"
+            android:layout_marginHorizontal="@dimen/commonHorizontalMargin"
+        android:layout_marginTop="40dp"
         android:background="@drawable/login_input_bg"
         android:orientation="vertical">
 
@@ -26,7 +43,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:nextFocusForward="@+id/et_login_password"
-            android:text="Hello" />
+            android:text="@string/str_input_name" />
 
         <View
             android:layout_width="match_parent"
@@ -69,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:paddingBottom="10dp"
         android:text="@string/goto_register"
@@ -80,9 +97,8 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:layout_marginLeft="20dp"
+            android:layout_marginHorizontal="@dimen/commonHorizontalMargin"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
         android:background="@drawable/selector_login_btn_bg"
         android:stateListAnimator="@null"
         android:text="@string/login"

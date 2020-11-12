@@ -6,4 +6,7 @@
     <string name="login">登录</string>
     <string name="user_register">用户注册</string>
     <string name="register">注册</string>
+    <string name="str_input_name">请输入用户名</string>
+    <string name="str_hello">你好，</string>
+    <string name="str_welcome_login">欢迎登录</string>
 </resources>

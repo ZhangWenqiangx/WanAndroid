@@ -15,4 +15,12 @@
         <attr name="duration" format="integer" />
     </declare-styleable>
 
+    <style name="CommonLevel1TitleStyle">
+        <item name="android:textColor">@color/color_111</item>
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

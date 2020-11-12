@@ -4,12 +4,13 @@
     <dimen name="base_dpi">360dp</dimen>
 
     <!--标题栏高度-->
-    <dimen name="actionbar_size">52dp</dimen>
+    <dimen name="actionbar_size">41dp</dimen>
 
     <dimen name="statusbar_view_height">0dp</dimen>
     <!--常用间距 页面间距统一-->
-    <dimen name="commonLeftMargin">14dp</dimen>
-    <dimen name="commonRightMargin">14dp</dimen>
+    <dimen name="commonHorizontalMargin">20dp</dimen>
+    <dimen name="commonLeftMargin">18dp</dimen>
+    <dimen name="commonRightMargin">18dp</dimen>
     <dimen name="commonTopMargin">12dp</dimen>
     <dimen name="commonBottomMargin">12dp</dimen>
     <dimen name="commonTextLineSpacing">6dp</dimen>

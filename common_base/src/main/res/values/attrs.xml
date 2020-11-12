@@ -46,5 +46,10 @@
 
     </declare-styleable>
 
-
+    <attr name="showBack" format="boolean" />
+    <!-- 标题栏 -->
+    <declare-styleable name="TitleView">
+        <attr name="title" />
+        <attr name="showBack" />
+    </declare-styleable>
 </resources>
