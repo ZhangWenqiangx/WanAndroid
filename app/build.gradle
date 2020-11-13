@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.android_kt_wandroid"
@@ -18,13 +19,13 @@ android {
             renderscriptTargetApi 19
             renderscriptSupportModeEnabled true
 
-            javaCompileOptions {
-                annotationProcessorOptions {
-                    arguments = [AROUTER_MODULE_NAME: project.getName()]
+            kapt {
+                arguments {
+                    arg("AROUTER_MODULE_NAME", project.getName())
                 }
             }
         }
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -35,15 +36,13 @@ android {
 }
 
 dependencies {
-
     implementation project(':common_base')
     if (!isRunAlone.toBoolean()) {
         implementation project(':module_usercenter')
         implementation project(':module_main')
         implementation project(':module_gank')
+        implementation project(':module_home')
     }
     // 如果 app 主工程中使用了 Arouter 注解，那就需要这个 annotationProcessor
-    annotationProcessor rootProject.ext.dependencies['arouter-compiler']
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kapt rootProject.ext.dependencies['arouter-compiler']
 }

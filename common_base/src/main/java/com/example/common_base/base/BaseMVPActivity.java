@@ -1,14 +1,10 @@
 package com.example.common_base.base;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import com.example.common_base.annotation.ClickFilterHook;
 import com.example.common_base.mvp.IPresenter;
 import com.example.common_base.mvp.IView;
 
 public abstract class BaseMVPActivity<P extends IPresenter> extends BaseActivity implements IView {
     protected P presenter;
-    private Unbinder unbinder;
 
     @Override
     protected void initData() {
@@ -17,7 +13,6 @@ public abstract class BaseMVPActivity<P extends IPresenter> extends BaseActivity
         if (presenter != null) {
             presenter.attachView(this);
         }
-        unbinder = ButterKnife.bind(this);
     }
 
     protected abstract P createPresenter();
@@ -29,9 +24,6 @@ public abstract class BaseMVPActivity<P extends IPresenter> extends BaseActivity
         if (presenter != null) {
             presenter.detachView();
             presenter = null;
-        }
-        if (unbinder != null) {
-            unbinder.unbind();
         }
     }
 }

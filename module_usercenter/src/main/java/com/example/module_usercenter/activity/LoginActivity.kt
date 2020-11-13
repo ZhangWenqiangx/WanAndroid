@@ -15,12 +15,12 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER
 import com.example.common_base.constants.Constants
+import com.example.common_base.util.ToastUtil
 import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
 import com.example.module_usercenter.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
-import org.jetbrains.anko.toast
 
 @Route(path = AConstance.ACTIVITY_URL_LOGIN)
 class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, View.OnClickListener {
@@ -99,11 +99,11 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         val phone = et_login_username.text.trim().toString()
         val pwd = et_login_password.text.trim().toString()
         if (TextUtils.isEmpty(phone)) {
-            toast(R.string.please_input_username)
+            ToastUtil.showShortToast(this,R.string.please_input_username)
             return
         }
         if (TextUtils.isEmpty(pwd)) {
-            toast(R.string.please_input_password)
+            ToastUtil.showShortToast(this,R.string.please_input_password)
             return
         }
         presenter.login(phone, pwd)

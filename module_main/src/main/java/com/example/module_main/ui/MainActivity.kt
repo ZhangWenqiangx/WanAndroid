@@ -1,17 +1,13 @@
 package com.example.module_main.ui
 
-import android.app.Activity
-import android.graphics.Color
-import android.os.Build
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import android.view.View
-import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.BaseActivity
 import com.example.common_base.constants.AConstance
 import com.example.module_main.R
-import com.example.module_main.ui.fragment.HomeFragment
 import com.example.module_main.ui.fragment.MineFragment
 import com.example.module_main.ui.fragment.ProjectFragment
 import com.example.module_main.ui.fragment.SystemFragment
@@ -21,8 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), View.OnClickListener {
 
     private var currentSelectionId = R.id.rb_home
-    private lateinit var fm: FragmentManager
-    private var fragments = mutableListOf<Fragment>()
+    private lateinit var fm: androidx.fragment.app.FragmentManager
+    private var fragments = mutableListOf<androidx.fragment.app.Fragment>()
 
     override fun onClick(v: View?) {
 
@@ -70,7 +66,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun createFragment() {
         val transaction = fm.beginTransaction()
 
-        val homeFragment = HomeFragment()
+        val homeFragment = ARouter.getInstance().build(AConstance.FRAGMENT_URL_HOME).navigation() as androidx.fragment.app.Fragment
         val projectFragment = ProjectFragment()
         val systemFragment = SystemFragment()
         val mineFragment = MineFragment()

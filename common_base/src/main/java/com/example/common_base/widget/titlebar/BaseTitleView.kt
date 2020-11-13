@@ -1,6 +1,6 @@
 package com.example.common_base.widget.titlebar
 
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.view.View
 
 /**

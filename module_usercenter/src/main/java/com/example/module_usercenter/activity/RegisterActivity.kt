@@ -2,7 +2,7 @@ package com.example.module_usercenter.activity
 
 import android.content.Context
 import android.os.Build
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.view.inputmethod.InputMethodManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common_base.constants.AConstance
@@ -11,7 +11,6 @@ import com.example.module_usercenter.R
 import com.example.module_usercenter.contract.RegisterContract
 import com.example.module_usercenter.presenter.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
-import org.jetbrains.anko.toast
 
 @Route(path = AConstance.ACTIVITY_URL_REGISTER)
 class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterContract.View {
@@ -34,7 +33,6 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterContract.V
     override fun createPresenter(): RegisterPresenter = RegisterPresenter()
 
     override fun registSuccess() {
-        toast("register success")
         finish()
     }
 }

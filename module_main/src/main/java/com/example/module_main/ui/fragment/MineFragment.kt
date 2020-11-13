@@ -1,7 +1,7 @@
 package com.example.module_main.ui.fragment
 
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter

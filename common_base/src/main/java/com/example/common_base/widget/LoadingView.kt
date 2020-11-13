@@ -20,7 +20,7 @@ class LoadingView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : android.support.v7.widget.AppCompatImageView(context, attrs, defStyleAttr) {
+) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
 
     var mPaint: Paint? = null
     var mRectf: RectF? = null

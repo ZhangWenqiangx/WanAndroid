@@ -10,7 +10,6 @@ if (isRunAlone.toBoolean()) {
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.greenrobot.greendao' // apply plugin
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -50,19 +49,8 @@ android {
             }
         }
     }
-
-
 }
 
-greendao {
-    schemaVersion 1   // 数据库版本号
-    daoPackage 'com.example.moudle_main.db'  // 设置DaoMaster、DaoSession、Dao 包名
-    targetGenDir 'src/main/java'    //设置DaoMaster、DaoSession、Dao目录
-    generateTests false      //设置为true以自动生成单元测试。
-    targetGenDirTests 'src/main/java' //应存储生成的单元测试的基本目录。默认为 src / androidTest / java。
-}
-
-// aspectj start
 final def log = project.logger
 def variants
 if (isRunAlone.toBoolean()) {
@@ -118,5 +106,4 @@ dependencies {
     // arouter-compiler
     kapt rootProject.ext.dependencies['arouter-compiler']
     annotationProcessor rootProject.ext.dependencies['glide-compiler']
-    implementation "org.jetbrains.anko:anko:0.10.8"
 }

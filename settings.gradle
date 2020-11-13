@@ -1,1 +1,2 @@
+include ':module_home'
 include ':app', ':common_base', ':module_gank', ':module_main', ':module_usercenter'

@@ -1,7 +1,6 @@
 package com.example.common_base.http;
 
 import com.example.common_base.base.BaseApplication;
-import com.example.common_base.json.FastJsonConverterFactory;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;

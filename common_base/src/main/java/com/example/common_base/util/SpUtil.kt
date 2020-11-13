@@ -27,6 +27,6 @@ object SpUtil {
 
     fun read(name: String, key: String, defValue: String): String {
         val sp = BaseApplication.sApplication.getSharedPreferences(name, Context.MODE_PRIVATE)
-        return sp.getString(key, defValue)
+        return sp.getString(key, defValue) ?: ""
     }
 }

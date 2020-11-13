@@ -14,9 +14,9 @@ import com.example.common_base.R
  *  description :
  */
 class LoadingDialog : Dialog {
-    constructor(context: Context?) : super(context)
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context?, themeResId: Int) : super(context, themeResId)
+    constructor(context: Context, themeResId: Int) : super(context, themeResId)
 
     class Builder(private val context: Context) {
         private var message: String? = null
