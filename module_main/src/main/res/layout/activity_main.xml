@@ -32,7 +32,7 @@
                 android:button="@null"
                 android:drawableTop="@drawable/selector_menu_home"
                 android:gravity="center"
-                android:text="首页"
+                android:text="文章"
                 android:textSize="@dimen/sp_11"/>
 
 
@@ -44,19 +44,7 @@
                 android:button="@null"
                 android:drawableTop="@drawable/selector_menu_project"
                 android:gravity="center"
-                android:text="项目"
-                android:textSize="@dimen/sp_11"/>
-
-
-        <com.example.common_base.widget.BadgeRadioButton
-                android:id="@+id/rb_system"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@drawable/selector_menu_system"
-                android:gravity="center"
-                android:text="体系"
+                android:text="视频"
                 android:textSize="@dimen/sp_11"/>
 
 

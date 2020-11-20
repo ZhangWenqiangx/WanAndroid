@@ -1,2 +1,2 @@
-include ':module_home'
-include ':app', ':common_base', ':module_gank', ':module_main', ':module_usercenter'
+include ':module_article'
+include ':app', ':module_common', ':module_video', ':module_main', ':module_mine'

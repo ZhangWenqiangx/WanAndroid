@@ -36,12 +36,12 @@ android {
 }
 
 dependencies {
-    implementation project(':common_base')
+    implementation project(':module_common')
     if (!isRunAlone.toBoolean()) {
-        implementation project(':module_usercenter')
+        implementation project(':module_mine')
         implementation project(':module_main')
-        implementation project(':module_gank')
-        implementation project(':module_home')
+        implementation project(':module_video')
+        implementation project(':module_article')
     }
     // 如果 app 主工程中使用了 Arouter 注解，那就需要这个 annotationProcessor
     kapt rootProject.ext.dependencies['arouter-compiler']

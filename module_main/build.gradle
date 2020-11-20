@@ -102,7 +102,7 @@ variants.all { variant ->
 
 dependencies {
 
-    implementation project(':common_base')
+    implementation project(':module_common')
     // arouter-compiler
     kapt rootProject.ext.dependencies['arouter-compiler']
     annotationProcessor rootProject.ext.dependencies['glide-compiler']

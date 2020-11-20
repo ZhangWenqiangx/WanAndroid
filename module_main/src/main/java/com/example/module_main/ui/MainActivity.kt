@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), View.OnClickListener {
 
     private var currentSelectionId = R.id.rb_home
-    private lateinit var fm: androidx.fragment.app.FragmentManager
-    private var fragments = mutableListOf<androidx.fragment.app.Fragment>()
+    private lateinit var fm: FragmentManager
+    private var fragments = mutableListOf<Fragment>()
 
     override fun onClick(v: View?) {
 
@@ -40,8 +40,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             when (checkedId) {
                 R.id.rb_home -> selectFragment(0)
                 R.id.rb_project -> selectFragment(1)
-                R.id.rb_system -> selectFragment(2)
-                R.id.rb_mine -> selectFragment(3)
+                R.id.rb_mine -> selectFragment(2)
             }
 
         }
@@ -66,22 +65,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun createFragment() {
         val transaction = fm.beginTransaction()
 
-        val homeFragment = ARouter.getInstance().build(AConstance.FRAGMENT_URL_HOME).navigation() as androidx.fragment.app.Fragment
+        val homeFragment = ARouter.getInstance().build(AConstance.FRAGMENT_URL_HOME).navigation() as Fragment
         val projectFragment = ProjectFragment()
-        val systemFragment = SystemFragment()
         val mineFragment = MineFragment()
 
         transaction.apply {
             add(R.id.fl_main_container, homeFragment)
             add(R.id.fl_main_container, projectFragment)
-            add(R.id.fl_main_container, systemFragment)
             add(R.id.fl_main_container, mineFragment)
         }
 
         fragments.apply {
             add(homeFragment)
             add(projectFragment)
-            add(systemFragment)
             add(mineFragment)
         }
 
