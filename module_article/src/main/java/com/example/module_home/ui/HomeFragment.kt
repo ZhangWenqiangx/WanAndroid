@@ -15,17 +15,15 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : BaseFragment() {
 
     private val fragments: MutableList<Fragment> = mutableListOf()
-    private val titles:MutableList<String> = mutableListOf("首页","项目","体系")
+    private val titles: MutableList<String> = mutableListOf("首页", "项目", "体系")
 
     override fun initView(view: View?) {
-        fragments.add(FirstPageFragment())
-        fragments.add(FirstPageFragment())
         fragments.add(FirstPageFragment())
 
         tab_layout.setSelectedTabIndicatorHeight(0)
 
         pager.adapter = object :
-            FragmentStateAdapter(activity!!.supportFragmentManager, lifecycle) {
+            FragmentStateAdapter(requireActivity().supportFragmentManager, lifecycle) {
             override fun getItem(position: Int): Fragment = fragments[position]
 
             override fun getItemCount(): Int = 3

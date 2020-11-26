@@ -9,8 +9,8 @@ ext {
             versionName      : "1.0"
     ]
     dependencies = [
-
             "viewPager2"             : 'androidx.viewpager2:viewpager2:1.0.0-alpha04',
+            "kotlin"                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             "appcompat-v7"           : 'androidx.appcompat:appcompat:1.0.0',
             "design"                 : 'com.google.android.material:material:1.0.0',
             "support-v4"             : 'androidx.legacy:legacy-support-v4:1.0.0',
@@ -19,7 +19,7 @@ ext {
             "recyclerview-v7"        : 'androidx.recyclerview:recyclerview:1.0.0',
             "gson"                   : "com.google.code.gson:gson:2.2.4",
             "constraint-layout"      : 'androidx.constraintlayout:constraintlayout:2.0.4',
-            "retrofit"               : "com.squareup.retrofit2:retrofit:2.4.0",
+            "retrofit"               : "com.squareup.retrofit2:retrofit:2.6.0",
             "rxandroid"              : "io.reactivex.rxjava2:rxandroid:2.1.0",
             "rxjava"                 : "io.reactivex.rxjava2:rxjava:2.2.2",
             "converter-gson"         : "com.squareup.retrofit2:converter-gson:2.4.0",

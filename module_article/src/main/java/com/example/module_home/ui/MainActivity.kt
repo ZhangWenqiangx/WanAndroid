@@ -7,7 +7,7 @@ import com.example.module_home.R
 /**
  * 单独运行时承载fragment
  */
-class MainActivity   : BaseActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var fm: FragmentManager
 
     override fun getLayoutResId(): Int =

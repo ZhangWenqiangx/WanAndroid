@@ -13,5 +13,5 @@ import retrofit2.http.Path
  */
 interface Api {
     @GET("article/list/{page}/json")
-    fun getArticles(@Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
+    suspend fun getArticles(@Path("page") page: Int): BaseResponse<ArticleResponse>
 }

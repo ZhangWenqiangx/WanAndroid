@@ -1,8 +1,8 @@
 package com.example.module_main.ui
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.BaseActivity
@@ -10,7 +10,6 @@ import com.example.common_base.constants.AConstance
 import com.example.module_main.R
 import com.example.module_main.ui.fragment.MineFragment
 import com.example.module_main.ui.fragment.ProjectFragment
-import com.example.module_main.ui.fragment.SystemFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)
