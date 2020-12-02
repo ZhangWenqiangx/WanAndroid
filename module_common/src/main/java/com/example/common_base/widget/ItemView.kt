@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.common_base.R
-import com.scwang.smartrefresh.layout.util.DensityUtil.dp2px
+import com.example.common_base.util.dp2px
 
 /**
  * Description:
@@ -29,10 +29,14 @@ class ItemView : LinearLayout {
     private var dividerVisible: Boolean = false
     private var dividerLeftMargin: Float = 0.toFloat()
     private var dividerRightMargin: Float = 0.toFloat()
+    private var mContext: Context? = null
 
-    constructor(context: Context?) : super(context)
+    constructor(context: Context?) : super(context){
+        mContext = context
+    }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        mContext = context
         readAttrs(context, attrs)
         initAttrs(context)
     }
@@ -42,6 +46,7 @@ class ItemView : LinearLayout {
         attrs,
         defStyleAttr
     ) {
+        mContext = context
         readAttrs(context, attrs)
         initAttrs(context)
     }
@@ -79,7 +84,7 @@ class ItemView : LinearLayout {
         itemBackgroundColor = typedArray.getColor(R.styleable.ItemView_itemBackgroundColor, 0)
         dividerVisible = typedArray.getBoolean(R.styleable.ItemView_dividerVisible, true)
         dividerLeftMargin =
-            typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, dp2px(40F).toFloat())
+            typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, dp2px(mContext!!,40F).toFloat())
         dividerRightMargin = typedArray.getDimension(R.styleable.ItemView_dividerRightMargin, 0f)
         typedArray.recycle()
     }

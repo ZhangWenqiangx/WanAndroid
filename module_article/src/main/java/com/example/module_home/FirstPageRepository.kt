@@ -1,19 +1,23 @@
 package com.example.module_home
 
-import com.example.common_base.base.BaseResponse
+import com.example.common_base.base.Result
 import com.example.common_base.http.RetrofitClient
+import com.example.module_home.bean.Article
 import com.example.module_home.bean.ArticleResponse
-import javax.inject.Inject
+import com.example.module_home.bean.BannerBean
 
 /**
  * @describe :
  *
  * @author zwq 2020/11/23
  */
-class FirstPageRepository @Inject constructor(){
+class FirstPageRepository {
 
-    suspend fun getArticles(page: Int): BaseResponse<ArticleResponse> {
-        val service = RetrofitClient.getInstance().retrofit.create(Api::class.java)
-        return service.getArticles(page)
-    }
+    private val api by lazy { RetrofitClient.getInstance().retrofit.create(Api::class.java) }
+
+    suspend fun getArticles(page: Int): Result<ArticleResponse> = api.getArticles(page)
+
+    suspend fun getTopArticles(): Result<List<Article>>? = api.getTopArticles()
+
+    suspend fun getBanners():Result<List<BannerBean>>? = api.getBanners()
 }

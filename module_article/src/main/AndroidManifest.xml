@@ -3,8 +3,9 @@
         package="com.example.module_home">
 
     <application>
-        <activity android:name=".ui.MainActivity"
-                android:launchMode="singleTask"/>
+        <activity
+                android:name=".ui.MainActivity"
+                android:launchMode="singleTask" />
     </application>
 
 </manifest>

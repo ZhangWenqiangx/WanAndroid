@@ -2,16 +2,30 @@ package com.example.common_base.base
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
-import dagger.hilt.android.HiltAndroidApp
+import com.example.common_base.R
+import com.example.common_base.widget.refresh.ClassicsHeader
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+
 
 /**
  * Description:
  */
-@HiltAndroidApp
 open class BaseApplication : Application() {
 
     companion object {
         lateinit var sApplication: Application
+    }
+
+    init {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
+            layout.setPrimaryColorsId(R.color.white_f1, R.color.black_999)
+            ClassicsHeader(context)
+        }
+
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
+            ClassicsFooter(context).setDrawableSize(20f)
+        }
     }
 
     override fun onCreate() {

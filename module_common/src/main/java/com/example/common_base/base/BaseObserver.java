@@ -8,7 +8,7 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * Description:数据请求的类
  */
-public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>> {
+public abstract class BaseObserver<T> extends DisposableObserver<Result<T>> {
 
     private IView baseView;
 
@@ -30,27 +30,27 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
 
     /**
      * 请求事件回调
-     * @param baseResponse
+     * @param result
      */
     @Override
-    public void onNext(BaseResponse<T> baseResponse) {
+    public void onNext(Result<T> result) {
 
         if(baseView!=null){
             baseView.hideLoading();
         }
 
-        int errorCode = baseResponse.getErrorCode();
+        int errorCode = result.getErrorCode();
 
-        boolean error = baseResponse.isError();
-        String errorMsg = baseResponse.getErrorMsg();
+        boolean error = result.isError();
+        String errorMsg = result.getErrorMsg();
 
         //gank 返回boolean
         if(!error){
-            T results = baseResponse.getResults();
+            T results = result.getResults();
             onSuccess(results);
         }else if (errorCode == 0 || errorCode == 200){
             //wandroid 返回的是0 or 200
-            T results = baseResponse.getData();
+            T results = result.getData();
             onSuccess(results);
         }else {
             onError(new ApiException(errorCode,errorMsg));

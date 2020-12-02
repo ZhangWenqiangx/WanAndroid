@@ -1,19 +1,22 @@
 package com.example.module_home.ui
 
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import com.example.common_base.base.BaseActivity
 import com.example.module_home.R
 
 /**
  * 单独运行时承载fragment
  */
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var fm: FragmentManager
 
-    override fun getLayoutResId(): Int =
-        R.layout.activity_main
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    override fun initView() {
         fm = supportFragmentManager
         val transaction = fm.beginTransaction()
         val homeFragment = HomeFragment()
@@ -24,7 +27,5 @@ class MainActivity : BaseActivity() {
         ft.commit()
     }
 
-    override fun initData() {
 
-    }
 }

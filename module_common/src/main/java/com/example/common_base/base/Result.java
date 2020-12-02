@@ -3,7 +3,7 @@ package com.example.common_base.base;
 /**
  * Description:请求数据返回的数据 统一包装
  */
-public class BaseResponse<T> {
+public class Result<T> {
 
     private int errorCode = -1;
     private String errorMsg;

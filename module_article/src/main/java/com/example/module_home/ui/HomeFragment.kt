@@ -19,14 +19,14 @@ class HomeFragment : BaseFragment() {
 
     override fun initView(view: View?) {
         fragments.add(FirstPageFragment())
-
-        tab_layout.setSelectedTabIndicatorHeight(0)
+        fragments.add(FirstPageFragment())
+        fragments.add(FirstPageFragment())
 
         pager.adapter = object :
             FragmentStateAdapter(requireActivity().supportFragmentManager, lifecycle) {
-            override fun getItem(position: Int): Fragment = fragments[position]
+            override fun getItemCount(): Int = fragments.size
 
-            override fun getItemCount(): Int = 3
+            override fun createFragment(position: Int)= fragments[position]
         }
 
         TabLayoutMediator(tab_layout, pager, object : TabLayoutMediator.OnConfigureTabCallback {
@@ -34,6 +34,7 @@ class HomeFragment : BaseFragment() {
                 tab?.text = titles[position]
             }
         }).attach()
+
     }
 
     override fun initData() {

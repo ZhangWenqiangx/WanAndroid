@@ -62,7 +62,7 @@
     <!--列表申领单条目高度-->
     <dimen name="collapsible_item_height">22dp</dimen>
 
-    <!--比较通用模块条目高度 比如我的模块 施工点新增修改头部条目高度-->
+    <!--比较通用模块条目高度-->
     <dimen name="commonLayoutItemHeight">44dp</dimen>
 
     <!--首页文字大小-->
