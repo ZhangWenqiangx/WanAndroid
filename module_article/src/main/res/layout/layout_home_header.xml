@@ -8,9 +8,5 @@
     <com.youth.banner.Banner
             android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_150">
-
-    </com.youth.banner.Banner>
-
-
+            android:layout_height="@dimen/dp_150"/>
 </LinearLayout>

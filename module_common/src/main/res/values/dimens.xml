@@ -4,7 +4,9 @@
     <dimen name="base_dpi">360dp</dimen>
 
     <!--标题栏高度-->
-    <dimen name="actionbar_size">41dp</dimen>
+    <dimen name="actionbar_size">40dp</dimen>
+
+    <dimen name="commonLevel1TitleSize">20sp</dimen>
 
     <dimen name="statusbar_view_height">0dp</dimen>
     <!--常用间距 页面间距统一-->
@@ -69,13 +71,13 @@
     <dimen name="commonHomeTextSize">12sp</dimen>
 
     <!--常用sp值-->
-    <dimen name="textSizePrimaryTitle">18sp</dimen>
-    <dimen name="textSizeSecondaryTitle">16sp</dimen>
-    <dimen name="textSizeTertiaryTitle">15sp</dimen>
-    <dimen name="textSizePrimaryButton">14sp</dimen>
-    <dimen name="textSizePrimaryContent">14sp</dimen>
-    <dimen name="textSizePrimaryRemark">13sp</dimen>
-    <dimen name="textSizePrimaryDescribed">12sp</dimen>
+    <dimen name="textSizePrimaryTitle">21sp</dimen>
+    <dimen name="textSizeSecondaryTitle">19sp</dimen>
+    <dimen name="textSizeTertiaryTitle">17sp</dimen>
+    <dimen name="textSizePrimaryContent">15sp</dimen>
+    <dimen name="textSizePrimaryButton">15sp</dimen>
+    <dimen name="textSizePrimaryRemark">14sp</dimen>
+    <dimen name="textSizePrimaryDescribed">13sp</dimen>
     <dimen name="textSizeLabelStatus">8sp</dimen>
 
     <!--对于未在style文件中定义样式的可以使用以下字体大小-->

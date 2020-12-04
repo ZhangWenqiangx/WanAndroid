@@ -28,9 +28,9 @@
 	<dimen name="collapsible_item_height">23.9556dp</dimen>
 	<dimen name="commonLayoutItemHeight">47.9111dp</dimen>
 	<dimen name="commonHomeTextSize">13.0667sp</dimen>
-	<dimen name="textSizePrimaryTitle">19.6000sp</dimen>
-	<dimen name="textSizeSecondaryTitle">17.4222sp</dimen>
-	<dimen name="textSizeTertiaryTitle">16.3333sp</dimen>
+	<dimen name="textSizePrimaryTitle">21.6000sp</dimen>
+	<dimen name="textSizeSecondaryTitle">19.4222sp</dimen>
+	<dimen name="textSizeTertiaryTitle">17.3333sp</dimen>
 	<dimen name="textSizePrimaryButton">15.2444sp</dimen>
 	<dimen name="textSizePrimaryContent">15.2444sp</dimen>
 	<dimen name="textSizePrimaryRemark">14.1556sp</dimen>

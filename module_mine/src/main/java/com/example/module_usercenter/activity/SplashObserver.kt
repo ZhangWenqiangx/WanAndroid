@@ -13,7 +13,7 @@ class SplashObserver(var activity: SplashActivity) : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onActivityResume(){
-        ARouter.getInstance().build(AConstance.ACTIVITY_URL_LOGIN).navigation()
+        ARouter.getInstance().build(AConstance.ACTIVITY_URL_MAIN).navigation()
         activity.finish()
     }
 }

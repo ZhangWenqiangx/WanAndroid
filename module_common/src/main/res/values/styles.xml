@@ -20,8 +20,8 @@
 
 <!--    一级标题样式-->
     <style name="CommonLevel1TitleStyle">
-        <item name="android:textColor">@color/color_111</item>
-        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textSizePrimaryTitle</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>

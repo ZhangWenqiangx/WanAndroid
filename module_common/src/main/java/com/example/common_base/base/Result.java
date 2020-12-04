@@ -7,9 +7,12 @@ public class Result<T> {
 
     private int errorCode = -1;
     private String errorMsg;
-    private T data;         //数据
+    private T data;
 
-    private T results;      //gank.io 数据
+    /**
+     * gank.io
+     */
+    private T results;
     private boolean error = true;
 
     public int getErrorCode() {

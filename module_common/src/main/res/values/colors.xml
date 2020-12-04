@@ -20,6 +20,7 @@
     <color name="white_f1">#f1f1f1</color>
 
     <!--常用颜色值-->
+    <color name="colorTextPrimary">#111</color>
     <color name="colorSecondary">#eef1ff</color>
     <color name="colorTertiary">#0ac850</color>
     <color name="colorFourth">#ec5252</color>
@@ -56,5 +57,4 @@
     <color name="colorLightYellow">#F9CC95</color>
     <color name="colorGreen">#0AC850</color>
 
-    <color name="color_111">#111</color>
 </resources>

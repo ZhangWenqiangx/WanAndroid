@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white">
+
+        <TextView
+                android:id="@+id/tv_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="12dp"
+                android:text="@string/cancle"
+                android:textColor="@color/black_333"
+                android:textSize="@dimen/sp_15" />
+
+        <com.example.common_base.widget.SearchableView
+                android:layout_marginLeft="@dimen/commonLeftMargin"
+                android:layout_centerVertical="true"
+                android:id="@+id/search_input"
+                android:background="@drawable/bg_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_30"
+                android:layout_toLeftOf="@id/tv_cancle" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

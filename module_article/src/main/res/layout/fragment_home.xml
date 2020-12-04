@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/CommonLayoutBodyStyle"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/ll_title"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_content_size">
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="0dp"
-            android:layout_marginLeft="@dimen/dp_25"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_marginHorizontal="@dimen/dp_10"
-            android:src="@drawable/ic_search"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/iv_search"
-            android:layout_width="@dimen/dp_20"
-            android:layout_height="@dimen/dp_20"/>
-    </LinearLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
-        android:orientation="horizontal"
-        android:layout_below="@id/ll_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <data>
 
-</RelativeLayout>
+    </data>
+
+    <RelativeLayout
+            style="@style/CommonLayoutBodyStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:id="@+id/ll_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionbar_content_size"
+                android:orientation="horizontal">
+
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_weight="1" />
+
+            <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/dp_10"
+                    android:src="@drawable/ic_search" />
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ll_title"
+                android:orientation="horizontal" />
+
+    </RelativeLayout>
+</layout>
+

@@ -17,7 +17,7 @@
             android:lineSpacingExtra="3dp"
             android:maxLines="2"
             android:textColor="@color/black_333"
-            android:textSize="@dimen/textSizeSecondaryTitle" />
+            android:textSize="@dimen/textSizePrimaryContent" />
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:paddingTop="1dp"
                 android:paddingRight="6dp"
                 android:paddingBottom="1dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorHighlight"
                 android:textSize="@dimen/textSizePrimaryDescribed" />
 
         <TextView
