@@ -38,13 +38,18 @@ class SearchViewModel constructor(
         MutableLiveData<MutableList<HotKeyBean>>()
     }
 
-    private var searchDataList = mutableListOf<SearchResult>()
+    var searchDataList = mutableListOf<SearchResult>()
 
     /**
      * 搜索关键词后的数据
      */
     val searchData: MutableLiveData<MutableList<SearchResult>> by lazy {
         MutableLiveData<MutableList<SearchResult>>()
+    }
+
+    fun clearSearchData(){
+        searchDataList.clear()
+        searchData.value = mutableListOf()
     }
 
     fun getHotKey() {

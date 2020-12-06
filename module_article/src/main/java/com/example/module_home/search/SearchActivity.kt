@@ -3,13 +3,11 @@ package com.example.module_home.search
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.common_base.base.BaseActivity
 import com.example.common_base.widget.SearchableView
 import com.example.module_home.R
 import com.example.module_home.ViewModelCreater
-import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.activity_search.*
 
 
@@ -42,6 +40,7 @@ class SearchActivity : BaseActivity() {
 
             setOnCloseClickListener(object : SearchableView.OnCloseClickListener {
                 override fun onClose() {
+                    viewModel.clearSearchData()
                     selectFragment(0)
                 }
             })
@@ -50,6 +49,13 @@ class SearchActivity : BaseActivity() {
         fm = supportFragmentManager
         createFragment()
         selectFragment(0)
+    }
+
+    fun onHotKeyClick(it: String) {
+        selectFragment(1)
+        search_input.setQuery(it, false)
+        viewModel.searchByKey(it, true)
+        viewModel.searchKey.value = it
     }
 
     private lateinit var fm: FragmentManager
