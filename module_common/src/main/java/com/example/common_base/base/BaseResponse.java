@@ -3,8 +3,12 @@ package com.example.common_base.base;
 /**
  * Description:请求数据返回的数据 统一包装
  */
-public class Result<T> {
+public class BaseResponse<T> {
 
+    /**
+     * 0 代表执行成功，不建议依赖任何非0的 errorCode.
+     *  -1001 代表登录失效，需要重新登录。
+     */
     private int errorCode = -1;
     private String errorMsg;
     private T data;

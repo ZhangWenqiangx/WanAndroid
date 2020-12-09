@@ -11,12 +11,15 @@ import com.example.module_home.search.SearchViewModel
  *  description :
  */
 class ViewModelCreater : ViewModelProvider.Factory {
+
+    private val repository by lazy { ApiRepository() }
+
     override fun <T : ViewModel?> create(modelClass: Class<T>) = with(modelClass) {
         when {
             isAssignableFrom(ArticleViewModel::class.java) ->
-                ArticleViewModel(ApiRepository())
+                ArticleViewModel(repository)
             isAssignableFrom(SearchViewModel::class.java) ->
-                SearchViewModel(ApiRepository())
+                SearchViewModel(repository)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

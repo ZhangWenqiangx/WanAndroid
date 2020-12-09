@@ -9,17 +9,15 @@ import android.widget.Toast;
  * Toast提示框
  * 1.增加左图 右文形式
  *
- * @author zlc
+ * @author zwq
  */
 public class ToastUtil {
 
+    private static String oldMsg;
+    private static long time;
+
     private static Toast toast;
     private static Toast mCustomToast;
-    private static final int VALUE = 0;
-    /**
-     * true：提示原始的网络请求失败信息;false：提示网络请求失败
-     */
-    private static boolean showOriginalNetError = true;
 
     /**
      * 显示长时间Toast
@@ -58,9 +56,17 @@ public class ToastUtil {
         toast.show();
     }
 
-    public static void showShortToast(Context context, int text) {
-        String string = context.getResources().getString(text);
-        showShortToast(context, string);
+    public static void showToast(Context context, String msg) {
+        if (!msg.equals(oldMsg)) {
+            showShortToast(context, msg);
+            time = System.currentTimeMillis();
+        } else {
+            if (System.currentTimeMillis() - time > 2000) {
+                showShortToast(context, msg);
+                time = System.currentTimeMillis();
+            }
+        }
+        oldMsg = msg;
     }
 
     /**

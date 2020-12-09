@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.common_base.base.mvvm.BaseBindFragment
 import com.example.common_base.util.ToastUtil
 import com.example.module_home.R
+import com.example.module_home.ViewModelCreater
 import com.example.module_home.databinding.FragmentHotKeyBinding
+import com.example.module_home.firstpage.ArticleViewModel
 import com.example.module_home.search.adapter.HotKeyAdapter
 import com.example.module_home.search.adapter.SearchHistoryAdapter
 import com.example.module_home.search.bean.HotKeyBean
@@ -19,18 +21,16 @@ import kotlinx.android.synthetic.main.fragment_hot_key.*
 /**
  * 热词、历史查询
  */
-class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding>() {
+class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding,SearchViewModel>() {
 
     private lateinit var footerView: View
-    private val viewModel: SearchViewModel by activityViewModels()
-
     private lateinit var mAdapter: HotKeyAdapter
     private lateinit var mHisAdapter: SearchHistoryAdapter
 
     override fun getLayoutResId(): Int = R.layout.fragment_hot_key
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         mAdapter = HotKeyAdapter(R.layout.item_hot_key)
         mHisAdapter = SearchHistoryAdapter(R.layout.item_search_history)
@@ -65,9 +65,17 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding>() {
         })
     }
 
+    override fun addObserver() {
+
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = HotKeyFragment()
     }
 
+    override fun createViewModel(): SearchViewModel {
+        val viewModel: SearchViewModel by activityViewModels()
+        return viewModel
+    }
 }

@@ -1,8 +1,10 @@
 package com.example.common_base.http
 
 import android.net.ParseException
-import android.widget.Toast
+import android.os.Handler
+import android.os.Looper
 import com.example.common_base.base.BaseApplication
+import com.example.common_base.util.ToastUtil
 import com.google.gson.JsonParseException
 import org.apache.http.conn.ConnectTimeoutException
 import org.json.JSONException
@@ -20,8 +22,10 @@ class ExceptionHandler {
 
         lateinit var errorMsg: String
 
-        fun handlerException(e: Throwable) {
+        val mainHandler by lazy { Handler(Looper.getMainLooper()) }
 
+        @JvmStatic
+        fun handlerException(e: Throwable): Throwable {
             errorMsg = when (e) {
                 is HttpException -> "网络错误"
                 is ApiException -> "服务端出错/" + e.errcode + "/" + e.errmsg    //自己定义关于服务器返回code的处理
@@ -37,8 +41,10 @@ class ExceptionHandler {
                 is SocketTimeoutException -> "网络连接超时"
                 else -> "网络连接异常,请稍后重试"
             }
-            Toast.makeText(BaseApplication.sApplication, errorMsg, Toast.LENGTH_LONG).show()
+            mainHandler.post {
+                ToastUtil.showToast(BaseApplication.sApplication, errorMsg)
+            }
+            return e
         }
     }
-
 }

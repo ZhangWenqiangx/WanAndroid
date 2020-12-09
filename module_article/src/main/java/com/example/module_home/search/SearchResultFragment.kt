@@ -17,9 +17,8 @@ import kotlinx.android.synthetic.main.fragment_search_result.*
 /**
  * 搜索结果页
  */
-class SearchResultFragment : BaseBindFragment<FragmentSearchResultBinding>() {
+class SearchResultFragment : BaseBindFragment<FragmentSearchResultBinding, SearchViewModel>() {
 
-    val viewModel: SearchViewModel by activityViewModels()
     private lateinit var mAdapter: SearchResultAdapter
 
     override fun getLayoutResId(): Int = R.layout.fragment_search_result
@@ -60,9 +59,18 @@ class SearchResultFragment : BaseBindFragment<FragmentSearchResultBinding>() {
         })
     }
 
+    override fun addObserver() {
+
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() =
             SearchResultFragment()
+    }
+
+    override fun createViewModel(): SearchViewModel {
+        val viewModel: SearchViewModel by activityViewModels()
+        return viewModel
     }
 }

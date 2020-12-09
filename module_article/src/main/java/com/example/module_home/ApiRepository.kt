@@ -1,6 +1,7 @@
 package com.example.module_home
 
-import com.example.common_base.base.Result
+import com.example.common_base.base.BaseRepository
+import com.example.common_base.base.BaseResult
 import com.example.common_base.http.RetrofitClient
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.ArticleResponse
@@ -13,17 +14,22 @@ import com.example.module_home.search.bean.SearchResultResponse
  *
  * @author zwq 2020/11/23
  */
-class ApiRepository {
+class ApiRepository : BaseRepository() {
 
     private val api by lazy { RetrofitClient.getInstance().retrofit.create(Api::class.java) }
 
-    suspend fun getArticles(page: Int): Result<ArticleResponse> = api.getArticles(page)
+    suspend fun getArticles(page: Int): BaseResult<ArticleResponse> =
+        execute { convert(api.getArticles(page)) }
 
-    suspend fun getTopArticles(): Result<List<Article>>? = api.getTopArticles()
+    suspend fun getTopArticles(): BaseResult<MutableList<Article>>? =
+        execute { convert(api.getTopArticles()) }
 
-    suspend fun getBanners():Result<List<BannerBean>>? = api.getBanners()
+    suspend fun getBanners(): BaseResult<MutableList<BannerBean>> =
+        execute { convert(api.getBanners()) }
 
-    suspend fun getHotKey():Result<ArrayList<HotKeyBean>> = api.getHotKey()
+    suspend fun getHotKey(): BaseResult<MutableList<HotKeyBean>> =
+        execute { convert(api.getHotKey()) }
 
-    suspend fun searchByKey(page: Int,key:String):Result<SearchResultResponse>? = api.searchByKey(page,key)
+    suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse>? =
+        execute { convert(api.searchByKey(page, key)) }
 }

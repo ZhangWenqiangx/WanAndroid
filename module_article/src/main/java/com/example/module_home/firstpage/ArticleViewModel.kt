@@ -1,12 +1,13 @@
 package com.example.module_home.firstpage
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import com.example.common_base.base.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_home.ApiRepository
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.BannerBean
-import kotlinx.coroutines.launch
 
 /**
  * @describe :viewmodel for article firstpage
@@ -17,10 +18,10 @@ class ArticleViewModel constructor(
     private val repository: ApiRepository
 ) : BaseViewModel() {
 
-    private var dataList = mutableListOf<Article>()
+    private var articleDataList = mutableListOf<Article>()
     private var page = 0
 
-    val bannersData:MutableLiveData<MutableList<BannerBean>> by lazy {
+    val bannersData: MutableLiveData<MutableList<BannerBean>> by lazy {
         MutableLiveData<MutableList<BannerBean>>()
     }
 
@@ -28,31 +29,45 @@ class ArticleViewModel constructor(
         MutableLiveData<MutableList<Article>>()
     }
 
-    fun getBanner(){
-        viewModelScope.launch {
-            val banners = repository.getBanners()
-            bannersData.value = banners?.data?.toMutableList()
-        }
+    fun getBanner() {
+        launch(tryBlock = {
+            repository.getBanners().let {
+                if (it is BaseResult.Success) {
+                    bannersData.value = it.data
+                    mStateLiveData.value = SuccessState
+                } else if (it is BaseResult.Error) {
+                    mStateLiveData.value = ErrorState(it.exception.message)
+                }
+            }
+        })
     }
 
     fun getArticles(isRefresh: Boolean = false) {
-        viewModelScope.launch {
-
+        launch(tryBlock =  {
             if (isRefresh || page == 0) {
-                val topArticles = repository.getTopArticles()
-                topArticles?.let {
-                    dataList.clear()
-                    dataList.addAll(it.data)
+                repository.getTopArticles()?.let {
+                    if (it is BaseResult.Success) {
+                        articleDataList.clear()
+                        articleDataList.addAll(it.data)
+                        mStateLiveData.value = SuccessState
+                    } else if (it is BaseResult.Error) {
+                        mStateLiveData.value = ErrorState(it.exception.message)
+                    }
                 }
             }
 
-            val articles = repository.getArticles(page)
-            articles.data.datas?.let {
-                dataList.addAll(it.toMutableList())
-            }
+            repository.getArticles(page).let {
+                if (it is BaseResult.Success) {
+                    articleDataList.addAll(it.data.datas)
 
-            articleData.value = dataList
-            page++
-        }
+                    articleData.value = articleDataList
+                    page++
+
+                    mStateLiveData.value = SuccessState
+                } else if (it is BaseResult.Error) {
+                    mStateLiveData.value = ErrorState(it.exception.message)
+                }
+            }
+        })
     }
 }

@@ -3,10 +3,12 @@ package com.example.module_home.firstpage
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseBindFragment
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.LoadingState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R
@@ -18,18 +20,21 @@ import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.BannerBean
 import com.youth.banner.Banner
 import com.youth.banner.indicator.RectangleIndicator
+import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.fragment_first_page.*
 
 /**
  * 文章首页
  */
-class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding>() {
+class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding,ArticleViewModel>() {
 
     private lateinit var headerView: View
     private lateinit var mAdapter: FirstPageAdapter
     private lateinit var mBanner: Banner<BannerBean, HomeBannerAdapter>
 
-    private val viewModel by viewModels<ArticleViewModel> { ViewModelCreater() }
+    override fun createViewModel(): ArticleViewModel {
+        return ViewModelCreater().create(ArticleViewModel::class.java)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -97,7 +102,17 @@ class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding>() {
         viewModel.bannersData.observe(viewLifecycleOwner, Observer {
             mBanner.setDatas(it)
         })
+
+        viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is SuccessState -> LogUtils.d("成功了22")
+                is ErrorState -> LogUtils.d("异常了22")
+                is LoadingState -> LogUtils.d("Loading22")
+                else -> LogUtils.d("开始了22")
+            }
+        })
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_first_page
+
 }

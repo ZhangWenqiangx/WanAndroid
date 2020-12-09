@@ -2,7 +2,10 @@ package com.example.module_home.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.common_base.base.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_home.ApiRepository
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchResult
@@ -53,25 +56,37 @@ class SearchViewModel constructor(
     }
 
     fun getHotKey() {
-        viewModelScope.launch {
-            val hotKey = repository.getHotKey()
-            hotKeyData.value = hotKey.data
-        }
+        launch (tryBlock = {
+            repository.getHotKey().let {
+                if (it is BaseResult.Success) {
+                    hotKeyData.value = it.data
+                    mStateLiveData.value = SuccessState
+                } else if (it is BaseResult.Error) {
+                    mStateLiveData.value = ErrorState(it.exception.message)
+                }
+            }
+        })
     }
 
     fun searchByKey(key: String, isRefresh: Boolean = false) {
-        viewModelScope.launch {
-            if (isRefresh) {
-                page = 0
-                searchDataList.clear()
-            }
-            val searchByKey = repository.searchByKey(page, key)
-            searchByKey?.data?.datas?.let {
-                searchDataList.addAll(it.toMutableList())
-            }
-            searchData.value = searchDataList
-            page++
+        if (isRefresh) {
+            page = 0
+            searchDataList.clear()
         }
+        launch (tryBlock = {
+            repository.searchByKey(page, key).let {
+                if (it is BaseResult.Success) {
+                    it.data.datas.let { list ->
+                        searchDataList.addAll(list)
+                    }
+                    searchData.value = searchDataList
+                    page++
+                    mStateLiveData.value = SuccessState
+                } else if (it is BaseResult.Error) {
+                    mStateLiveData.value = ErrorState(it.exception.message)
+                }
+            }
+        })
     }
 
     fun saveKeyForHistory(key: String) {
