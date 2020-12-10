@@ -28,6 +28,8 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterContract.V
             val repassword = et_register_repassword.text.toString().trim { it <= ' ' }
             presenter.register(username,password,repassword)
         }
+
+        iv_close.setOnClickListener { finish() }
     }
 
     override fun createPresenter(): RegisterPresenter = RegisterPresenter()

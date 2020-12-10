@@ -9,4 +9,5 @@
     <string name="str_input_name">请输入用户名</string>
     <string name="str_hello">你好，</string>
     <string name="str_welcome_login">欢迎登录</string>
+    <string name="str_logining">登录中</string>
 </resources>

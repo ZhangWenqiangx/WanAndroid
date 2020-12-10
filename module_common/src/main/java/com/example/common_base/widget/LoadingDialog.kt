@@ -67,7 +67,7 @@ class LoadingDialog : Dialog {
         fun create(): LoadingDialog {
             val inflater = LayoutInflater.from(context)
             val view: View = inflater.inflate(R.layout.layout_normal_loading, null)
-            val loadingDailog = LoadingDialog(context)
+            val loadingDailog = LoadingDialog(context,R.style.Theme_dialog)
             val msgText = view.findViewById<View>(R.id.loading_tv_content) as TextView
             if (isShowMessage) {
                 msgText.text = message

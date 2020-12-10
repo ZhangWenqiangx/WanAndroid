@@ -1,7 +1,6 @@
 package com.example.module_home.search
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.common_base.base.data.BaseResult
 import com.example.common_base.base.data.viewmodel.BaseViewModel
 import com.example.common_base.base.data.viewmodel.ErrorState
@@ -10,7 +9,7 @@ import com.example.module_home.data.ArticleRepository
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchEntity
 import com.example.module_home.search.bean.SearchResult
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
 
 /**
  *  @author : zhang.wenqiang
@@ -92,27 +91,27 @@ class SearchViewModel constructor(
     }
 
     fun getAllHistory() {
-        viewModelScope.launch {
+        launch({
             repository.getAllHistory().let {
                 if (it is BaseResult.Success) {
-                    historyData.value = it.data.apply { reverse() }
+                    historyData.postValue(it.data.apply { reverse() })
                 }
             }
-        }
+        }, Dispatchers.IO)
     }
 
     fun clearHistory() {
-        viewModelScope.launch {
+        launch({
             repository.deleteHistory()
             historyData.postValue(mutableListOf())
-        }
+        }, Dispatchers.IO)
     }
 
     fun saveToLocal(key: String) {
-        viewModelScope.launch {
+        launch({
             repository.delete(SearchEntity(key))
             repository.saveKey(key)
             getAllHistory()
-        }
+        }, Dispatchers.IO)
     }
 }

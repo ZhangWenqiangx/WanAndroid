@@ -50,6 +50,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
     override fun createPresenter(): LoginPresenter = LoginPresenter()
 
     override fun initView() {
+        iv_close.setOnClickListener { finish() }
     }
 
     override fun initData() {

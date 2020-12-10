@@ -8,19 +8,27 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ *
+ */
 open class BaseViewModel : ViewModel() {
 
+    /**
+     * 状态驱动
+     * tips:同一个LiveData不可以使用不同的viewLifecycleOwner管理
+     */
     val mStateLiveData = MutableLiveData<StateActionEvent>()
 
     /**
-     * 如果指定其他Dispatcher需要postValue
+     * 执行代码块 且驱动状态为Loading
+     * @param dispatcher 指定协程调度线程
      */
     fun launch(
         tryBlock: suspend CoroutineScope.() -> Unit,
-        ioDispatcher: CoroutineDispatcher = Dispatchers.Main
+        dispatcher: CoroutineDispatcher = Dispatchers.Main
     ) {
         mStateLiveData.postValue(LoadingState)
-        viewModelScope.launch(ioDispatcher) {
+        viewModelScope.launch(dispatcher) {
             tryBlock()
         }
     }

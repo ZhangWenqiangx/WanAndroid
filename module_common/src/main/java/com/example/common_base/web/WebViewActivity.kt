@@ -39,7 +39,7 @@ class WebViewActivity : BaseActivity() {
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.elevation = dp2px(this, 5f)
-        toolbar.setNavigationIcon(R.drawable.ic_back)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener { onBack() }
 
         webView = CommonWebView(this.applicationContext)

@@ -5,9 +5,9 @@ import android.app.Dialog
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.common_base.base.mvp.IView
 import com.example.common_base.widget.LoadingDialog
 
@@ -22,7 +22,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     protected abstract fun initView()
     protected abstract fun initData()
-    open fun initBinding(){}
+    open fun initBinding() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

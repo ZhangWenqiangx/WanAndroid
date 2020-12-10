@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ll_loading"
-        android:layout_width="@dimen/dp_80"
-        android:layout_height="@dimen/dp_80"
-        android:background="@drawable/common_bg_white_round"
-        android:padding="@dimen/dp_20">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <com.example.common_base.widget.LoadingView
-            android:layout_centerHorizontal="true"
             android:id="@+id/loading_lv"
-            android:layout_width="@dimen/dp_20"
-            android:layout_height="@dimen/dp_20"
-            app:borderColor="@color/colorAccent" />
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_centerInParent="true"
+            app:borderColor="@color/white_f8" />
 
     <TextView
             android:id="@+id/loading_tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/loading_lv"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dp_20"
+            android:textColor="@color/white_f8" />
 
 </RelativeLayout>
