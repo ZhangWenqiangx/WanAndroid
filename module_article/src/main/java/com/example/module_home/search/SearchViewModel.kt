@@ -92,7 +92,6 @@ class SearchViewModel constructor(
     }
 
     fun getAllHistory() {
-        repository
         viewModelScope.launch {
             repository.getAllHistory().let {
                 if (it is BaseResult.Success) {
