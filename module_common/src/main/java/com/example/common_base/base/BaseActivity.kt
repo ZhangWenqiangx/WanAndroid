@@ -8,7 +8,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
-import com.example.common_base.mvp.IView
+import com.example.common_base.base.mvp.IView
 import com.example.common_base.widget.LoadingDialog
 
 /**
@@ -22,12 +22,14 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     protected abstract fun initView()
     protected abstract fun initData()
+    open fun initBinding(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
         setStatusColor(this, isTranslate = false, isDarkText = true)
 
+        initBinding()
         initView()
         initData()
     }

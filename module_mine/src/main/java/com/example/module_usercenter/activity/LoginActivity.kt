@@ -10,7 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.common_base.base.BaseMVPActivity
+import com.example.common_base.base.mvp.BaseMVPActivity
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER

@@ -1,4 +1,4 @@
-package com.example.common_base.mvp
+package com.example.common_base.base.mvp
 
 /**
  * Description:

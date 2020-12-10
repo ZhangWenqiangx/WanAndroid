@@ -1,6 +1,6 @@
 package com.example.module_usercenter.api;
 
-import com.example.common_base.base.BaseResponse;
+import com.example.common_base.base.data.BaseResponse;
 import com.example.module_usercenter.bean.LoginResult;
 import com.example.module_usercenter.bean.RegisterResult;
 import io.reactivex.Observable;

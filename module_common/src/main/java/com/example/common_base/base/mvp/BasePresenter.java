@@ -1,6 +1,5 @@
-package com.example.common_base.mvp;
+package com.example.common_base.base.mvp;
 
-import com.example.common_base.base.BaseObserver;
 import com.example.common_base.http.RetrofitClient;
 
 import org.jetbrains.annotations.NotNull;

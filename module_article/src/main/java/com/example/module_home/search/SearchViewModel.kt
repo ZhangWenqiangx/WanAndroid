@@ -2,10 +2,10 @@ package com.example.module_home.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.common_base.base.BaseResult
-import com.example.common_base.base.viewmodel.BaseViewModel
-import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.base.data.BaseResult
+import com.example.common_base.base.data.viewmodel.BaseViewModel
+import com.example.common_base.base.data.viewmodel.ErrorState
+import com.example.common_base.base.data.viewmodel.SuccessState
 import com.example.module_home.data.ArticleRepository
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchEntity
@@ -82,39 +82,37 @@ class SearchViewModel constructor(
                     }
                     searchData.value = searchDataList
                     page++
+                    saveToLocal(key)
                     mStateLiveData.value = SuccessState
                 } else if (it is BaseResult.Error) {
                     mStateLiveData.value = ErrorState(it.exception.message)
                 }
             }
         })
-        saveToLocal(key)
     }
 
     fun getAllHistory() {
         viewModelScope.launch {
             repository.getAllHistory().let {
                 if (it is BaseResult.Success) {
-                    historyData.value = it.data
+                    historyData.value = it.data.apply { reverse() }
                 }
             }
         }
     }
 
     fun clearHistory() {
-        historyData.value = mutableListOf()
         viewModelScope.launch {
             repository.deleteHistory()
+            historyData.postValue(mutableListOf())
         }
     }
 
     fun saveToLocal(key: String) {
-        val value = historyData.value
-        value?.add(SearchEntity(key = key))
-        historyData.value = value
-
         viewModelScope.launch {
+            repository.delete(SearchEntity(key))
             repository.saveKey(key)
+            getAllHistory()
         }
     }
 }

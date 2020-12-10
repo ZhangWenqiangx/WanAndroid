@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.common_base.TabLayoutMediator
-import com.example.common_base.base.mvvm.BaseBindFragment
-import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.widget.TabLayoutMediator
+import com.example.common_base.base.mvvm.BaseMvvmFragment
+import com.example.common_base.base.data.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.R
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Home页
  */
 @Route(path = AConstance.FRAGMENT_URL_HOME)
-class HomeFragment : BaseBindFragment<FragmentHomeBinding,BaseViewModel>() {
+class HomeFragment : BaseMvvmFragment<FragmentHomeBinding,BaseViewModel>() {
 
     private val fragments: MutableList<Fragment> = mutableListOf()
     private val titles: MutableList<String> = mutableListOf("首页", "分类")
@@ -36,11 +36,15 @@ class HomeFragment : BaseBindFragment<FragmentHomeBinding,BaseViewModel>() {
             override fun createFragment(position: Int) = fragments[position]
         }
 
-        TabLayoutMediator(tab_layout, pager, object : TabLayoutMediator.OnConfigureTabCallback {
-            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                tab?.text = titles[position]
-            }
-        }).attach()
+        TabLayoutMediator(
+            tab_layout,
+            pager,
+            object :
+                TabLayoutMediator.OnConfigureTabCallback {
+                override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
+                    tab?.text = titles[position]
+                }
+            }).attach()
 
         iv_search.setOnClickListener {
             startActivity(

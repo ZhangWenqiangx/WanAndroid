@@ -7,7 +7,8 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
- * Description:
+ * Description:头部 和 日志拦截器
+ * @author zhang.wenqiang
  */
 public class InterceptorUtil {
 

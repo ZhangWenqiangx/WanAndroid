@@ -1,5 +1,7 @@
-package com.example.common_base.base
+package com.example.common_base.base.data.viewmodel
 
+import com.example.common_base.base.data.BaseResponse
+import com.example.common_base.base.data.BaseResult
 import com.example.common_base.http.ExceptionHandler
 import kotlinx.coroutines.coroutineScope
 

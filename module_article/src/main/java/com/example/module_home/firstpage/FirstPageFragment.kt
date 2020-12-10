@@ -5,9 +5,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.common_base.base.mvvm.BaseBindFragment
-import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.base.mvvm.BaseMvvmFragment
+import com.example.common_base.base.data.viewmodel.ErrorState
+import com.example.common_base.base.data.viewmodel.SuccessState
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R
@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_first_page.*
 /**
  * 文章model首页
  */
-class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding, ArticleViewModel>() {
+class FirstPageFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel>() {
 
     private lateinit var headerView: View
     private lateinit var mAdapter: FirstPageAdapter

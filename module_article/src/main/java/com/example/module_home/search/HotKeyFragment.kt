@@ -1,11 +1,12 @@
 package com.example.module_home.search
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.common_base.base.mvvm.BaseBindFragment
+import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.module_home.R
 import com.example.module_home.databinding.FragmentHotKeyBinding
 import com.example.module_home.search.adapter.HotKeyAdapter
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_hot_key.*
  * 热词、历史查询
  * todo 1.搜索历史做本地存储
  */
-class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding, SearchViewModel>() {
+class HotKeyFragment : BaseMvvmFragment<FragmentHotKeyBinding, SearchViewModel>() {
 
     private lateinit var mAdapter: HotKeyAdapter
     private lateinit var mHisAdapter: SearchHistoryAdapter
@@ -27,6 +28,18 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding, SearchViewModel>(
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        iv_clear_history.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setMessage("确定要清空记录吗")
+                .setPositiveButton("确定") { _, _ ->
+                    viewModel.clearHistory()
+                }
+                .setNegativeButton("取消") { dialog, _ ->
+                    dialog.dismiss()
+                }
+            builder.create().show()
+        }
 
         mAdapter = HotKeyAdapter(R.layout.item_hot_key)
         mHisAdapter = SearchHistoryAdapter(R.layout.item_search_history)
@@ -60,6 +73,11 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding, SearchViewModel>(
         })
         //历史
         viewModel.historyData.observe(viewLifecycleOwner, Observer {
+            if(it.isNotEmpty()){
+                iv_clear_history.visibility = View.VISIBLE
+            }else{
+                iv_clear_history.visibility = View.GONE
+            }
             mHisAdapter.setList(it)
         })
     }

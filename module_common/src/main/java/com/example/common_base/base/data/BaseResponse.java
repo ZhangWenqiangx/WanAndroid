@@ -1,4 +1,4 @@
-package com.example.common_base.base;
+package com.example.common_base.base.data;
 
 /**
  * Description:请求数据返回的数据 统一包装

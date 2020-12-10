@@ -1,7 +1,7 @@
 package com.example.module_usercenter.presenter
 
-import com.example.common_base.base.BaseObserver
-import com.example.common_base.mvp.BasePresenter
+import com.example.common_base.base.mvp.BaseObserver
+import com.example.common_base.base.mvp.BasePresenter
 import com.example.module_usercenter.api.UserCenterApiService
 import com.example.module_usercenter.bean.RegisterResult
 import com.example.module_usercenter.contract.RegisterContract

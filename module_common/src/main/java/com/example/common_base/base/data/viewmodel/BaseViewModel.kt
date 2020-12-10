@@ -1,4 +1,4 @@
-package com.example.common_base.base.viewmodel
+package com.example.common_base.base.data.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

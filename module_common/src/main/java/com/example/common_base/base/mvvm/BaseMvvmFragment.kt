@@ -8,10 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.example.common_base.base.BaseFragment
-import com.example.common_base.base.viewmodel.BaseViewModel
-import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.LoadingState
-import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.base.data.viewmodel.BaseViewModel
+import com.example.common_base.base.data.viewmodel.ErrorState
+import com.example.common_base.base.data.viewmodel.LoadingState
+import com.example.common_base.base.data.viewmodel.SuccessState
 import com.youth.banner.util.LogUtils
 
 /**
@@ -19,7 +19,7 @@ import com.youth.banner.util.LogUtils
  *  @date : 2020/12/1
  *  description : 包含DataBinding父类
  */
-abstract class BaseBindFragment<V : ViewDataBinding, VM : BaseViewModel> : BaseFragment() {
+abstract class BaseMvvmFragment<V : ViewDataBinding, VM : BaseViewModel> : BaseFragment() {
 
     protected lateinit var viewModel: VM
 

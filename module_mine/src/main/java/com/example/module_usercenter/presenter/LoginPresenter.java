@@ -1,14 +1,13 @@
 package com.example.module_usercenter.presenter;
 
-import com.example.common_base.base.BaseObserver;
+import com.example.common_base.base.mvp.BaseObserver;
 import com.example.common_base.constants.Constants;
-import com.example.common_base.http.RetrofitClient;
-import com.example.common_base.mvp.BasePresenter;
+import com.example.common_base.base.mvp.BasePresenter;
 import com.example.common_base.util.SpUtil;
 import com.example.module_usercenter.api.UserCenterApiService;
 import com.example.module_usercenter.bean.LoginResult;
 import com.example.module_usercenter.contract.LoginContract;
-import okhttp3.OkHttpClient;
+
 import org.jetbrains.annotations.NotNull;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View>

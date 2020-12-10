@@ -1,7 +1,7 @@
 package com.example.module_home.data.source
 
-import com.example.common_base.base.BaseDataOperate
-import com.example.common_base.base.BaseResult
+import com.example.common_base.base.data.viewmodel.BaseDataOperate
+import com.example.common_base.base.data.BaseResult
 import com.example.module_home.search.bean.SearchEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -32,6 +32,12 @@ class LocalDataSource(private val dao: SearchDao) : BaseDataOperate() {
     suspend fun deleteHistory() {
         coroutineScope {
             dao.deleteAll()
+        }
+    }
+
+    suspend fun deleteHistory(data: SearchEntity) {
+        coroutineScope {
+            dao.delete(data.key)
         }
     }
 }

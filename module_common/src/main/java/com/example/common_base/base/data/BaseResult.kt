@@ -1,4 +1,4 @@
-package com.example.common_base.base
+package com.example.common_base.base.data
 
 /**
  *  @author : zhang.wenqiang

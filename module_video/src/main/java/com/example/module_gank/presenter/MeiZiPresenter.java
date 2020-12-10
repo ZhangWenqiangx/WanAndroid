@@ -1,7 +1,7 @@
 package com.example.module_gank.presenter;
 
-import com.example.common_base.base.BaseObserver;
-import com.example.common_base.mvp.BasePresenter;
+import com.example.common_base.base.mvp.BaseObserver;
+import com.example.common_base.base.mvp.BasePresenter;
 import com.example.module_gank.api.GankApi;
 import com.example.module_gank.bean.MeiziResult;
 import com.example.module_gank.contract.MeiZiContract;

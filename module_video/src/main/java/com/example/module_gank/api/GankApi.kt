@@ -1,6 +1,6 @@
 package com.example.module_gank.api
 
-import com.example.common_base.base.BaseResponse
+import com.example.common_base.base.data.BaseResponse
 import com.example.module_gank.bean.MeiziResult
 import io.reactivex.Observable
 import retrofit2.http.GET

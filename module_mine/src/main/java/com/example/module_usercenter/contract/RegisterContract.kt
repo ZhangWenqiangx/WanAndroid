@@ -1,6 +1,6 @@
 package com.example.module_usercenter.contract
 
-import com.example.common_base.mvp.IView
+import com.example.common_base.base.mvp.IView
 
 /**
  * Description:

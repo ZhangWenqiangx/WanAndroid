@@ -1,9 +1,9 @@
 package com.example.module_home.data.source
 
-import com.example.common_base.base.BaseDataOperate
-import com.example.common_base.base.BaseResult
+import com.example.common_base.base.data.viewmodel.BaseDataOperate
+import com.example.common_base.base.data.BaseResult
 import com.example.common_base.http.RetrofitClient
-import com.example.module_home.data.Api
+import com.example.module_home.data.RemoteApi
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.ArticleResponse
 import com.example.module_home.firstpage.bean.BannerBean
@@ -17,12 +17,12 @@ import com.example.module_home.search.bean.SearchResultResponse
  */
 class RemoteDataSource : BaseDataOperate() {
 
-    private val api by lazy { RetrofitClient.getInstance().retrofit.create(Api::class.java) }
+    private val api by lazy { RetrofitClient.getInstance().retrofit.create(RemoteApi::class.java) }
 
     suspend fun getArticles(page: Int): BaseResult<ArticleResponse> =
         execute { convert(api.getArticles(page)) }
 
-    suspend fun getTopArticles(): BaseResult<MutableList<Article>>? =
+    suspend fun getTopArticles(): BaseResult<MutableList<Article>> =
         execute { convert(api.getTopArticles()) }
 
     suspend fun getBanners(): BaseResult<MutableList<BannerBean>> =
@@ -31,6 +31,6 @@ class RemoteDataSource : BaseDataOperate() {
     suspend fun getHotKey(): BaseResult<MutableList<HotKeyBean>> =
         execute { convert(api.getHotKey()) }
 
-    suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse>? =
+    suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse> =
         execute { convert(api.searchByKey(page, key)) }
 }

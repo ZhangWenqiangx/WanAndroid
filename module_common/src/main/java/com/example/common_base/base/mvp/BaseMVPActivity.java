@@ -1,7 +1,6 @@
-package com.example.common_base.base;
+package com.example.common_base.base.mvp;
 
-import com.example.common_base.mvp.IPresenter;
-import com.example.common_base.mvp.IView;
+import com.example.common_base.base.BaseActivity;
 
 public abstract class BaseMVPActivity<P extends IPresenter> extends BaseActivity implements IView {
     protected P presenter;

@@ -1,10 +1,10 @@
 package com.example.module_home.firstpage
 
 import androidx.lifecycle.MutableLiveData
-import com.example.common_base.base.BaseResult
-import com.example.common_base.base.viewmodel.BaseViewModel
-import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.base.data.BaseResult
+import com.example.common_base.base.data.viewmodel.BaseViewModel
+import com.example.common_base.base.data.viewmodel.ErrorState
+import com.example.common_base.base.data.viewmodel.SuccessState
 import com.example.module_home.data.source.RemoteDataSource
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.BannerBean
@@ -34,7 +34,6 @@ class ArticleViewModel constructor(
             repository.getBanners().let {
                 if (it is BaseResult.Success) {
                     bannersData.value = it.data
-                    mStateLiveData.value = SuccessState
                 } else if (it is BaseResult.Error) {
                     mStateLiveData.value = ErrorState(it.exception.message)
                 }
@@ -45,14 +44,11 @@ class ArticleViewModel constructor(
     fun getArticles(isRefresh: Boolean = false) {
         launch(tryBlock = {
             if (isRefresh || page == 0) {
-                repository.getTopArticles()?.let {
+                repository.getTopArticles().let {
                     if (it is BaseResult.Success) {
                         page = 0
                         articleDataList.clear()
                         articleDataList.addAll(it.data)
-                        mStateLiveData.value = SuccessState
-                    } else if (it is BaseResult.Error) {
-                        mStateLiveData.value = ErrorState(it.exception.message)
                     }
                 }
             }

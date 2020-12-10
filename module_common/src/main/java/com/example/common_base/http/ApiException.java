@@ -1,5 +1,8 @@
 package com.example.common_base.http;
 
+/**
+ * 服务器异常
+ */
 public class ApiException extends RuntimeException {
 
     private int errcode;

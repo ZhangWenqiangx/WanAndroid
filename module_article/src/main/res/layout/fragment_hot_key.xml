@@ -46,13 +46,13 @@
                 android:textStyle="bold" />
 
         <ImageView
+                android:id="@+id/iv_clear_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/tv_history"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/commonRightMargin"
                 android:layout_marginBottom="@dimen/dp_5"
-                android:onClick="@{() -> viewmodel.clearHistory()}"
                 android:src="@mipmap/icon_delete" />
 
         <androidx.recyclerview.widget.RecyclerView

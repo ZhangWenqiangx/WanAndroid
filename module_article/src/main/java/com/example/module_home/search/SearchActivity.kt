@@ -5,19 +5,16 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.example.common_base.base.BaseActivity
+import com.example.common_base.base.mvvm.BaseMvvmActivity
 import com.example.common_base.widget.SearchableView
-import com.example.module_home.R
 import com.example.module_home.ArticleViewModelFactory
+import com.example.module_home.BR
+import com.example.module_home.R
+import com.example.module_home.databinding.ActivitySearchBinding
 import kotlinx.android.synthetic.main.activity_search.*
 
 
-class SearchActivity : BaseActivity() {
-    override fun getLayoutResId(): Int = R.layout.activity_search
-
-    protected val viewModel by lazy {
-        ViewModelProvider(this, ArticleViewModelFactory()).get(SearchViewModel::class.java)
-    }
+class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>() {
 
     override fun initView() {
 
@@ -108,5 +105,13 @@ class SearchActivity : BaseActivity() {
             return super.onKeyDown(keyCode, event)
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun getLayoutResId(): Int = R.layout.activity_search
+
+    override fun initVariableId(): Int = BR.viewmodel
+
+    override fun createViewModel(): SearchViewModel {
+        return ViewModelProvider(this, ArticleViewModelFactory()).get(SearchViewModel::class.java)
     }
 }

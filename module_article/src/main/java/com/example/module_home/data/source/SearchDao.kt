@@ -8,7 +8,7 @@ import com.example.module_home.search.bean.SearchEntity
 /**
  *  @author : zhang.wenqiang
  *  @date : 2020/12/9
- *  description :
+ *  description :数据库操作
  */
 @Dao
 interface SearchDao {
@@ -20,4 +20,7 @@ interface SearchDao {
 
     @Query("DELETE FROM SearchEntity")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM SearchEntity WHERE `key` = :key")
+    suspend fun delete(key: String)
 }

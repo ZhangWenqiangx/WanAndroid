@@ -1,6 +1,6 @@
 package com.example.module_home.data
 
-import com.example.common_base.base.BaseResult
+import com.example.common_base.base.data.BaseResult
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.ArticleResponse
 import com.example.module_home.firstpage.bean.BannerBean
@@ -15,19 +15,21 @@ import com.example.module_home.search.bean.SearchResultResponse
  */
 interface ArticleRepository {
 
-    suspend fun getArticles(page: Int): BaseResult<ArticleResponse>?
+    suspend fun getArticles(page: Int): BaseResult<ArticleResponse>
 
-    suspend fun getTopArticles(): BaseResult<MutableList<Article>>?
+    suspend fun getTopArticles(): BaseResult<MutableList<Article>>
 
-    suspend fun getBanners(): BaseResult<MutableList<BannerBean>>?
+    suspend fun getBanners(): BaseResult<MutableList<BannerBean>>
 
-    suspend fun getHotKey(): BaseResult<MutableList<HotKeyBean>>?
+    suspend fun getHotKey(): BaseResult<MutableList<HotKeyBean>>
 
-    suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse>?
+    suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse>
 
-    suspend fun getAllHistory(): BaseResult<MutableList<SearchEntity>>?
+    suspend fun getAllHistory(): BaseResult<MutableList<SearchEntity>>
 
     suspend fun saveKey(key: String)
 
     suspend fun deleteHistory()
+
+    suspend fun delete(data:SearchEntity)
 }

@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="com.example.module_home.search.SearchViewModel" />
+    </data>
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@android:color/white">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/tv_cancle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="12dp"
-                android:text="@string/cancle"
-                android:textColor="@color/black_333"
-                android:textSize="@dimen/sp_15" />
-
-        <com.example.common_base.widget.SearchableView
-                android:layout_marginLeft="@dimen/commonLeftMargin"
-                android:layout_centerVertical="true"
-                android:id="@+id/search_input"
-                android:background="@drawable/bg_search"
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_30"
-                android:layout_toLeftOf="@id/tv_cancle" />
+                android:layout_height="50dp"
+                android:background="@android:color/white">
 
-    </RelativeLayout>
+            <TextView
+                    android:id="@+id/tv_cancle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="12dp"
+                    android:text="@string/cancle"
+                    android:textColor="@color/black_333"
+                    android:textSize="@dimen/sp_15" />
 
-    <FrameLayout
-            android:id="@+id/fl_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <com.example.common_base.widget.SearchableView
+                    android:id="@+id/search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/commonLeftMargin"
+                    android:layout_toLeftOf="@id/tv_cancle"
+                    android:background="@drawable/bg_search" />
 
-</LinearLayout>
+        </RelativeLayout>
+
+        <FrameLayout
+                android:id="@+id/fl_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+    </LinearLayout>
+</layout>

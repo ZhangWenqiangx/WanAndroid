@@ -1,8 +1,9 @@
-package com.example.common_base.base;
+package com.example.common_base.base.mvp;
 
+import com.example.common_base.base.data.BaseResponse;
 import com.example.common_base.http.ApiException;
 import com.example.common_base.http.ExceptionHandler;
-import com.example.common_base.mvp.IView;
+import com.example.common_base.base.mvp.IView;
 import io.reactivex.observers.DisposableObserver;
 
 /**

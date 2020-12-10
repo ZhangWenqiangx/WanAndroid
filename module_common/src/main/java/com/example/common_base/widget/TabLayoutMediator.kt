@@ -1,13 +1,12 @@
-package com.example.common_base
+package com.example.common_base.widget
 
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import androidx.annotation.RestrictTo
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.*
-import com.example.common_base.TabLayoutMediator.OnConfigureTabCallback
+import com.example.common_base.widget.TabLayoutMediator.OnConfigureTabCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import java.lang.ref.WeakReference
@@ -98,11 +97,17 @@ class TabLayoutMediator
         mAttached = true
 
         // Add our custom OnPageChangeCallback to the ViewPager
-        mOnPageChangeCallback = TabLayoutOnPageChangeCallback(mTabLayout)
+        mOnPageChangeCallback =
+            TabLayoutOnPageChangeCallback(
+                mTabLayout
+            )
         mViewPager.registerOnPageChangeCallback(mOnPageChangeCallback!!)
 
         // Now we'll add a tab selected listener to set ViewPager's current item
-        mOnTabSelectedListener = ViewPagerOnTabSelectedListener(mViewPager)
+        mOnTabSelectedListener =
+            ViewPagerOnTabSelectedListener(
+                mViewPager
+            )
         mTabLayout.addOnTabSelectedListener(mOnTabSelectedListener!!)
 
         // Now we'll populate ourselves from the pager adapter, adding an observer if
@@ -245,10 +250,14 @@ class TabLayoutMediator
                         updateIndicatorPosition
                     )
                 } else {
-                    throwMethodNotFound(SET_SCROLL_POSITION_NAME)
+                    throwMethodNotFound(
+                        SET_SCROLL_POSITION_NAME
+                    )
                 }
             } catch (e: Exception) {
-                throwInvokeFailed(SET_SCROLL_POSITION_NAME)
+                throwInvokeFailed(
+                    SET_SCROLL_POSITION_NAME
+                )
             }
         }
 
@@ -261,10 +270,14 @@ class TabLayoutMediator
                 if (sSelectTab != null) {
                     sSelectTab!!.invoke(tabLayout, tab, updateIndicator)
                 } else {
-                    throwMethodNotFound(SELECT_TAB_NAME)
+                    throwMethodNotFound(
+                        SELECT_TAB_NAME
+                    )
                 }
             } catch (e: Exception) {
-                throwInvokeFailed(SELECT_TAB_NAME)
+                throwInvokeFailed(
+                    SELECT_TAB_NAME
+                )
             }
         }
 

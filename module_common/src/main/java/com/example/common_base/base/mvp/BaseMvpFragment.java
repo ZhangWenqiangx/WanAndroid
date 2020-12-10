@@ -1,7 +1,6 @@
-package com.example.common_base.base;
+package com.example.common_base.base.mvp;
 
-import com.example.common_base.mvp.IPresenter;
-import com.example.common_base.mvp.IView;
+import com.example.common_base.base.BaseFragment;
 
 /**
  * @author zwq 2020/11/20
