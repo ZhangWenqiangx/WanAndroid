@@ -2,6 +2,9 @@ package com.example.module_home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.common_base.base.BaseApplication
+import com.example.module_home.data.DataProvider
+import com.example.module_home.data.source.RemoteDataSource
 import com.example.module_home.firstpage.ArticleViewModel
 import com.example.module_home.search.SearchViewModel
 
@@ -10,16 +13,14 @@ import com.example.module_home.search.SearchViewModel
  *  @date : 2020/12/1
  *  description :
  */
-class ViewModelCreater : ViewModelProvider.Factory {
-
-    private val repository by lazy { ApiRepository() }
+class ArticleViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>) = with(modelClass) {
         when {
             isAssignableFrom(ArticleViewModel::class.java) ->
-                ArticleViewModel(repository)
+                ArticleViewModel(RemoteDataSource())
             isAssignableFrom(SearchViewModel::class.java) ->
-                SearchViewModel(repository)
+                SearchViewModel(DataProvider.provideRepository(BaseApplication.sApplication.applicationContext))
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

@@ -1,7 +1,6 @@
-package com.example.module_home
+package com.example.module_home.data
 
 import com.example.common_base.base.BaseResponse
-import com.example.common_base.base.BaseResult
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.ArticleResponse
 import com.example.module_home.firstpage.bean.BannerBean

@@ -2,16 +2,12 @@ package com.example.module_home.search
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.common_base.base.mvvm.BaseBindFragment
-import com.example.common_base.util.ToastUtil
 import com.example.module_home.R
-import com.example.module_home.ViewModelCreater
 import com.example.module_home.databinding.FragmentHotKeyBinding
-import com.example.module_home.firstpage.ArticleViewModel
 import com.example.module_home.search.adapter.HotKeyAdapter
 import com.example.module_home.search.adapter.SearchHistoryAdapter
 import com.example.module_home.search.bean.HotKeyBean
@@ -20,10 +16,10 @@ import kotlinx.android.synthetic.main.fragment_hot_key.*
 
 /**
  * 热词、历史查询
+ * todo 1.搜索历史做本地存储
  */
-class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding,SearchViewModel>() {
+class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding, SearchViewModel>() {
 
-    private lateinit var footerView: View
     private lateinit var mAdapter: HotKeyAdapter
     private lateinit var mHisAdapter: SearchHistoryAdapter
 
@@ -34,10 +30,6 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding,SearchViewModel>()
 
         mAdapter = HotKeyAdapter(R.layout.item_hot_key)
         mHisAdapter = SearchHistoryAdapter(R.layout.item_search_history)
-        footerView = layoutInflater.inflate(R.layout.layout_history_footer, null, false)
-        footerView.findViewById<TextView>(R.id.tv_clear).setOnClickListener {
-            ToastUtil.showShortToast(requireContext(), "click")
-        }
 
         rv_hot.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
@@ -45,8 +37,7 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding,SearchViewModel>()
         }
 
         mAdapter.setOnItemClickListener { adapter, _, position ->
-            //增加一条历史记录  searchview添加记录 搜索结果
-            (activity as SearchActivity).onHotKeyClick((adapter.data[position] as HotKeyBean).name)
+            (activity as SearchActivity).search(msg = (adapter.data[position] as HotKeyBean).name,submit = true)
         }
 
         rv_history.apply {
@@ -54,19 +45,23 @@ class HotKeyFragment : BaseBindFragment<FragmentHotKeyBinding,SearchViewModel>()
             layoutManager = flexboxLayoutManager
             adapter = mHisAdapter
         }
-
-        //热门
-        viewModel.hotKeyData.observe(viewLifecycleOwner, Observer {
-            mAdapter.setList(it)
-        })
-        //历史
-        viewModel.historyKeyData.observe(viewLifecycleOwner, Observer {
-//            mHisAdapter.setList(it)
-        })
     }
 
     override fun addObserver() {
+        //热门
+        viewModel.hotKeyData.observe(viewLifecycleOwner, Observer {
+            mAdapter.setList(it)
 
+            if(it.isNotEmpty()){
+                tv_hot_key.visibility = View.VISIBLE
+            }else{
+                tv_hot_key.visibility = View.GONE
+            }
+        })
+        //历史
+        viewModel.historyData.observe(viewLifecycleOwner, Observer {
+            mHisAdapter.setList(it)
+        })
     }
 
     companion object {

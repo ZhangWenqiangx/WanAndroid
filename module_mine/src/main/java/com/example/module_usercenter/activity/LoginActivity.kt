@@ -99,11 +99,11 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         val phone = et_login_username.text.trim().toString()
         val pwd = et_login_password.text.trim().toString()
         if (TextUtils.isEmpty(phone)) {
-            ToastUtil.showShortToast(this, R.string.please_input_username)
+            ToastUtil.showShortToast(this, getString(R.string.please_input_username))
             return
         }
         if (TextUtils.isEmpty(pwd)) {
-            ToastUtil.showShortToast(this, R.string.please_input_password)
+            ToastUtil.showShortToast(this, getString(R.string.please_input_password))
             return
         }
         presenter.login(phone, pwd)

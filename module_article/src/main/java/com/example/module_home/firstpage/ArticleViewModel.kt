@@ -5,7 +5,7 @@ import com.example.common_base.base.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
-import com.example.module_home.ApiRepository
+import com.example.module_home.data.source.RemoteDataSource
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.BannerBean
 
@@ -15,7 +15,7 @@ import com.example.module_home.firstpage.bean.BannerBean
  * @author zwq 2020/11/23
  */
 class ArticleViewModel constructor(
-    private val repository: ApiRepository
+    private val repository: RemoteDataSource
 ) : BaseViewModel() {
 
     private var articleDataList = mutableListOf<Article>()
@@ -43,10 +43,11 @@ class ArticleViewModel constructor(
     }
 
     fun getArticles(isRefresh: Boolean = false) {
-        launch(tryBlock =  {
+        launch(tryBlock = {
             if (isRefresh || page == 0) {
                 repository.getTopArticles()?.let {
                     if (it is BaseResult.Success) {
+                        page = 0
                         articleDataList.clear()
                         articleDataList.addAll(it.data)
                         mStateLiveData.value = SuccessState
@@ -62,7 +63,6 @@ class ArticleViewModel constructor(
 
                     articleData.value = articleDataList
                     page++
-
                     mStateLiveData.value = SuccessState
                 } else if (it is BaseResult.Error) {
                     mStateLiveData.value = ErrorState(it.exception.message)

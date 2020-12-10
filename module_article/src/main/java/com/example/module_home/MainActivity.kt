@@ -14,13 +14,11 @@ class MainActivity : BaseActivity() {
     override fun initView() {}
 
     override fun initData() {
-        fm = supportFragmentManager
-        val transaction = fm.beginTransaction()
         val homeFragment = HomeFragment()
-        transaction.add(R.id.fl_content, homeFragment)
-        transaction.commit()
-        val ft = fm.beginTransaction()
-        ft.show(homeFragment)
-        ft.commit()
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.fl_content, homeFragment)
+            show(homeFragment)
+            commit()
+        }
     }
 }

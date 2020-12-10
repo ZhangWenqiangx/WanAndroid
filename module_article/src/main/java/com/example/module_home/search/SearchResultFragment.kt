@@ -6,6 +6,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseBindFragment
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R
@@ -32,6 +34,7 @@ class SearchResultFragment : BaseBindFragment<FragmentSearchResultBinding, Searc
             setEnableLoadMore(true)
             setEnableRefresh(true)
         }
+
         rv_search.apply {
             addItemDecoration(
                 LinearItemDecoration(requireContext()).color(
@@ -47,26 +50,43 @@ class SearchResultFragment : BaseBindFragment<FragmentSearchResultBinding, Searc
         mAdapter.setOnItemClickListener { adapter, _, position ->
             WebViewActivity.launch(requireActivity(), (adapter.data[position] as SearchResult).link)
         }
-
-        viewModel.searchKey.observe(viewLifecycleOwner, Observer {
-            viewModel.searchByKey(it)
-        })
-
-        viewModel.searchData.observe(viewLifecycleOwner, Observer {
-            srl_refresh.finishRefresh()
-            srl_refresh.finishLoadMore()
-            mAdapter.setList(it)
-        })
     }
 
     override fun addObserver() {
+        viewModel.searchKey.observe(viewLifecycleOwner, Observer {
+            srl_refresh.autoRefresh()
+        })
 
+        viewModel.searchData.observe(viewLifecycleOwner, Observer {
+            mAdapter.setList(it)
+        })
+
+        viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is SuccessState -> {
+                    srl_refresh.finishRefresh()
+                    srl_refresh.finishLoadMore()
+                }
+                is ErrorState -> {
+                    srl_refresh.finishRefresh(false)
+                    srl_refresh.finishLoadMore(false)
+                }
+                else -> {
+                }
+            }
+        })
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) {
+            viewModel.clearSearchData()
+        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            SearchResultFragment()
+        fun newInstance() = SearchResultFragment()
     }
 
     override fun createViewModel(): SearchViewModel {

@@ -1,8 +1,9 @@
-package com.example.module_home
+package com.example.module_home.data.source
 
-import com.example.common_base.base.BaseRepository
+import com.example.common_base.base.BaseDataOperate
 import com.example.common_base.base.BaseResult
 import com.example.common_base.http.RetrofitClient
+import com.example.module_home.data.Api
 import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.ArticleResponse
 import com.example.module_home.firstpage.bean.BannerBean
@@ -10,11 +11,11 @@ import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchResultResponse
 
 /**
- * @describe :
+ * @describe : 网络请求相关操作
  *
  * @author zwq 2020/11/23
  */
-class ApiRepository : BaseRepository() {
+class RemoteDataSource : BaseDataOperate() {
 
     private val api by lazy { RetrofitClient.getInstance().retrofit.create(Api::class.java) }
 

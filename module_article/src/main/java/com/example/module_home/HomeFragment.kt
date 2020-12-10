@@ -16,6 +16,9 @@ import com.example.module_home.search.SearchActivity
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
+/**
+ * Home页
+ */
 @Route(path = AConstance.FRAGMENT_URL_HOME)
 class HomeFragment : BaseBindFragment<FragmentHomeBinding,BaseViewModel>() {
 
@@ -52,7 +55,7 @@ class HomeFragment : BaseBindFragment<FragmentHomeBinding,BaseViewModel>() {
     override fun getLayoutResId(): Int = R.layout.fragment_home
 
     override fun createViewModel(): BaseViewModel {
-        return ViewModelCreater().create(ArticleViewModel::class.java)
+        return ArticleViewModelFactory().create(ArticleViewModel::class.java)
     }
 }
 

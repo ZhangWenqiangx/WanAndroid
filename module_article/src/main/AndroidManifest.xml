@@ -3,7 +3,7 @@
         package="com.example.module_home">
 
     <application>
-        <activity android:name=".search.SearchActivity"/>
+        <activity android:name=".search.SearchActivity" />
         <activity
                 android:name=".MainActivity"
                 android:launchMode="singleTask" />

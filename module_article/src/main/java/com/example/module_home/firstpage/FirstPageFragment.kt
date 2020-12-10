@@ -7,12 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseBindFragment
 import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.LoadingState
 import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R
-import com.example.module_home.ViewModelCreater
+import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.databinding.FragmentFirstPageBinding
 import com.example.module_home.firstpage.adapter.FirstPageAdapter
 import com.example.module_home.firstpage.adapter.HomeBannerAdapter
@@ -20,20 +19,19 @@ import com.example.module_home.firstpage.bean.Article
 import com.example.module_home.firstpage.bean.BannerBean
 import com.youth.banner.Banner
 import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.fragment_first_page.*
 
 /**
- * 文章首页
+ * 文章model首页
  */
-class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding,ArticleViewModel>() {
+class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding, ArticleViewModel>() {
 
     private lateinit var headerView: View
     private lateinit var mAdapter: FirstPageAdapter
     private lateinit var mBanner: Banner<BannerBean, HomeBannerAdapter>
 
     override fun createViewModel(): ArticleViewModel {
-        return ViewModelCreater().create(ArticleViewModel::class.java)
+        return ArticleViewModelFactory().create(ArticleViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -94,8 +92,6 @@ class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding,ArticleViewM
     override fun addObserver() {
         super.addObserver()
         viewModel.articleData.observe(viewLifecycleOwner, Observer {
-            srl_refresh.finishRefresh()
-            srl_refresh.finishLoadMore()
             mAdapter.setList(it)
         })
 
@@ -105,10 +101,16 @@ class FirstPageFragment : BaseBindFragment<FragmentFirstPageBinding,ArticleViewM
 
         viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is SuccessState -> LogUtils.d("成功了22")
-                is ErrorState -> LogUtils.d("异常了22")
-                is LoadingState -> LogUtils.d("Loading22")
-                else -> LogUtils.d("开始了22")
+                is SuccessState -> {
+                    srl_refresh.finishRefresh()
+                    srl_refresh.finishLoadMore()
+                }
+                is ErrorState -> {
+                    srl_refresh.finishRefresh(false)
+                    srl_refresh.finishLoadMore(false)
+                }
+                else -> {
+                }
             }
         })
     }

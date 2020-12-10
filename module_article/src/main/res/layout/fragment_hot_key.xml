@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+                name="viewmodel"
+                type="com.example.module_home.search.SearchViewModel" />
     </data>
 
     <RelativeLayout
@@ -21,7 +24,8 @@
                 android:text="@string/str_hot_key"
                 android:textColor="@color/black_333"
                 android:textSize="@dimen/textSizeTertiaryTitle"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_hot"
@@ -41,11 +45,23 @@
                 android:textSize="@dimen/textSizeTertiaryTitle"
                 android:textStyle="bold" />
 
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_history"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/commonRightMargin"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:onClick="@{() -> viewmodel.clearHistory()}"
+                android:src="@mipmap/icon_delete" />
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_history" />
+                android:layout_below="@id/tv_history"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10" />
 
     </RelativeLayout>
 </layout>

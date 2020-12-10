@@ -8,8 +8,11 @@ import kotlinx.coroutines.coroutineScope
  *  @date : 2020/12/8
  *  description :
  */
-open class BaseRepository {
+open class BaseDataOperate {
 
+    /**
+     * 协程异常捕获
+     */
     suspend fun <T : Any> execute(
         call: suspend () -> BaseResult<T>
     ): BaseResult<T> {
@@ -20,6 +23,9 @@ open class BaseRepository {
         }
     }
 
+    /**
+     * 将服务器数据转接为BaseResult类型
+     */
     suspend fun <T : Any> convert(
         response: BaseResponse<T>
     ): BaseResult<T> {

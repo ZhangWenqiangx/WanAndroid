@@ -6,8 +6,9 @@ import com.example.common_base.base.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
-import com.example.module_home.ApiRepository
+import com.example.module_home.data.ArticleRepository
 import com.example.module_home.search.bean.HotKeyBean
+import com.example.module_home.search.bean.SearchEntity
 import com.example.module_home.search.bean.SearchResult
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
  *  description :
  */
 class SearchViewModel constructor(
-    private val repository: ApiRepository
+    private val repository: ArticleRepository
 ) : BaseViewModel() {
 
     private var page = 0
@@ -37,8 +38,8 @@ class SearchViewModel constructor(
     /**
      * 历史查询
      */
-    val historyKeyData: MutableLiveData<MutableList<HotKeyBean>> by lazy {
-        MutableLiveData<MutableList<HotKeyBean>>()
+    val historyData: MutableLiveData<MutableList<SearchEntity>> by lazy {
+        MutableLiveData<MutableList<SearchEntity>>()
     }
 
     var searchDataList = mutableListOf<SearchResult>()
@@ -50,13 +51,13 @@ class SearchViewModel constructor(
         MutableLiveData<MutableList<SearchResult>>()
     }
 
-    fun clearSearchData(){
+    fun clearSearchData() {
         searchDataList.clear()
         searchData.value = mutableListOf()
     }
 
     fun getHotKey() {
-        launch (tryBlock = {
+        launch(tryBlock = {
             repository.getHotKey().let {
                 if (it is BaseResult.Success) {
                     hotKeyData.value = it.data
@@ -73,7 +74,7 @@ class SearchViewModel constructor(
             page = 0
             searchDataList.clear()
         }
-        launch (tryBlock = {
+        launch(tryBlock = {
             repository.searchByKey(page, key).let {
                 if (it is BaseResult.Success) {
                     it.data.datas.let { list ->
@@ -87,10 +88,34 @@ class SearchViewModel constructor(
                 }
             }
         })
+        saveToLocal(key)
     }
 
-    fun saveKeyForHistory(key: String) {
-
+    fun getAllHistory() {
+        repository
+        viewModelScope.launch {
+            repository.getAllHistory().let {
+                if (it is BaseResult.Success) {
+                    historyData.value = it.data
+                }
+            }
+        }
     }
 
+    fun clearHistory() {
+        historyData.value = mutableListOf()
+        viewModelScope.launch {
+            repository.deleteHistory()
+        }
+    }
+
+    fun saveToLocal(key: String) {
+        val value = historyData.value
+        value?.add(SearchEntity(key = key))
+        historyData.value = value
+
+        viewModelScope.launch {
+            repository.saveKey(key)
+        }
+    }
 }
