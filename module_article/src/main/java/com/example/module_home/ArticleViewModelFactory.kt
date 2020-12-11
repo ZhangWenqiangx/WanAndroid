@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.common_base.base.BaseApplication
 import com.example.module_home.data.DataProvider
 import com.example.module_home.data.source.RemoteDataSource
-import com.example.module_home.firstpage.ArticleViewModel
+import com.example.module_home.recommend.ArticleViewModel
 import com.example.module_home.search.SearchViewModel
 
 /**

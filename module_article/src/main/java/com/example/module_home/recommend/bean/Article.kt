@@ -1,4 +1,4 @@
-package com.example.module_home.firstpage.bean
+package com.example.module_home.recommend.bean
 
 data class Article(
     val id: Int,

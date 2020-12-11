@@ -29,7 +29,7 @@ class SearchResultAdapter(layoutResId: Int) :
             holder.setGone(R.id.tv_home_author, true)
         }
 
-        holder.setText(R.id.tv_home_title, Html.fromHtml(item.title,0))
+        holder.setText(R.id.tv_home_title, Html.fromHtml(item.title,Html.FROM_HTML_MODE_LEGACY))
             .setText(R.id.tv_home_category, item.superChapterName + "-" + item.chapterName)
             .setText(R.id.tv_home_public_time, item.niceDate)
             .setGone(R.id.tv_home_recent, true)

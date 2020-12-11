@@ -5,7 +5,7 @@
     <application>
         <activity android:name=".search.SearchActivity" />
         <activity
-                android:name=".MainActivity"
+                android:name=".debug.MainActivity"
                 android:launchMode="singleTask" />
     </application>
 

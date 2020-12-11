@@ -6,4 +6,6 @@ object LoadingState : StateActionEvent()
 
 object SuccessState : StateActionEvent()
 
+object CompleteState : StateActionEvent()
+
 class ErrorState(val message: String?) : StateActionEvent()

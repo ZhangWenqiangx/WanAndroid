@@ -1,4 +1,4 @@
-package com.example.module_home.firstpage
+package com.example.module_home.recommend
 
 import android.os.Bundle
 import android.view.View
@@ -13,10 +13,10 @@ import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.databinding.FragmentFirstPageBinding
-import com.example.module_home.firstpage.adapter.FirstPageAdapter
-import com.example.module_home.firstpage.adapter.HomeBannerAdapter
-import com.example.module_home.firstpage.bean.Article
-import com.example.module_home.firstpage.bean.BannerBean
+import com.example.module_home.recommend.adapter.RecommendAdapter
+import com.example.module_home.recommend.adapter.HomeBannerAdapter
+import com.example.module_home.recommend.bean.Article
+import com.example.module_home.recommend.bean.BannerBean
 import com.youth.banner.Banner
 import com.youth.banner.indicator.RectangleIndicator
 import kotlinx.android.synthetic.main.fragment_first_page.*
@@ -24,10 +24,10 @@ import kotlinx.android.synthetic.main.fragment_first_page.*
 /**
  * 文章model首页
  */
-class FirstPageFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel>() {
+class RecommendFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel>() {
 
     private lateinit var headerView: View
-    private lateinit var mAdapter: FirstPageAdapter
+    private lateinit var mAdapter: RecommendAdapter
     private lateinit var mBanner: Banner<BannerBean, HomeBannerAdapter>
 
     override fun createViewModel(): ArticleViewModel {
@@ -57,7 +57,7 @@ class FirstPageFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleView
     private fun initBanner() {
         mBanner = headerView.findViewById(R.id.banner)
         mBanner.apply {
-            addBannerLifecycleObserver(this@FirstPageFragment)
+            addBannerLifecycleObserver(this@RecommendFragment)
             adapter = HomeBannerAdapter(requireContext(), mutableListOf())
             indicator = RectangleIndicator(requireContext())
             setBannerGalleryMZ(10)
@@ -68,7 +68,7 @@ class FirstPageFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleView
     }
 
     private fun initRecycler() {
-        mAdapter = FirstPageAdapter(R.layout.item_home_recycler)
+        mAdapter = RecommendAdapter(R.layout.item_home_recycler)
         rv_content.apply {
             addItemDecoration(
                 LinearItemDecoration(requireContext()).color(

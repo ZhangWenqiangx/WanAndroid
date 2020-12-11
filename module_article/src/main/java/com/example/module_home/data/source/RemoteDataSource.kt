@@ -1,12 +1,14 @@
 package com.example.module_home.data.source
 
-import com.example.common_base.base.data.viewmodel.BaseDataOperate
 import com.example.common_base.base.data.BaseResult
+import com.example.common_base.base.data.viewmodel.BaseDataOperate
 import com.example.common_base.http.RetrofitClient
+import com.example.module_home.composite.bean.ProjectResponse
+import com.example.module_home.composite.bean.ProjectTab
 import com.example.module_home.data.RemoteApi
-import com.example.module_home.firstpage.bean.Article
-import com.example.module_home.firstpage.bean.ArticleResponse
-import com.example.module_home.firstpage.bean.BannerBean
+import com.example.module_home.recommend.bean.Article
+import com.example.module_home.recommend.bean.ArticleResponse
+import com.example.module_home.recommend.bean.BannerBean
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchResultResponse
 
@@ -33,4 +35,10 @@ class RemoteDataSource : BaseDataOperate() {
 
     suspend fun searchByKey(page: Int, key: String): BaseResult<SearchResultResponse> =
         execute { convert(api.searchByKey(page, key)) }
+
+    suspend fun getTree(): BaseResult<MutableList<ProjectTab>> =
+        execute { convert(api.getTree()) }
+
+    suspend fun getTreeNode(page: Int, id: Int): BaseResult<ProjectResponse> =
+        execute { convert(api.getTreeNode(page, id)) }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
                 android:id="@+id/ll_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/actionbar_content_size"
@@ -19,25 +20,38 @@
 
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/dp_25"
-                    android:layout_weight="1" />
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabTextAppearance="@style/CommonTabLayoutStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_centerInParent="true"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="@dimen/dp_3" />
 
             <ImageView
                     android:id="@+id/iv_search"
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="@dimen/dp_10"
                     android:src="@drawable/ic_search" />
-        </LinearLayout>
+        </RelativeLayout>
+
+        <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_5"
+                android:layout_below="@id/ll_title"
+                android:background="@color/gray_ea" />
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/ll_title"
+                android:layout_below="@id/line"
                 android:orientation="horizontal" />
 
     </RelativeLayout>

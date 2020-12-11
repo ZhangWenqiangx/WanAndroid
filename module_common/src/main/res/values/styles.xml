@@ -11,6 +11,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="CommonTabLayoutStyle">
+        <item name="android:textColor">@color/black_61</item>
+        <item name="android:textSize">@dimen/textSizeTertiaryTitle</item>
+    </style>
+
+    <style name="CommonStubTabLayoutStyle">
+        <item name="android:textColor">@color/black_61</item>
+        <item name="android:textSize">@dimen/textSizePrimaryContent</item>
+    </style>
+
     <style name="Theme_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>

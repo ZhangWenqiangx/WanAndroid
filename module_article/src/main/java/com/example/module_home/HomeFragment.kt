@@ -1,33 +1,37 @@
-package com.example.module_home.firstpage
+package com.example.module_home
 
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.common_base.widget.TabLayoutMediator
-import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.data.viewmodel.BaseViewModel
+import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.constants.AConstance
-import com.example.module_home.ArticleViewModelFactory
-import com.example.module_home.R
+import com.example.common_base.widget.TabLayoutMediator
+import com.example.module_home.composite.CompositeFragment
 import com.example.module_home.databinding.FragmentHomeBinding
+import com.example.module_home.recommend.ArticleViewModel
+import com.example.module_home.recommend.RecommendFragment
 import com.example.module_home.search.SearchActivity
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Home页
  */
 @Route(path = AConstance.FRAGMENT_URL_HOME)
-class HomeFragment : BaseMvvmFragment<FragmentHomeBinding,BaseViewModel>() {
+class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, BaseViewModel>() {
 
     private val fragments: MutableList<Fragment> = mutableListOf()
-    private val titles: MutableList<String> = mutableListOf("首页", "分类")
+    private val titles: MutableList<String> = mutableListOf("推荐", "综合")
 
-     override fun initView(view: View?) {
-        fragments.add(FirstPageFragment())
-        fragments.add(FirstPageFragment())
+    override fun initView(view: View?) {
+        fragments.add(RecommendFragment())
+        fragments.add(CompositeFragment())
 
         pager.adapter = object :
             FragmentStateAdapter(requireActivity().supportFragmentManager, lifecycle) {
@@ -36,15 +40,12 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding,BaseViewModel>() {
             override fun createFragment(position: Int) = fragments[position]
         }
 
-        TabLayoutMediator(
-            tab_layout,
-            pager,
-            object :
-                TabLayoutMediator.OnConfigureTabCallback {
-                override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                    tab?.text = titles[position]
-                }
-            }).attach()
+        TabLayoutMediator(tab_layout, pager, object :
+            TabLayoutMediator.OnConfigureTabCallback {
+            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
+                tab?.text = titles[position]
+            }
+        }).attach()
 
         iv_search.setOnClickListener {
             startActivity(

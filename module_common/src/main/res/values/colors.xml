@@ -18,6 +18,7 @@
     <color name="white_ccc">#fffcfcfc</color>
     <color name="white_f8">#f8f8f8</color>
     <color name="white_f1">#f1f1f1</color>
+    <color name="black">#111</color>
 
     <!--常用颜色值-->
     <color name="colorTextPrimary">#111</color>

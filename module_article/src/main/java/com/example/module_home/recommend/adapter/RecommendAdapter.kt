@@ -1,4 +1,4 @@
-package com.example.module_home.firstpage.adapter
+package com.example.module_home.recommend.adapter
 
 import android.os.Build
 import android.text.Html
@@ -7,14 +7,14 @@ import androidx.annotation.RequiresApi
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.module_home.R
-import com.example.module_home.firstpage.bean.Article
+import com.example.module_home.recommend.bean.Article
 
 /**
  * @describe :
  *
  * @author zwq 2020/11/20
  */
-class FirstPageAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHolder>(layoutResId) {
+class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHolder>(layoutResId) {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun convert(holder: BaseViewHolder, item: Article) {
         var tip: String? = null
@@ -32,7 +32,7 @@ class FirstPageAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHol
             holder.setGone(R.id.tv_home_author, true)
         }
 
-        holder.setText(R.id.tv_home_title, Html.fromHtml(item.title, 0))
+        holder.setText(R.id.tv_home_title, Html.fromHtml(item.title, Html.FROM_HTML_MODE_LEGACY))
             .setText(R.id.tv_home_category, item.superChapterName)
             .setText(R.id.tv_home_public_time, item.niceShareDate)
             .setGone(

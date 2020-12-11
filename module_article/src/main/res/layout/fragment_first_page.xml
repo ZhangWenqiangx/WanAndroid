@@ -7,7 +7,7 @@
 
         <variable
                 name="viewmodel"
-                type="com.example.module_home.firstpage.ArticleViewModel" />
+                type="com.example.module_home.recommend.ArticleViewModel" />
     </data>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -15,7 +15,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".firstpage.FirstPageFragment">
+            tools:context=".recommend.RecommendFragment">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_content"

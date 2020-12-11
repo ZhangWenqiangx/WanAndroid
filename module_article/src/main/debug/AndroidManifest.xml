@@ -13,7 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".search.SearchActivity"/>
-       <activity android:name="com.example.module_home.MainActivity">
+       <activity android:name="com.example.module_home.debug.MainActivity">
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />
                <action android:name="android.intent.action.VIEW" />

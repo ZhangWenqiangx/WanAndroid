@@ -21,6 +21,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
         tv_cancle.setOnClickListener { finish() }
 
         search_input.apply {
+
             setIconifiedByDefault(false)
             queryHint = getString(R.string.str_input_key)
 
@@ -40,6 +41,8 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                     selectFragment(0)
                 }
             })
+
+            requestFocus()
         }
 
         fm = supportFragmentManager

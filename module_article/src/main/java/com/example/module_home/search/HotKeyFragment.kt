@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_hot_key.*
 
 /**
  * 热词、历史查询
- * todo 1.搜索历史做本地存储
  */
 class HotKeyFragment : BaseMvvmFragment<FragmentHotKeyBinding, SearchViewModel>() {
 

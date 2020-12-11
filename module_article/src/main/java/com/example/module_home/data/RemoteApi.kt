@@ -1,9 +1,11 @@
 package com.example.module_home.data
 
 import com.example.common_base.base.data.BaseResponse
-import com.example.module_home.firstpage.bean.Article
-import com.example.module_home.firstpage.bean.ArticleResponse
-import com.example.module_home.firstpage.bean.BannerBean
+import com.example.module_home.composite.bean.ProjectResponse
+import com.example.module_home.composite.bean.ProjectTab
+import com.example.module_home.recommend.bean.Article
+import com.example.module_home.recommend.bean.ArticleResponse
+import com.example.module_home.recommend.bean.BannerBean
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchResultResponse
 import retrofit2.http.*
@@ -28,5 +30,17 @@ interface RemoteApi {
 
     @POST("article/query/{page}/json")
     @FormUrlEncoded
-    suspend fun searchByKey(@Path("page") page: Int, @Field("k") keyword: String): BaseResponse<SearchResultResponse>
+    suspend fun searchByKey(
+        @Path("page") page: Int,
+        @Field("k") keyword: String
+    ): BaseResponse<SearchResultResponse>
+
+    @GET("project/tree/json")
+    suspend fun getTree(): BaseResponse<MutableList<ProjectTab>>
+
+    @GET("project/list/{page}/json")
+    suspend fun getTreeNode(
+        @Path("page") page: Int,
+        @Query("cid") id: Int
+    ): BaseResponse<ProjectResponse>
 }

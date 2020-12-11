@@ -33,7 +33,7 @@
 	<dimen name="textSizeTertiaryTitle">17.0000sp</dimen>
 	<dimen name="textSizePrimaryButton">15.0000sp</dimen>
 	<dimen name="textSizePrimaryContent">15.0000sp</dimen>
-	<dimen name="textSizePrimaryRemark">16.0000sp</dimen>
+	<dimen name="textSizePrimaryRemark">14.0000sp</dimen>
 	<dimen name="textSizePrimaryDescribed">13.0000sp</dimen>
 	<dimen name="textSizeLabelStatus">8.0000sp</dimen>
 	<dimen name="commonTextSizePrimary">15.0000sp</dimen>

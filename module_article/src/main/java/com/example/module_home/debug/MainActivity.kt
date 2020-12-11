@@ -1,16 +1,16 @@
-package com.example.module_home
+package com.example.module_home.debug
 
-import androidx.fragment.app.FragmentManager
 import com.example.common_base.base.BaseActivity
-import com.example.module_home.firstpage.HomeFragment
+import com.example.module_home.HomeFragment
+import com.example.module_home.R
 
 /**
  * 单独运行时承载fragment
  */
 class MainActivity : BaseActivity() {
-    private lateinit var fm: FragmentManager
 
-    override fun getLayoutResId(): Int = R.layout.activity_main
+    override fun getLayoutResId(): Int =
+        R.layout.activity_main
 
     override fun initView() {}
 
