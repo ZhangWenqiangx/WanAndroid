@@ -14,7 +14,7 @@ import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.R
 import com.example.module_home.composite.bean.Project
 import com.example.module_home.databinding.FragmentCompositePageBinding
-import com.example.module_home.recommend.ArticleViewModel
+import com.example.module_home.home.ArticleViewModel
 import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.fragment_composite_page.*
 

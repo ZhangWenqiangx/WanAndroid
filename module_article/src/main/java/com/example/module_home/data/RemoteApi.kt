@@ -3,9 +3,9 @@ package com.example.module_home.data
 import com.example.common_base.base.data.BaseResponse
 import com.example.module_home.composite.bean.ProjectResponse
 import com.example.module_home.composite.bean.ProjectTab
-import com.example.module_home.recommend.bean.Article
-import com.example.module_home.recommend.bean.ArticleResponse
-import com.example.module_home.recommend.bean.BannerBean
+import com.example.module_home.home.bean.Article
+import com.example.module_home.home.bean.ArticleResponse
+import com.example.module_home.home.bean.BannerBean
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchResultResponse
 import retrofit2.http.*

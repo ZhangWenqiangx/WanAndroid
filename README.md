@@ -32,4 +32,7 @@ style demin base
 
 
 
-我的:积分、收藏、天气、
+我的:
+
+头像  id  name
+ todo  收藏  天气

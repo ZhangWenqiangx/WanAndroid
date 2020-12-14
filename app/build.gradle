@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    implementation project(':module_common')
+    implementation project(':lib_common')
     if (!isRunAlone.toBoolean()) {
         implementation project(':module_mine')
         implementation project(':module_main')

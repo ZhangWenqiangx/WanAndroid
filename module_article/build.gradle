@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    implementation project(':module_common')
+    implementation project(':lib_common')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt rootProject.ext.dependencies['arouter-compiler']

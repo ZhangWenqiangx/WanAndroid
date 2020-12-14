@@ -1,7 +1,7 @@
 package com.example.module_home.debug
 
 import com.example.common_base.base.BaseActivity
-import com.example.module_home.HomeFragment
+import com.example.module_home.ArticleFragment
 import com.example.module_home.R
 
 /**
@@ -15,7 +15,7 @@ class MainActivity : BaseActivity() {
     override fun initView() {}
 
     override fun initData() {
-        val homeFragment = HomeFragment()
+        val homeFragment = ArticleFragment()
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fl_content, homeFragment)
             show(homeFragment)

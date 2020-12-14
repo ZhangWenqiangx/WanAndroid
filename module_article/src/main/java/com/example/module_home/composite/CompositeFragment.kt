@@ -1,6 +1,5 @@
 package com.example.module_home.composite
 
-import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
@@ -8,7 +7,7 @@ import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.R
 import com.example.module_home.databinding.FragmentCompositeBinding
-import com.example.module_home.recommend.ArticleViewModel
+import com.example.module_home.home.ArticleViewModel
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_composite.*
 
