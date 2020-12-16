@@ -10,6 +10,9 @@ import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common_base.util.dp2px
 
+/**
+ *rv 下划线
+ */
 class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     private var mContext: Context = context

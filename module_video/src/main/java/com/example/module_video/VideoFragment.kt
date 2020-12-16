@@ -9,7 +9,7 @@ import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.constants.AConstance
 import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_video.databinding.FragmentVideoBinding
-import com.example.module_video.recommed.RecommendFragment
+import com.example.module_video.recommend.RecommendFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_video.*
 

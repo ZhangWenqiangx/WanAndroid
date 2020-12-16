@@ -20,7 +20,7 @@ import java.security.MessageDigest;
 /**
  * @author : zhang.wenqiang
  * @date : 2020/12/2
- * description :
+ * description :圆角图片
  */
 public class GlideRoundTransform extends BitmapTransformation {
 
