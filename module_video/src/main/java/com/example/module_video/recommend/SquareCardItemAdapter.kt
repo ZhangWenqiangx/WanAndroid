@@ -5,6 +5,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common_base.util.format
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.data.OpenRecBean
@@ -22,9 +23,14 @@ class SquareCardItemAdapter(
 
     override fun convert(holder: BaseViewHolder, item: OpenRecBean.DataBeanXX.ItemListBean) {
 
-        holder.setText(R.id.tv_title, item.data.content.data.title)
-        holder.setText(R.id.tv_description, item.data.content.data.description)
+        holder.setText(R.id.tv_title, item.data.header.title)
+        holder.setText(
+            R.id.tv_description,
+            item.data.content.data.author.name + " / #" +
+                    item.data.content.data.category
+        )
 
+        holder.setText(R.id.tv_video_time, format(item.data.content.data.duration))
 
         Glide.with(holder.itemView)
             .load(item.data.header.icon)

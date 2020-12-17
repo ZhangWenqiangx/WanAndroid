@@ -140,12 +140,48 @@ public class OpenRecBean implements MultiItemEntity {
         private List<ItemListBean> itemList;
 
         private String title;
+        private int duration;
+        private Label label;
         private String description;
+        private String category;
         private String text;
         private DetailBean detail;
         private String image;
+        private ItemListBean.DataBeanX.ContentBean.DataBean.AuthorBean author;
         private ItemListBean.DataBeanX.ContentBean.DataBean.CoverBean cover;
         private ItemListBean.DataBeanX.ContentBean content;
+
+        public Label getLabel() {
+            return label;
+        }
+
+        public void setLabel(Label label) {
+            this.label = label;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public ItemListBean.DataBeanX.ContentBean.DataBean.AuthorBean getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(ItemListBean.DataBeanX.ContentBean.DataBean.AuthorBean author) {
+            this.author = author;
+        }
+
+        public int getDuration() {
+            return duration;
+        }
+
+        public void setDuration(int duration) {
+            this.duration = duration;
+        }
 
         public ItemListBean.DataBeanX.ContentBean.DataBean.CoverBean getCover() {
             return cover;
@@ -193,6 +229,17 @@ public class OpenRecBean implements MultiItemEntity {
 
         public void setContent(ItemListBean.DataBeanX.ContentBean content) {
             this.content = content;
+        }
+        public static class Label{
+            private String text;
+
+            public String getText() {
+                return text;
+            }
+
+            public void setText(String text) {
+                this.text = text;
+            }
         }
 
         public static class DetailBean{

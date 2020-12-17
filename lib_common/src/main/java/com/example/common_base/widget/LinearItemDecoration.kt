@@ -91,19 +91,15 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
-        val layoutManager: RecyclerView.LayoutManager? = parent.layoutManager
-        val paddingLeft = parent.paddingLeft
-        val paddingRight = parent.paddingRight
         for (i in 0 until parent.childCount) {
             val childView: View = parent.getChildAt(i)
-            var leftDecorationWidth: Int = layoutManager?.getLeftDecorationWidth(childView) ?: 0
-            val rightDecorationWidth: Int = layoutManager?.getRightDecorationWidth(childView) ?: 0
-            val bottomDecorationHeight: Int = layoutManager?.getBottomDecorationHeight(childView) ?: 0
-            val left = leftDecorationWidth + paddingLeft + leftMargin
-            val right = parent.right - rightDecorationWidth - paddingRight - rightMargin
-            val top = childView.bottom
+            val leftDecorationWidth: Int = parent.layoutManager?.getLeftDecorationWidth(childView) ?: 0
+            val rightDecorationWidth: Int = parent.layoutManager?.getRightDecorationWidth(childView) ?: 0
+            val bottomDecorationHeight: Int = parent.layoutManager?.getBottomDecorationHeight(childView) ?: 0
+            val left = leftDecorationWidth +  parent.paddingLeft + leftMargin
+            val right = parent.right - rightDecorationWidth - parent.paddingRight - rightMargin
             val bottom = childView.bottom + bottomDecorationHeight
-            c.drawRect(RectF(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat()), paint)
+            c.drawRect(RectF(left.toFloat(), childView.bottom.toFloat(), right.toFloat(), bottom.toFloat()), paint)
         }
     }
 }

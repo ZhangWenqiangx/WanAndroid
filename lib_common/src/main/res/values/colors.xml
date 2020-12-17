@@ -4,6 +4,9 @@
     <color name="colorPrimary">#ffff</color>
     <color name="colorPrimaryDark">#ffff</color>
 
+    <color name="black">#111</color>
+    <color name="black_36">#363636</color>
+    <color name="black_333">#ff333333</color>
     <color name="colorAccent">#ff616161</color>
     <color name="black_61">#ff616161</color>
     <color name="black_86">#ff868686</color>
@@ -13,12 +16,9 @@
     <color name="gray_ea">#ffeaeaea</color>
     <color name="gray_f5">#fff5f5f5</color>
     <color name="white_f4f5f6">#fff4f5f6</color>
-    <color name="black_333">#ff333333</color>
     <color name="white_fc">#fffcfcfc</color>
-    <color name="white_ccc">#fffcfcfc</color>
     <color name="white_f8">#f8f8f8</color>
     <color name="white_f1">#f1f1f1</color>
-    <color name="black">#111</color>
 
     <!--常用颜色值-->
     <color name="colorTextPrimary">#111</color>

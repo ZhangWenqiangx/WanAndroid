@@ -78,6 +78,7 @@
     <dimen name="textSizePrimaryButton">15sp</dimen>
     <dimen name="textSizePrimaryRemark">14sp</dimen>
     <dimen name="textSizePrimaryDescribed">13sp</dimen>
+    <dimen name="textSizePrimarySmallMark">11sp</dimen>
     <dimen name="textSizeLabelStatus">8sp</dimen>
 
     <!--对于未在style文件中定义样式的可以使用以下字体大小-->

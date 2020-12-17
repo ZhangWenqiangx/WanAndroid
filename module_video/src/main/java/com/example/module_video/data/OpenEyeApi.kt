@@ -1,6 +1,8 @@
 package com.example.module_video.data
 
 import retrofit2.http.GET
+import retrofit2.http.Query
+import retrofit2.http.Url
 
 /**
  *  @author : zhang.wenqiang
@@ -12,6 +14,6 @@ interface OpenEyeApi {
     /**
      * 开眼每日推荐
      */
-    @GET("api/v5/index/tab/allRec")
-    suspend fun getOpenEyeDaily(): OpenEyeResponse<MutableList<OpenRecBean>>
+    @GET
+    suspend fun getOpenEyeDaily(@Url url:String): OpenEyeResponse<MutableList<OpenRecBean>>
 }

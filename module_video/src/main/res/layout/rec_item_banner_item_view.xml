@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/banner_bg"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY" />
+        android:layout_height="@dimen/dp_270">
+
+    <ImageView
+            android:id="@+id/banner_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_200"
+            android:layout_marginHorizontal="@dimen/commonLeftMargin"
+            android:layout_marginVertical="@dimen/dp_10"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/tv_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:alpha="0.6"
+            android:textSize="@dimen/sp_9"
+            android:background="@drawable/common_shape_ad_bg"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/dp_5"
+            android:paddingVertical="@dimen/dp_3"
+            android:textColor="@color/white_f1"
+            app:layout_constraintEnd_toEndOf="@+id/banner_bg"
+            app:layout_constraintTop_toTopOf="@+id/banner_bg" />
+
+    <ImageView
+            android:id="@+id/iv_author"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/banner_bg"
+            app:layout_constraintTop_toBottomOf="@+id/banner_bg" />
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_share"
+            app:layout_constraintStart_toEndOf="@+id/iv_author"
+            app:layout_constraintTop_toBottomOf="@+id/banner_bg">
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textSizePrimaryDescribed"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/textSizePrimarySmallMark"
+                android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

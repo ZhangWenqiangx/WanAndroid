@@ -11,7 +11,6 @@ import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_video.R
 import com.example.module_video.data.DefOpenEyeRepository
 import com.example.module_video.databinding.FragmentRecommendBinding
-import com.youth.banner.util.LogUtils
 
 class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeViewModel>() {
 
@@ -32,9 +31,10 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
     private fun initRefresh() {
         viewDataBinding.srlRefresh.apply {
             setOnRefreshListener {
-                viewModel.getRecommendData()
+                viewModel.getRecommendData(true)
             }
             setOnLoadMoreListener {
+                viewModel.getRecommendData()
             }
             setEnableLoadMore(true)
             setEnableRefresh(true)
@@ -71,7 +71,8 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
                     viewDataBinding.srlRefresh.finishLoadMore()
                 }
                 is ErrorState -> {
-
+                    viewDataBinding.srlRefresh.finishRefresh(false)
+                    viewDataBinding.srlRefresh.finishLoadMore(false)
                 }
                 else -> {
                 }

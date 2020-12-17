@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_120">
 
     <ImageView
-            android:layout_margin="10dp"
             android:id="@+id/iv_video_cover"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_100"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="@dimen/commonLeftMargin"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -17,17 +17,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.5" />
 
-    <TextView
+    <com.example.common_base.widget.CustomTextStyleView
             android:id="@+id/tv_video_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginRight="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:background="@drawable/common_shape_video_time_bg"
             android:gravity="center"
-            android:padding="5dp"
-            android:textSize="13sp"
+            android:padding="@dimen/dp_3"
+            android:textColor="@color/white_f1"
+            android:textSize="@dimen/textSizePrimaryDescribed"
             app:layout_constraintBottom_toBottomOf="@+id/iv_video_cover"
-            app:layout_constraintEnd_toEndOf="@+id/iv_video_cover"
-            tools:text="03:16" />
+            app:layout_constraintEnd_toEndOf="@+id/iv_video_cover" />
 
     <TextView
             android:id="@+id/tv_video_title"
@@ -43,8 +45,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_video_cover"
-            app:layout_constraintTop_toTopOf="@+id/iv_video_cover"
-            tools:text="这不是你想的那种羞羞的广告 [ 真的] !" />
+            app:layout_constraintTop_toTopOf="@+id/iv_video_cover" />
 
     <TextView
             android:id="@+id/textView"
@@ -59,15 +60,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/iv_video_cover"
             app:layout_constraintEnd_toStartOf="@+id/iv_share"
-            app:layout_constraintStart_toEndOf="@+id/iv_video_cover"
-            tools:text="# 广告 / 开眼精选" />
+            app:layout_constraintStart_toEndOf="@+id/iv_video_cover" />
 
     <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
+            android:src="@drawable/ic_share"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -13,6 +13,9 @@ class DefOpenEyeRepository : OpenEyeRepository, BaseDataOperate() {
 
     private val api by lazy { OpenEyeClient.mService }
 
+    private var url: String = "http://baobab.kaiyanapp.com/api/v5/index/tab/allRec"
+    private var nextUrl: String = ""
+
     /**
      * 将服务器数据转接为BaseResult类型
      */
@@ -20,10 +23,13 @@ class DefOpenEyeRepository : OpenEyeRepository, BaseDataOperate() {
         response: OpenEyeResponse<T>
     ): BaseResult<T> {
         return coroutineScope {
+            nextUrl = response.nextPageUrl
             BaseResult.Success(data = response.itemList)
         }
     }
 
-    override suspend fun getRecommend(): BaseResult<MutableList<OpenRecBean>> =
-        execute { convert(api.getOpenEyeDaily()) }
+    override suspend fun getRecommend(isRefresh: Boolean): BaseResult<MutableList<OpenRecBean>> {
+        if (isRefresh) nextUrl = ""
+        return execute { convert(api.getOpenEyeDaily(if (nextUrl.isEmpty()) url else nextUrl)) }
+    }
 }

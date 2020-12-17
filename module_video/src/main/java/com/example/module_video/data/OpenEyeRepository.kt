@@ -10,7 +10,7 @@ import com.example.common_base.base.data.BaseResult
  */
 interface OpenEyeRepository {
 
-    suspend fun getRecommend(): BaseResult<MutableList<OpenRecBean>>
+    suspend fun getRecommend(isRefresh:Boolean): BaseResult<MutableList<OpenRecBean>>
 //
 //    suspend fun getDetails(): BaseResult<MutableList<Article>>
 //
