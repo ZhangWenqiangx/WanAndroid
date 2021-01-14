@@ -70,13 +70,15 @@ class RecommendMuAdapter(data: MutableList<OpenRecBean>) :
             }
             OpenRecBean.VIDEO_SMALL_CARD -> {
                 holder.setText(R.id.tv_video_title, item.data.title)
-                holder.setText(R.id.textView, item.data.author.name + " / #" + item.data.category)
+                holder.setText(R.id.textView, item.data.author?.name + " / #" + item.data.category)
                 holder.setText(R.id.tv_video_time, format(item.data.duration))
 
                 Glide.with(holder.itemView)
                     .load(item.data.cover.detail)
                     .transform(GlideRoundTransform(context))
                     .placeholder(R.drawable.img_def)
+                    .skipMemoryCache(false)
+                    .dontAnimate()
                     .into(holder.getView(R.id.iv_video_cover))
             }
             OpenRecBean.FOLLOW_CARD -> {
@@ -96,6 +98,8 @@ class RecommendMuAdapter(data: MutableList<OpenRecBean>) :
 
                 Glide.with(holder.itemView)
                     .load(item.data.content.data.cover.detail)
+                    .skipMemoryCache(false)
+                    .dontAnimate()
                     .transform(GlideRoundTransform(context))
                     .placeholder(R.drawable.img_def)
                     .into(holder.getView(R.id.iv_video_cover))
