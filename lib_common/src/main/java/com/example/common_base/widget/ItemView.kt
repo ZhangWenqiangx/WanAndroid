@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.common_base.R
-import com.example.common_base.util.dp2px
+import com.example.common_base.util.px
 
 /**
  * Description:
@@ -31,7 +31,7 @@ class ItemView : LinearLayout {
     private var dividerRightMargin: Float = 0.toFloat()
     private var mContext: Context? = null
 
-    constructor(context: Context?) : super(context){
+    constructor(context: Context?) : super(context) {
         mContext = context
     }
 
@@ -84,7 +84,7 @@ class ItemView : LinearLayout {
         itemBackgroundColor = typedArray.getColor(R.styleable.ItemView_itemBackgroundColor, 0)
         dividerVisible = typedArray.getBoolean(R.styleable.ItemView_dividerVisible, true)
         dividerLeftMargin =
-            typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, dp2px(mContext!!,40F).toFloat())
+            typedArray.getDimension(R.styleable.ItemView_dividerLeftMargin, 40f.px())
         dividerRightMargin = typedArray.getDimension(R.styleable.ItemView_dividerRightMargin, 0f)
         typedArray.recycle()
     }

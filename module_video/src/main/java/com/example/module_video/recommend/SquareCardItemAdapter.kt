@@ -5,7 +5,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.example.common_base.util.format
+import com.example.common_base.util.time
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.data.OpenRecBean
@@ -30,7 +30,7 @@ class SquareCardItemAdapter(
                     item.data.content.data.category
         )
 
-        holder.setText(R.id.tv_video_time, format(item.data.content.data.duration))
+        holder.setText(R.id.tv_video_time, item.data.content.data.duration.time())
 
         Glide.with(holder.itemView)
             .load(item.data.header.icon)

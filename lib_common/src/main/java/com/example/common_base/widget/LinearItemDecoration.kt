@@ -8,7 +8,7 @@ import android.graphics.RectF
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common_base.util.dp2px
+import com.example.common_base.util.px
 
 /**
  *rv 下划线
@@ -25,7 +25,7 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private var jumpPositions = ArrayList<Int>()
 
     init {
-        height = dp2px(context, 1f).toInt()
+        height = 1f.px().toInt()
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.style = Paint.Style.FILL
     }
@@ -34,8 +34,8 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
      * 设置 ItemDecoration 左右宽度，设置 getItemOffsets() 中的 outRect.left, outRect.right
      */
     fun itemOffsets(itemOffsetLeft: Float, itemOffsetRight: Float): LinearItemDecoration {
-        this.itemOffsetLeft = dp2px(mContext, itemOffsetLeft).toInt()
-        this.itemOffsetRight = dp2px(mContext, itemOffsetRight).toInt()
+        this.itemOffsetLeft = itemOffsetLeft.px().toInt()
+        this.itemOffsetRight = itemOffsetRight.px().toInt()
         return this
     }
 
@@ -43,7 +43,7 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
      * 设置 ItemDecoration 高度
      */
     fun height(height: Float): LinearItemDecoration {
-        this.height = dp2px(mContext, height).toInt()
+        this.height = height.px().toInt()
         return this
     }
 
@@ -56,8 +56,8 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
     }
 
     fun margin(left: Float, right: Float): LinearItemDecoration {
-        this.leftMargin = dp2px(mContext, left).toInt()
-        this.rightMargin = dp2px(mContext, right).toInt()
+        this.leftMargin = left.px().toInt()
+        this.rightMargin = right.px().toInt()
         return this
     }
 
@@ -71,7 +71,12 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
         return this
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         super.getItemOffsets(outRect, view, parent, state)
         outRect.left = itemOffsetLeft
         outRect.right = itemOffsetRight
@@ -93,13 +98,23 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
         super.onDraw(c, parent, state)
         for (i in 0 until parent.childCount) {
             val childView: View = parent.getChildAt(i)
-            val leftDecorationWidth: Int = parent.layoutManager?.getLeftDecorationWidth(childView) ?: 0
-            val rightDecorationWidth: Int = parent.layoutManager?.getRightDecorationWidth(childView) ?: 0
-            val bottomDecorationHeight: Int = parent.layoutManager?.getBottomDecorationHeight(childView) ?: 0
-            val left = leftDecorationWidth +  parent.paddingLeft + leftMargin
+            val leftDecorationWidth: Int =
+                parent.layoutManager?.getLeftDecorationWidth(childView) ?: 0
+            val rightDecorationWidth: Int =
+                parent.layoutManager?.getRightDecorationWidth(childView) ?: 0
+            val bottomDecorationHeight: Int =
+                parent.layoutManager?.getBottomDecorationHeight(childView) ?: 0
+            val left = leftDecorationWidth + parent.paddingLeft + leftMargin
             val right = parent.right - rightDecorationWidth - parent.paddingRight - rightMargin
             val bottom = childView.bottom + bottomDecorationHeight
-            c.drawRect(RectF(left.toFloat(), childView.bottom.toFloat(), right.toFloat(), bottom.toFloat()), paint)
+            c.drawRect(
+                RectF(
+                    left.toFloat(),
+                    childView.bottom.toFloat(),
+                    right.toFloat(),
+                    bottom.toFloat()
+                ), paint
+            )
         }
     }
 }

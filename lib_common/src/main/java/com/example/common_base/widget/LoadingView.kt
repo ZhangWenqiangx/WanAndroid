@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.example.common_base.R
 import kotlin.math.sqrt

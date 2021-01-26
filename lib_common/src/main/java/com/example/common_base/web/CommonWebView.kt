@@ -3,7 +3,6 @@ package com.example.common_base.web
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.net.http.SslError
 import android.util.AttributeSet
@@ -15,7 +14,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import com.example.common_base.util.ToastUtil
-import com.example.common_base.util.dp2px
+import com.example.common_base.util.px
 
 
 /**
@@ -75,7 +74,7 @@ class CommonWebView : WebView, LifecycleObserver {
 
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 super.onReceivedTitle(view, title)
-                onWebViewCallback?.onReceivedTitle(view,title)
+                onWebViewCallback?.onReceivedTitle(view, title)
             }
         }
 
@@ -110,7 +109,7 @@ class CommonWebView : WebView, LifecycleObserver {
         webProgressBar = WebProgressBar(context)
         webProgressBar.layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
-            dp2px(context, 4f).toInt()
+            4f.px().toInt()
         )
         addView(webProgressBar)
     }
