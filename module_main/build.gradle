@@ -1,55 +1,17 @@
+apply from:"../module.build.gradle"
+
+android {
+    defaultConfig {
+        if (isRunAlone.toBoolean()){
+            applicationId "com.example.main"
+        }
+    }
+    resourcePrefix "main_"
+}
+
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
-
-if (isRunAlone.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
-
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
-android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-    defaultConfig {
-        multiDexEnabled true
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    sourceSets {
-        main {
-            if (isRunAlone.toBoolean()) {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                java {
-                    // 全部 module 一起编译时剔除 debug 目录
-                    exclude '**/debug/**'
-                }
-            }
-        }
-    }
-}
 
 final def log = project.logger
 def variants
@@ -64,8 +26,7 @@ variants.all { variant ->
         return
     }
 
-    JavaCompile javaCompile = variant.javaCompile//警告：studio 3.3过时了
-//    def javaCompile = variant.getJavaCompileProvider()//还会引起其它异常
+    JavaCompile javaCompile = variant.javaCompile
     javaCompile.doLast {
         String[] args = ["-showWeaveInfo",
                          "-1.8",
@@ -99,11 +60,3 @@ variants.all { variant ->
     }
 }
 //aspectj end
-
-dependencies {
-
-    implementation project(':lib_common')
-    // arouter-compiler
-    kapt rootProject.ext.dependencies['arouter-compiler']
-    annotationProcessor rootProject.ext.dependencies['glide-compiler']
-}

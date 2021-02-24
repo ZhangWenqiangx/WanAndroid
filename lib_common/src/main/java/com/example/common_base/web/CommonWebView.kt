@@ -14,7 +14,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import com.example.common_base.util.ToastUtil
-import com.example.common_base.util.px
+import com.example.common_base.util.dp
 
 
 /**
@@ -109,7 +109,7 @@ class CommonWebView : WebView, LifecycleObserver {
         webProgressBar = WebProgressBar(context)
         webProgressBar.layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
-            4f.px().toInt()
+            4.dp().toInt()
         )
         addView(webProgressBar)
     }

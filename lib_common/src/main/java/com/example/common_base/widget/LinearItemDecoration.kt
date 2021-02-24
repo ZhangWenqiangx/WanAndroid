@@ -8,7 +8,7 @@ import android.graphics.RectF
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common_base.util.px
+import com.example.common_base.util.dp
 
 /**
  *rv 下划线
@@ -25,7 +25,7 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private var jumpPositions = ArrayList<Int>()
 
     init {
-        height = 1f.px().toInt()
+        height = 1f.dp().toInt()
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.style = Paint.Style.FILL
     }
@@ -34,8 +34,8 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
      * 设置 ItemDecoration 左右宽度，设置 getItemOffsets() 中的 outRect.left, outRect.right
      */
     fun itemOffsets(itemOffsetLeft: Float, itemOffsetRight: Float): LinearItemDecoration {
-        this.itemOffsetLeft = itemOffsetLeft.px().toInt()
-        this.itemOffsetRight = itemOffsetRight.px().toInt()
+        this.itemOffsetLeft = itemOffsetLeft.dp().toInt()
+        this.itemOffsetRight = itemOffsetRight.dp().toInt()
         return this
     }
 
@@ -43,7 +43,7 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
      * 设置 ItemDecoration 高度
      */
     fun height(height: Float): LinearItemDecoration {
-        this.height = height.px().toInt()
+        this.height = height.dp().toInt()
         return this
     }
 
@@ -56,8 +56,8 @@ class LinearItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
     }
 
     fun margin(left: Float, right: Float): LinearItemDecoration {
-        this.leftMargin = left.px().toInt()
-        this.rightMargin = right.px().toInt()
+        this.leftMargin = left.dp().toInt()
+        this.rightMargin = right.dp().toInt()
         return this
     }
 

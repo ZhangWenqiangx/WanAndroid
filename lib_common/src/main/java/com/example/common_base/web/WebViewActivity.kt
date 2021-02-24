@@ -9,7 +9,7 @@ import android.webkit.WebView
 import android.widget.LinearLayout
 import com.example.common_base.R
 import com.example.common_base.base.BaseActivity
-import com.example.common_base.util.px
+import com.example.common_base.util.dp
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 const val URL = "url"
@@ -38,7 +38,7 @@ class WebViewActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.elevation = 5f.px()
+        supportActionBar?.elevation = 5f.dp()
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener { onBack() }
 

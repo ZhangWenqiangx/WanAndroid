@@ -6,7 +6,7 @@ import android.util.TypedValue
 /**
  * float 变成 px
  */
-fun Float.px(): Float {
+fun Float.dp(): Float {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         this,
@@ -14,13 +14,15 @@ fun Float.px(): Float {
     )
 }
 
+fun Int.dp(): Float =
+    this.toFloat().dp()
+
 /**
- * int 毫秒 变成 分：秒 格式
+ * int ms/毫秒 变成 分：秒 格式
  */
 fun Int.time(): String? {
     val second: String
     val minute: String
-    var time: String
     //获取到时间
     val mm = this / 60 //分
     val ss = this % 60 //秒
@@ -34,6 +36,5 @@ fun Int.time(): String? {
     } else {
         mm.toString() //分钟
     }
-    time = "$minute:$second"
-    return time
+    return "$minute:$second"
 }

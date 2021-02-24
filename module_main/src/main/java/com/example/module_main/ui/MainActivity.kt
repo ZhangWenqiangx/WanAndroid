@@ -11,7 +11,8 @@ import com.example.module_main.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)
-class MainActivity : BaseActivity(), View.OnClickListener {
+class
+MainActivity : BaseActivity(), View.OnClickListener {
 
     private var currentSelectionId = R.id.rb_home
     private lateinit var fm: FragmentManager

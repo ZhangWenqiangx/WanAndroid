@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
+
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
@@ -18,7 +19,7 @@ android {
             }
         }
     }
-
+    resourcePrefix "common_"
     buildTypes {
         release {
             minifyEnabled false
@@ -66,7 +67,9 @@ dependencies {
 
     api rootProject.ext.dependencies['kotlin']
     api rootProject.ext.dependencies['retrofit']
-    api rootProject.ext.dependencies['rxandroid']
+    api (rootProject.ext.dependencies['rxandroid']){
+        exclude group: 'androidx.lifecycle'
+    }
     api rootProject.ext.dependencies['rxjava']
     api rootProject.ext.dependencies['converter-gson']
     api rootProject.ext.dependencies['adapter-rxjava']
