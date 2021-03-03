@@ -3,6 +3,7 @@ package com.example.common_base.base
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.R
+import com.example.common_base.hotfix.HotFix
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -32,6 +33,7 @@ open class BaseApplication : Application() {
         super.onCreate()
         sApplication = this
         initArouter()
+        HotFix.init(this)
     }
 
     private fun initArouter() {

@@ -65,3 +65,23 @@ dependencies {
     }
     kapt rootProject.ext.dependencies['arouter-compiler']
 }
+
+task hotfix {
+    doLast {
+        exec {
+            commandLine 'rm', '-r', './build/patch'
+        }
+        exec {
+            commandLine 'mkdir', './build/patch'
+        }
+        exec {
+            commandLine 'javac', "./src/main/java/${patchPath}.java", '-d', './build/patch'
+        }
+        exec {
+            commandLine '/Sdk_new/Sdk_1.0/Sdk/build-tools/30.0.2/d8', "./build/patch/${patchPath}.class", '--output', './build/patch'
+        }
+        exec {
+            commandLine 'mv', "./build/patch/classes.dex", './build/patch/hotfix.dex'
+        }
+    }
+}
