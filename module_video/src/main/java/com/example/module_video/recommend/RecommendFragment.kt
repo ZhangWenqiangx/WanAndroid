@@ -1,6 +1,7 @@
 package com.example.module_video.recommend
 
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.example.module_video.R
 import com.example.module_video.data.DefOpenEyeRepository
 import com.example.module_video.databinding.FragmentRecommendBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.youth.banner.util.LogUtils
 
 class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeViewModel>() {
 
@@ -55,6 +57,9 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
             )
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter
+        }
+        mAdapter?.setOnItemClickListener { _, _, position ->
+            LogUtils.d(position.toString())
         }
     }
 

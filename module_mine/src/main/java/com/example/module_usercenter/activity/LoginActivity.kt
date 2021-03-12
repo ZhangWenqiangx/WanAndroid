@@ -20,7 +20,7 @@ import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
 import com.example.module_usercenter.presenter.LoginPresenter
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.mine_activity_login.*
 
 @Route(path = AConstance.ACTIVITY_URL_LOGIN)
 class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, View.OnClickListener {
@@ -45,7 +45,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         finish()
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_login
+    override fun getLayoutResId(): Int = R.layout.mine_activity_login
 
     override fun createPresenter(): LoginPresenter = LoginPresenter()
 

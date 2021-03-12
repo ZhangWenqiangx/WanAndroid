@@ -4,8 +4,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.base.mvvm.BaseMvvmFragment
+import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
 import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_video.databinding.FragmentVideoBinding

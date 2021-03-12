@@ -8,7 +8,6 @@
 
     <dimen name="commonLevel1TitleSize">20sp</dimen>
 
-    <dimen name="statusbar_view_height">0dp</dimen>
     <!--常用间距 页面间距统一-->
     <dimen name="commonHorizontalMargin">20dp</dimen>
     <dimen name="commonLeftMargin">18dp</dimen>

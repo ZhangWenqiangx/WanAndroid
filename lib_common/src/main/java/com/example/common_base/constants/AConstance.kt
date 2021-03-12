@@ -9,4 +9,5 @@ object AConstance {
 
     const val FRAGMENT_URL_HOME = "/home/HomeFragment"
     const val FRAGMENT_URL_VIDEO = "/video/VideoFragment"
+    const val FRAGMENT_URL_MINE = "/mine/MineFragment"
 }

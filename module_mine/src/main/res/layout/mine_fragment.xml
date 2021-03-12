@@ -4,8 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"
-        tools:context=".ui.MineFragment">
+        tools:context="com.example.module_usercenter.fragment.MineFragment">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         <ImageView
                 android:id="@+id/iv_avatar_background"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/test" />
 
@@ -37,7 +36,6 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="12dp"
                     android:background="@drawable/shape_circle_white" />
-
 
             <LinearLayout
                     android:layout_width="wrap_content"
@@ -76,21 +74,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:itemTitle="@string/favorite"
-                app:leftIcon="@drawable/ic_mine_favorite" />
-
-        <com.example.common_base.widget.ItemView
-                android:id="@+id/iv_mine_meizi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemTitle="@string/happy_a_minute"
-                app:leftIcon="@drawable/ic_mine_happy" />
+                app:itemTitle="@string/favorite" />
 
         <com.example.common_base.widget.ItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:itemTitle="@string/setting"
-                app:leftIcon="@drawable/ic_mine_setting" />
+           />
 
         <com.example.common_base.widget.ItemView
                 android:id="@+id/iv_mine_about"
@@ -98,37 +88,9 @@
                 android:layout_height="wrap_content"
                 app:dividerVisible="false"
                 app:itemTitle="@string/about"
-                app:leftIcon="@drawable/ic_mine_about" />
+                />
 
 
     </LinearLayout>
-
-    <!--  标题栏  -->
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@android:color/white"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:visibility="gone">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="我的"
-                android:textColor="@color/black_333"
-                android:textSize="18sp" />
-
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_favorite" />
-
-    </RelativeLayout>
-
-
 </RelativeLayout>
 

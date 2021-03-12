@@ -9,6 +9,7 @@ import android.webkit.WebView
 import android.widget.LinearLayout
 import com.example.common_base.R
 import com.example.common_base.base.BaseActivity
+import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.util.dp
 import kotlinx.android.synthetic.main.activity_web_view.*
 
@@ -33,7 +34,8 @@ class WebViewActivity : BaseActivity() {
     override fun getLayoutResId(): Int = R.layout.activity_web_view
 
     override fun initView() {
-        setStatusColor(this, isTranslate = false, isDarkText = true)
+        StatusBarUtil.setTranslucent(this,0)
+        StatusBarUtil.setLightMode(this)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""

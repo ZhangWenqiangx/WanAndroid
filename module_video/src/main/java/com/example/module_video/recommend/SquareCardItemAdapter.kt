@@ -13,7 +13,7 @@ import com.example.module_video.data.OpenRecBean
 /**
  *  @author : zhang.wenqiang
  *  @date : 2020/12/16
- *  description :
+ *  description :首页-多布局item-列表
  */
 class SquareCardItemAdapter(
     layoutResId: Int,

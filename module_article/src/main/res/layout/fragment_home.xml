@@ -12,7 +12,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <View
+                android:id="@+id/fake_status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/statusbar_view_height"
+                android:background="@color/colorPrimary" />
+
         <RelativeLayout
+                android:layout_below="@id/fake_status_bar"
                 android:id="@+id/ll_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/actionbar_content_size"
@@ -20,13 +27,13 @@
 
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabTextAppearance="@style/CommonTabLayoutStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp_30"
                     android:layout_centerInParent="true"
                     app:tabIndicatorFullWidth="false"
-                    app:tabIndicatorHeight="@dimen/dp_3" />
+                    app:tabIndicatorHeight="@dimen/dp_3"
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabTextAppearance="@style/CommonTabLayoutStyle" />
 
             <ImageView
                     android:id="@+id/iv_search"

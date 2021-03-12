@@ -16,7 +16,7 @@ import com.youth.banner.util.LogUtils
 /**
  *  @author : zhang.wenqiang
  *  @date : 2020/12/16
- *  description :
+ *  description :首页多布局adapter
  */
 class RecommendMuAdapter(data: MutableList<OpenRecBean>) :
     BaseMultiItemQuickAdapter<OpenRecBean, BaseViewHolder>(data) {
