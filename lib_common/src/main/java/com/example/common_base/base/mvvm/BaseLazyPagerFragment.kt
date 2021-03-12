@@ -3,7 +3,7 @@ package com.example.common_base.base.mvvm
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.example.common_base.base.data.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.BaseViewModel
 
 /**
  *  @author : zhang.wenqiang

@@ -2,8 +2,8 @@ package com.example.module_video.recommend
 
 import androidx.lifecycle.MutableLiveData
 import com.example.common_base.base.data.BaseResult
-import com.example.common_base.base.data.viewmodel.BaseViewModel
-import com.example.common_base.base.data.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_video.data.OpenEyeRepository
 import com.example.module_video.data.OpenRecBean
 

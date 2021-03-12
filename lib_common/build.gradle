@@ -22,7 +22,7 @@ android {
     resourcePrefix "common_"
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -67,7 +67,7 @@ dependencies {
 
     api rootProject.ext.dependencies['kotlin']
     api rootProject.ext.dependencies['retrofit']
-    api (rootProject.ext.dependencies['rxandroid']){
+    api(rootProject.ext.dependencies['rxandroid']) {
         exclude group: 'androidx.lifecycle'
     }
     api rootProject.ext.dependencies['rxjava']
@@ -85,6 +85,8 @@ dependencies {
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     api "androidx.fragment:fragment-ktx:1.2.5"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.1'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 }
 

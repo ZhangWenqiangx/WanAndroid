@@ -1,6 +1,6 @@
 package com.example.module_home.data.source
 
-import com.example.common_base.base.data.viewmodel.BaseDataOperate
+import com.example.common_base.base.viewmodel.BaseDataOperate
 import com.example.common_base.base.data.BaseResult
 import com.example.module_home.search.bean.SearchEntity
 import kotlinx.coroutines.Dispatchers

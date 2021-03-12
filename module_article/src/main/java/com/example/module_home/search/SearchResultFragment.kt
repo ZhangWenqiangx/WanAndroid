@@ -6,8 +6,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseMvvmFragment
-import com.example.common_base.base.data.viewmodel.ErrorState
-import com.example.common_base.base.data.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.R

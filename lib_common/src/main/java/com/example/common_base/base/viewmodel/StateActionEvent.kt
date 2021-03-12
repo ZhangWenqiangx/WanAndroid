@@ -1,4 +1,4 @@
-package com.example.common_base.base.data.viewmodel
+package com.example.common_base.base.viewmodel
 
 sealed class StateActionEvent
 

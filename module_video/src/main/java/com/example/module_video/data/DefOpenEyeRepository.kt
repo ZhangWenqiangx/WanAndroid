@@ -1,7 +1,7 @@
 package com.example.module_video.data
 
 import com.example.common_base.base.data.BaseResult
-import com.example.common_base.base.data.viewmodel.BaseDataOperate
+import com.example.common_base.base.viewmodel.BaseDataOperate
 import kotlinx.coroutines.coroutineScope
 
 /**

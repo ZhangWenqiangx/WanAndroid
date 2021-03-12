@@ -1,4 +1,4 @@
-package com.example.common_base.base.data.viewmodel
+package com.example.common_base.base.viewmodel
 
 import com.example.common_base.base.data.BaseResponse
 import com.example.common_base.base.data.BaseResult

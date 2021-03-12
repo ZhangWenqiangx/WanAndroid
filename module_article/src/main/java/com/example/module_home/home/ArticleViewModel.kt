@@ -2,10 +2,10 @@ package com.example.module_home.home
 
 import androidx.lifecycle.MutableLiveData
 import com.example.common_base.base.data.BaseResult
-import com.example.common_base.base.data.viewmodel.BaseViewModel
-import com.example.common_base.base.data.viewmodel.CompleteState
-import com.example.common_base.base.data.viewmodel.ErrorState
-import com.example.common_base.base.data.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.CompleteState
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_home.composite.bean.Project
 import com.example.module_home.composite.bean.ProjectTab
 import com.example.module_home.data.source.RemoteDataSource

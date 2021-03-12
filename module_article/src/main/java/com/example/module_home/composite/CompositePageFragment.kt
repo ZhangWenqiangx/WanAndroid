@@ -5,9 +5,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.common_base.base.data.viewmodel.CompleteState
-import com.example.common_base.base.data.viewmodel.ErrorState
-import com.example.common_base.base.data.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.CompleteState
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.base.mvvm.BaseLazyFragment
 import com.example.common_base.web.WebViewActivity
 import com.example.module_home.ArticleViewModelFactory

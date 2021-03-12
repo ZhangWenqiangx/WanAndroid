@@ -1,7 +1,7 @@
 package com.example.module_home.data.source
 
 import com.example.common_base.base.data.BaseResult
-import com.example.common_base.base.data.viewmodel.BaseDataOperate
+import com.example.common_base.base.viewmodel.BaseDataOperate
 import com.example.common_base.http.RetrofitClient
 import com.example.module_home.composite.bean.ProjectResponse
 import com.example.module_home.composite.bean.ProjectTab

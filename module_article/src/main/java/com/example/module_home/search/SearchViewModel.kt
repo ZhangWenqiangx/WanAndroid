@@ -2,9 +2,9 @@ package com.example.module_home.search
 
 import androidx.lifecycle.MutableLiveData
 import com.example.common_base.base.data.BaseResult
-import com.example.common_base.base.data.viewmodel.BaseViewModel
-import com.example.common_base.base.data.viewmodel.ErrorState
-import com.example.common_base.base.data.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.BaseViewModel
+import com.example.common_base.base.viewmodel.ErrorState
+import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_home.data.ArticleRepository
 import com.example.module_home.search.bean.HotKeyBean
 import com.example.module_home.search.bean.SearchEntity
