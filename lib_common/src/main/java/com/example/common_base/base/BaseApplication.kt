@@ -20,7 +20,7 @@ open class BaseApplication : Application() {
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(R.color.white_f1, R.color.black_999)
+            layout.setPrimaryColorsId(R.color.trans_10, R.color.black_999)
             ClassicsHeader(context)
         }
 

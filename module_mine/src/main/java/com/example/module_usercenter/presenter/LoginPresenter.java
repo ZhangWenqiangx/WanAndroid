@@ -27,11 +27,11 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
     }
 
     public void saveUserNamePwd(String name, String pwd) {
-        SpUtil.INSTANCE.write(Constants.INSTANCE.getUSER_LOGIN(),Constants.INSTANCE.getUSERNAME(),name);
-        SpUtil.INSTANCE.write(Constants.INSTANCE.getUSER_LOGIN(),Constants.INSTANCE.getPASSWORD(),pwd);
+        SpUtil.INSTANCE.write(Constants.USER_LOGIN,Constants.USERNAME,name);
+        SpUtil.INSTANCE.write(Constants.USER_LOGIN,Constants.PASSWORD,pwd);
     }
 
     public String readUserNamePwd(String key) {
-        return SpUtil.INSTANCE.read(Constants.INSTANCE.getUSER_LOGIN(),key,"");
+        return SpUtil.INSTANCE.read(Constants.USER_LOGIN,key,"");
     }
 }

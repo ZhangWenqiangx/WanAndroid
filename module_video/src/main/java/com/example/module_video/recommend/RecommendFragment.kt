@@ -1,26 +1,28 @@
 package com.example.module_video.recommend
 
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
-import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_video.R
-import com.example.module_video.data.DefOpenEyeRepository
+import com.example.module_video.VideoViewModelFactory
 import com.example.module_video.databinding.FragmentRecommendBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.youth.banner.util.LogUtils
+import com.example.module_video.recommend.adapter.RecommendVideoMultiAdapter
 
+/**
+ * 视频推荐页
+ */
 class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeViewModel>() {
 
-    var mAdapter: RecommendMuAdapter? = null
+    var mAdapter: RecommendVideoMultiAdapter? = null
 
     override fun createViewModel(): OpenEyeViewModel {
-        return OpenEyeViewModel(DefOpenEyeRepository())
+        return ViewModelProvider(this, VideoViewModelFactory()).get(OpenEyeViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,7 +48,7 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
     }
 
     private fun initRecycler() {
-        mAdapter = RecommendMuAdapter(mutableListOf())
+        mAdapter = RecommendVideoMultiAdapter()
         viewDataBinding.rvContent.apply {
             addItemDecoration(
                 LinearItemDecoration(requireContext()).color(
@@ -57,9 +59,6 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
             )
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter
-        }
-        mAdapter?.setOnItemClickListener { _, _, position ->
-            LogUtils.d(position.toString())
         }
     }
 

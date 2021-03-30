@@ -1,12 +1,7 @@
 package com.example.common_base.base
 
-import android.app.Activity
 import android.app.Dialog
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.common_base.base.mvp.IView
 import com.example.common_base.widget.LoadingDialog

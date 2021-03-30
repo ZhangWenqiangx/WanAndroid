@@ -6,6 +6,11 @@
 
     <color name="black">#111</color>
     <color name="trans_80">#80000000</color>
+    <color name="trans_70">#70000000</color>
+    <color name="trans_60">#60000000</color>
+    <color name="trans_50">#50000000</color>
+    <color name="trans_30">#30000000</color>
+    <color name="trans_10">#10000000</color>
     <color name="black_36">#363636</color>
     <color name="black_333">#ff333333</color>
     <color name="colorAccent">#ff616161</color>

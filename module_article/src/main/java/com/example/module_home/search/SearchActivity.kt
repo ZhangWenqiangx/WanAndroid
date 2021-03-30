@@ -17,8 +17,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>() {
 
     override fun initView() {
-
-        tv_cancle.setOnClickListener { finish() }
+        viewDataBinding?.tvCancle?.setOnClickListener { finish() }
 
         search_input.apply {
 
