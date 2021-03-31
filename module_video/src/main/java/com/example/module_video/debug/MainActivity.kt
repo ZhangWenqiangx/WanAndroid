@@ -1,7 +1,5 @@
 package com.example.module_video.debug
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.example.common_base.base.BaseActivity
 import com.example.module_video.R
 import com.example.module_video.VideoFragment

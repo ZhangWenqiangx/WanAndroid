@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:padding="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/common_shape_video_trans30_bg"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/iv_parent_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/tv_parent_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textSizeTertiaryTitle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_parent_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_parent_avatar"
+            tools:text="恢复吗？？？？" />
+
+    <TextView
+            android:layout_marginTop="@dimen/dp_5"
+            android:id="@+id/tv_parent_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="妄自菲薄是这个意思吗？"
+            app:layout_constraintStart_toStartOf="@+id/tv_parent_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_parent_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>

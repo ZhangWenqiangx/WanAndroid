@@ -8,8 +8,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.Constants
 import com.example.module_video.R
-import com.example.module_video.data.OpenRecBean
-import com.example.module_video.data.VideoInfoBean
+import com.example.module_video.recommend.bean.OpenRecBean
+import com.example.module_video.recommend.bean.VideoInfoBean
 
 
 /**
@@ -42,7 +42,8 @@ class ItemSquareCardProvider : BaseItemProvider<OpenRecBean>() {
                 setOnItemChildClickListener { _, _, position ->
                     val openRecBean = this.data[position].data
 
-                    val infoBean = VideoInfoBean().apply {
+                    val infoBean = VideoInfoBean()
+                        .apply {
                         videoTitle = openRecBean.header.title
                         category = openRecBean.content.data.author.name + " / #" +
                                 openRecBean.content.data.category

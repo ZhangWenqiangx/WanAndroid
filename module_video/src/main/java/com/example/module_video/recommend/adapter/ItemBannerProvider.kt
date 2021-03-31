@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
-import com.example.module_video.data.OpenRecBean
+import com.example.module_video.recommend.bean.OpenRecBean
 import com.youth.banner.util.LogUtils
 
 

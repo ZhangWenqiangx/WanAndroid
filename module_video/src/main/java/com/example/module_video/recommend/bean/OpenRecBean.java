@@ -1,4 +1,4 @@
-package com.example.module_video.data;
+package com.example.module_video.recommend.bean;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
@@ -23,12 +23,38 @@ public class OpenRecBean implements MultiItemEntity {
                 '}';
     }
 
-    public static int SQUARE_CARD_COLLECTION = 1;//竖
-    public static int AUTO_PLAY_VIDEO_AD = 2;   //视频
-    public static int TEXT_CARD = 3;            //横
-    public static int FOLLOW_CARD = 4;          //竖
-    public static int VIDEO_SMALL_CARD = 5;     //视频播放
-    public static int BANNER = 6;               //大图
+    /**
+     * 竖向大图列表
+     */
+    public static int SQUARE_CARD_COLLECTION = 1;
+    /**
+     * 视频
+     */
+    public static int AUTO_PLAY_VIDEO_AD = 2;
+    /**
+     * 头文字
+     */
+    public static int TEXT_CARD = 3;
+    /**
+     * 竖向列表
+     */
+    public static int FOLLOW_CARD = 4;
+    /**
+     * 小窗口播放视频
+     */
+    public static int VIDEO_SMALL_CARD = 5;
+    /**
+     * BannerTu
+     */
+    public static int BANNER = 6;
+    /**
+     * 评论
+     */
+    public static int REPLY = 7;
+    /**
+     * 查看更多
+     */
+    public static int SHOW_MORE = 8;
 
     /**
      * type : squareCardCollection
@@ -48,8 +74,14 @@ public class OpenRecBean implements MultiItemEntity {
 
     @Override
     public int getItemType() {
-        int type = 0;
+        int type = 1;
         switch (getType()) {
+            case "more":
+                type = SHOW_MORE;
+                break;
+            case "reply":
+                type = REPLY;
+                break;
             case "squareCardCollection":
                 type = SQUARE_CARD_COLLECTION;
                 break;
@@ -57,6 +89,7 @@ public class OpenRecBean implements MultiItemEntity {
                 type = AUTO_PLAY_VIDEO_AD;
                 break;
             case "textCard":
+            case "leftAlignTextHeader":
                 type = TEXT_CARD;
                 break;
             case "followCard":
@@ -123,14 +156,6 @@ public class OpenRecBean implements MultiItemEntity {
     }
 
     public static class DataBeanXX {
-        /**
-         * dataType : ItemCollection
-         * header : {"id":5,"title":"开眼编辑精选","font":"bigBold","subTitle":"WEDNESDAY, DECEMBER 16","subTitleFont":"lobster","textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://feed?tabIndex=2","labelList":null,"rightText":"查看往期"}
-         * itemList : [{"type":"followCard","data":{"dataType":"FollowCard","header":{"id":226195,"title":"「时代周刊」回顾 2020：困难使我们强大","font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://pgc/detail/2165/?title=%E5%BC%80%E7%9C%BC%E7%94%9F%E6%B4%BB%E7%B2%BE%E9%80%89&userType=PGC&tabIndex=1","labelList":null,"rightText":null,"icon":"http://img.kaiyanapp.com/924ebc6780d59925c8a346a5dafc90bb.jpeg","iconType":"round","description":null,"time":1608080400000,"showHateVideo":false},"content":{"type":"video","data":{"dataType":"VideoBeanForClient","id":226195,"title":"「时代周刊」回顾 2020：困难使我们强大","description":"2020 是不平静的一年。这一年，世界各地的生命损失惨重。但是，这个世界仍然充满了同情心和爱心。「时代周刊」的这则视频回顾 2020 ，讲述了这一年当中的重大事件，包括疫情、民权运动等。影片致敬了在艰难时刻付出过的人，他们在屡次经历困难后，依旧充满着勇气。From TIME","library":"DAILY","tags":[{"id":346,"name":"美国","actionUrl":"eyepetizer://tag/346/?title=%E7%BE%8E%E5%9B%BD","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/19b625e7277199ed752fe61a56a596f2.jpeg?imageMogr2/quality/100","headerImage":"http://img.kaiyanapp.com/19b625e7277199ed752fe61a56a596f2.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":24,"name":"记录","actionUrl":"eyepetizer://tag/24/?title=%E8%AE%B0%E5%BD%95","adTrack":null,"desc":"告诉他们为什么与众不同","bgPicture":"http://img.kaiyanapp.com/c3984cad49455e01637347e0c8f6a37d.jpeg?imageMogr2/quality/100","headerImage":"http://img.kaiyanapp.com/fd76dab1411e07f0dcf45309720134f9.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1234,"name":"时代周刊","actionUrl":"eyepetizer://tag/1234/?title=%E6%97%B6%E4%BB%A3%E5%91%A8%E5%88%8A","adTrack":null,"desc":"使\u201c忙人\u201d能够充分了解世界大事","bgPicture":"http://img.kaiyanapp.com/e59186c259eb30eea49ea698b744d4ef.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/e59186c259eb30eea49ea698b744d4ef.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":666,"name":"生活","actionUrl":"eyepetizer://tag/666/?title=%E7%94%9F%E6%B4%BB","adTrack":null,"desc":"匠心、健康、生活感悟","bgPicture":"http://img.kaiyanapp.com/95ba262a92ac99db76794ca56233d5d1.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/314a1e399de4c5708058e7f391619647.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1378,"name":"热爱生活的一万个理由","actionUrl":"eyepetizer://tag/1378/?title=%E7%83%AD%E7%88%B1%E7%94%9F%E6%B4%BB%E7%9A%84%E4%B8%80%E4%B8%87%E4%B8%AA%E7%90%86%E7%94%B1","adTrack":null,"desc":"值得爱的，有那么多","bgPicture":"http://img.kaiyanapp.com/ae818132884655e72c6d65944e6ac03c.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/ae818132884655e72c6d65944e6ac03c.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":5}],"consumption":{"collectionCount":667,"shareCount":308,"replyCount":11,"realCollectionCount":242},"resourceType":"video","slogan":null,"provider":{"name":"YouTube","alias":"youtube","icon":"http://img.kaiyanapp.com/fa20228bc5b921e837156923a58713f6.png"},"category":"生活","author":{"id":2165,"icon":"http://img.kaiyanapp.com/924ebc6780d59925c8a346a5dafc90bb.jpeg","name":"开眼生活精选","description":"匠心、健康、生活感悟","link":"","latestReleaseTime":1604365206000,"videoNum":147,"adTrack":null,"follow":{"itemType":"author","itemId":2165,"followed":false},"shield":{"itemType":"author","itemId":2165,"shielded":false},"approvedNotReadyVideoCount":0,"ifPgc":true,"recSort":0,"expert":false},"cover":{"feed":"http://img.kaiyanapp.com/4fd7b21d31c35b6b81082b8cafe99e5d.jpeg?imageMogr2/quality/60/format/jpg","detail":"http://img.kaiyanapp.com/4fd7b21d31c35b6b81082b8cafe99e5d.jpeg?imageMogr2/quality/60/format/jpg","blurred":"http://img.kaiyanapp.com/7c1683c778d58644cced74865284678f.jpeg?imageMogr2/quality/60/format/jpg","sharing":null,"homepage":"http://img.kaiyanapp.com/4fd7b21d31c35b6b81082b8cafe99e5d.jpeg?imageView2/1/w/720/h/560/format/jpg/q/75|watermark/1/image/aHR0cDovL2ltZy5rYWl5YW5hcHAuY29tL2JsYWNrXzMwLnBuZw==/dissolve/100/gravity/Center/dx/0/dy/0|imageslim"},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=226195&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=","thumbPlayUrl":null,"duration":142,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=226195","forWeibo":"https://m.eyepetizer.net/u1/video-detail?video_id=226195&resource_type=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0"},"releaseTime":1608080400000,"playInfo":[{"height":720,"width":1280,"urlList":[{"name":"aliyun","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=226195&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss&udid=","size":21587662},{"name":"ucloud","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=226195&resourceType=video&editionType=high&source=ucloud&playUrlType=url_oss&udid=","size":21587662}],"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=226195&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss&udid="}],"campaign":null,"waterMarks":null,"ad":false,"adTrack":[],"type":"NORMAL","titlePgc":null,"descriptionPgc":null,"remark":null,"ifLimitVideo":false,"searchWeight":0,"brandWebsiteInfo":null,"videoPosterBean":{"scale":0.725,"url":"http://eyepetizer-videos.oss-cn-beijing.aliyuncs.com/video_poster_share/56fc3a74ea3724b5f389b634c0d0035a.mp4","fileSizeStr":"4.63MB"},"idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1608080400000,"promotion":null,"label":null,"labelList":[],"descriptionEditor":"2020 是不平静的一年。这一年，世界各地的生命损失惨重。但是，这个世界仍然充满了同情心和爱心。「时代周刊」的这则视频回顾 2020 ，讲述了这一年当中的重大事件，包括疫情、民权运动等。影片致敬了在艰难时刻付出过的人，他们在屡次经历困难后，依旧充满着勇气。From TIME","collected":false,"reallyCollected":false,"played":false,"subtitles":[],"lastViewTime":null,"playlists":null,"src":null,"recallSource":null,"recall_source":null},"trackingData":null,"tag":null,"id":0,"adIndex":-1},"adTrack":[]},"trackingData":null,"tag":null,"id":0,"adIndex":-1},{"type":"followCard","data":{"dataType":"FollowCard","header":{"id":227322,"title":"首位获得金狮奖的中国女导演：「无依之地」","font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://pgc/detail/3145/?title=%E5%BD%B1%E8%A7%86%E6%9D%82%E5%9D%9B&userType=PGC&tabIndex=1","labelList":null,"rightText":null,"icon":"http://img.kaiyanapp.com/5f0f992e79639d621aec91fe760a4836.jpeg?imageMogr2/quality/60/format/jpg","iconType":"round","description":"","time":1608080400000,"showHateVideo":false},"content":{"type":"video","data":{"dataType":"VideoBeanForClient","id":227322,"title":"首位获得金狮奖的中国女导演：「无依之地」","description":"「无依之地」（Nomadland）发布正式预告。赵婷凭借导演作品「无依之地」拿下威尼斯金狮奖，她也是史上第一位收获欧洲三大电影节的华人女导演，同时也是继张艺谋、贾樟柯之后，第三位内地金狮奖获得者。本片改编自同名小说，在经济大衰退中甚至失去了工作、失去了的 Fern 的流浪生活。本片由奥斯卡最佳女主角获得者弗兰西斯·麦克多蒙德主演，预计于 2021 年 2 月在北美上映。From SearchlightPictures","library":"DAILY","tags":[{"id":796,"name":"迷影放映室","actionUrl":"eyepetizer://tag/796/?title=%E8%BF%B7%E5%BD%B1%E6%94%BE%E6%98%A0%E5%AE%A4","adTrack":null,"desc":"电影、剧集、戏剧抢先看","bgPicture":"http://img.kaiyanapp.com/64f2b2ed039bd92c3be10d003d6041bf.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/56a8818adb038c59ab04ffc781db2f50.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"IMPORTANT","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":220,"name":"改编","actionUrl":"eyepetizer://tag/220/?title=%E6%94%B9%E7%BC%96","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/521d368604ee32280ae45b0fee729101.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/bb85141514473b4f992923930b054d9a.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1398,"name":"文学改编电影","actionUrl":"eyepetizer://tag/1398/?title=%E6%96%87%E5%AD%A6%E6%94%B9%E7%BC%96%E7%94%B5%E5%BD%B1","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/d9ae20a50314f87d09c4737a7bc0ee0d.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/d9ae20a50314f87d09c4737a7bc0ee0d.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1025,"name":"影视","actionUrl":"eyepetizer://tag/1025/?title=%E5%BD%B1%E8%A7%86","adTrack":null,"desc":"电影、剧集、戏剧抢先看","bgPicture":"http://img.kaiyanapp.com/8a298964e7c9fc2ae16342832e36d88d.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/9d7fe42c1445031e4c8f2421b652a011.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":793,"name":"影视预告","actionUrl":"eyepetizer://tag/793/?title=%E5%BD%B1%E8%A7%86%E9%A2%84%E5%91%8A","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/66a25db995c30f130c433b2422111541.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/528bbba3db1e6388c4a97edce734a743.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":346,"name":"美国","actionUrl":"eyepetizer://tag/346/?title=%E7%BE%8E%E5%9B%BD","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/19b625e7277199ed752fe61a56a596f2.jpeg?imageMogr2/quality/100","headerImage":"http://img.kaiyanapp.com/19b625e7277199ed752fe61a56a596f2.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1401,"name":"威尼斯电影节","actionUrl":"eyepetizer://tag/1401/?title=%E5%A8%81%E5%B0%BC%E6%96%AF%E7%94%B5%E5%BD%B1%E8%8A%82","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/ecf6ce146102c3ece03e9208a85a0259.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/ecf6ce146102c3ece03e9208a85a0259.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0}],"consumption":{"collectionCount":265,"shareCount":175,"replyCount":6,"realCollectionCount":113},"resourceType":"video","slogan":"","provider":{"name":"YouTube","alias":"youtube","icon":"http://img.kaiyanapp.com/fa20228bc5b921e837156923a58713f6.png"},"category":"影视","author":{"id":3145,"icon":"http://img.kaiyanapp.com/5f0f992e79639d621aec91fe760a4836.jpeg?imageMogr2/quality/60/format/jpg","name":"影视杂坛","description":"一个影视相关内容的大杂谈！","link":"","latestReleaseTime":1606924868000,"videoNum":700,"adTrack":null,"follow":{"itemType":"author","itemId":3145,"followed":false},"shield":{"itemType":"author","itemId":3145,"shielded":false},"approvedNotReadyVideoCount":0,"ifPgc":true,"recSort":0,"expert":false},"cover":{"feed":"http://img.kaiyanapp.com/ecf6ce146102c3ece03e9208a85a0259.jpeg?imageMogr2/quality/60/format/jpg","detail":"http://img.kaiyanapp.com/ecf6ce146102c3ece03e9208a85a0259.jpeg?imageMogr2/quality/60/format/jpg","blurred":"http://img.kaiyanapp.com/42769d448409e8a276524a997e823b16.jpeg?imageMogr2/quality/60/format/jpg","sharing":null,"homepage":"http://img.kaiyanapp.com/ecf6ce146102c3ece03e9208a85a0259.jpeg?imageView2/1/w/720/h/560/format/jpg/q/75|watermark/1/image/aHR0cDovL2ltZy5rYWl5YW5hcHAuY29tL2JsYWNrXzMwLnBuZw==/dissolve/100/gravity/Center/dx/0/dy/0|imageslim"},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=227322&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=","thumbPlayUrl":"","duration":125,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=227322","forWeibo":"http://www.eyepetizer.net/detail.html?vid=227322"},"releaseTime":1608080400000,"playInfo":[],"campaign":null,"waterMarks":null,"ad":false,"adTrack":[],"type":"NORMAL","titlePgc":"","descriptionPgc":"","remark":"","ifLimitVideo":false,"searchWeight":0,"brandWebsiteInfo":null,"videoPosterBean":{"scale":0.725,"url":"http://eyepetizer-videos.oss-cn-beijing.aliyuncs.com/video_poster_share/bc8ff3c9c529798ec32bf877ebb80d8b.mp4","fileSizeStr":"3.44MB"},"idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1608080400000,"promotion":null,"label":null,"labelList":[],"descriptionEditor":"「无依之地」（Nomadland）发布正式预告。赵婷凭借导演作品「无依之地」拿下威尼斯金狮奖，她也是史上第一位收获欧洲三大电影节的华人女导演，同时也是继张艺谋、贾樟柯之后，第三位内地金狮奖获得者。本片改编自同名小说，在经济大衰退中甚至失去了工作、失去了的 Fern 的流浪生活。本片由奥斯卡最佳女主角获得者弗兰西斯·麦克多蒙德主演，预计于 2021 年 2 月在北美上映。From SearchlightPictures","collected":false,"reallyCollected":false,"played":false,"subtitles":[],"lastViewTime":null,"playlists":null,"src":null,"recallSource":null,"recall_source":null},"trackingData":null,"tag":null,"id":0,"adIndex":-1},"adTrack":[]},"trackingData":null,"tag":null,"id":0,"adIndex":-1},{"type":"followCard","data":{"dataType":"FollowCard","header":{"id":54589,"title":"在极光下冲浪，在严寒中燃烧生命","font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://pgc/detail/447/?title=%E6%AC%A7%E6%B4%B2%E6%97%85%E8%A1%8C%E7%B2%BE%E9%80%89%E8%A7%86%E9%A2%91&userType=PGC&tabIndex=1","labelList":null,"rightText":null,"icon":"http://img.kaiyanapp.com/85360a00de6f3c4dbdf46e65beec8b35.png?imageMogr2/quality/60/format/jpg","iconType":"round","description":null,"time":1506765519000,"showHateVideo":false},"content":{"type":"video","data":{"dataType":"VideoBeanForClient","id":54589,"title":"在极光下冲浪，在严寒中燃烧生命","description":"视频拍摄于罗弗敦群岛，这是位于挪威北部的一个神奇岛屿，位于北极圈内，它拥有世上最大的深水珊瑚礁，以及数以百万记的海鸟，更因其远离喧嚣闻名于世。视频里冲浪的人们，真正的厉害，因为罗弗敦群岛是全球位置最北的冲浪地，可想而知的严寒。From Vincent Urban","library":"DAILY","tags":[{"id":10,"name":"跟着开眼看世界","actionUrl":"eyepetizer://tag/10/?title=%E8%B7%9F%E7%9D%80%E5%BC%80%E7%9C%BC%E7%9C%8B%E4%B8%96%E7%95%8C","adTrack":null,"desc":"去你想去的地方，发现世界的美","bgPicture":"http://img.kaiyanapp.com/7ea328a893aa1f092b9328a53494a267.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/50dab5468ecd2dbe5eb99dab5d608a0a.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"IMPORTANT","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":14},{"id":1091,"name":"趁盛夏去放假","actionUrl":"eyepetizer://tag/1091/?title=%E8%B6%81%E7%9B%9B%E5%A4%8F%E5%8E%BB%E6%94%BE%E5%81%87","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/f280043e9df9cf4d6da416d2714e7a08.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/f280043e9df9cf4d6da416d2714e7a08.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1019,"name":"旅行","actionUrl":"eyepetizer://tag/1019/?title=%E6%97%85%E8%A1%8C","adTrack":null,"desc":"世界这么大，总有你的目的地","bgPicture":"http://img.kaiyanapp.com/67b5aa7b489b33e7894e04d293e9b01f.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/67b5aa7b489b33e7894e04d293e9b01f.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":370,"name":"欧洲","actionUrl":"eyepetizer://tag/370/?title=%E6%AC%A7%E6%B4%B2","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/e5f917d0a272dd19672e7c67e44084d2.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/e5f917d0a272dd19672e7c67e44084d2.png?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":52,"name":"风光大片","actionUrl":"eyepetizer://tag/52/?title=%E9%A3%8E%E5%85%89%E5%A4%A7%E7%89%87","adTrack":null,"desc":"","bgPicture":"http://img.kaiyanapp.com/e484dd6aa22ea3c2e604812b44f8c60c.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/f333f225c9ccc78819120f3a888b2e7e.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0}],"consumption":{"collectionCount":728,"shareCount":468,"replyCount":10,"realCollectionCount":64},"resourceType":"video","slogan":null,"provider":{"name":"定制来源","alias":"CustomSrc","icon":""},"category":"旅行","author":{"id":447,"icon":"http://img.kaiyanapp.com/85360a00de6f3c4dbdf46e65beec8b35.png?imageMogr2/quality/60/format/jpg","name":"欧洲旅行精选视频","description":"透过影像漫游欧洲","link":"","latestReleaseTime":1574524819000,"videoNum":0,"adTrack":null,"follow":{"itemType":"author","itemId":447,"followed":false},"shield":{"itemType":"author","itemId":447,"shielded":false},"approvedNotReadyVideoCount":0,"ifPgc":true,"recSort":0,"expert":false},"cover":{"feed":"http://img.kaiyanapp.com/660597ff0fc40da9f67156558d099a28.jpeg?imageMogr2/quality/60/format/jpg","detail":"http://img.kaiyanapp.com/660597ff0fc40da9f67156558d099a28.jpeg?imageMogr2/quality/60/format/jpg","blurred":"http://img.kaiyanapp.com/0a61ca686fc575aba436a921c1a007e4.jpeg?imageMogr2/quality/60/format/jpg","sharing":null,"homepage":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=","thumbPlayUrl":null,"duration":151,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=54589","forWeibo":"http://wandou.im/3oe3oq"},"releaseTime":1506765519000,"playInfo":[{"height":480,"width":854,"urlList":[{"name":"aliyun","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss&udid=","size":12824081},{"name":"ucloud","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=normal&source=ucloud&playUrlType=url_oss&udid=","size":12824081}],"name":"标清","type":"normal","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss&udid="},{"height":720,"width":1280,"urlList":[{"name":"aliyun","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss&udid=","size":23080263},{"name":"ucloud","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=high&source=ucloud&playUrlType=url_oss&udid=","size":23080263}],"name":"高清","type":"high","url":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=54589&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss&udid="}],"campaign":null,"waterMarks":null,"ad":false,"adTrack":[],"type":"NORMAL","titlePgc":"","descriptionPgc":"","remark":"即使身处严寒，生命依旧燃烧","ifLimitVideo":false,"searchWeight":0,"brandWebsiteInfo":null,"videoPosterBean":{"scale":0.725,"url":"http://eyepetizer-videos.oss-cn-beijing.aliyuncs.com/video_poster_share/c886979b464e42c0ca71b4543a09de7b.mp4","fileSizeStr":"3.54MB"},"idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1608080400000,"promotion":null,"label":null,"labelList":[],"descriptionEditor":"视频拍摄于罗弗敦群岛，这是位于挪威北部的一个神奇岛屿，位于北极圈内，它拥有世上最大的深水珊瑚礁，以及数以百万记的海鸟，更因其远离喧嚣闻名于世。视频里冲浪的人们，真正的厉害，因为罗弗敦群岛是全球位置最北的冲浪地，可想而知的严寒。From Vincent Urban","collected":false,"reallyCollected":false,"played":false,"subtitles":[],"lastViewTime":null,"playlists":null,"src":null,"recallSource":null,"recall_source":null},"trackingData":null,"tag":null,"id":0,"adIndex":-1},"adTrack":[]},"trackingData":null,"tag":null,"id":0,"adIndex":-1},{"type":"followCard","data":{"dataType":"FollowCard","header":{"id":225984,"title":"创意爽片｜原来设计灵感都源于生活","font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://pgc/detail/2161/?title=%E5%BC%80%E7%9C%BC%E5%88%9B%E6%84%8F%E7%B2%BE%E9%80%89&userType=PGC&tabIndex=1","labelList":null,"rightText":null,"icon":"http://img.kaiyanapp.com/f4a9aba1c6857ee0cefcdc5aee0a1fc9.png?imageMogr2/quality/60/format/jpg","iconType":"round","description":null,"time":1608080400000,"showHateVideo":false},"content":{"type":"video","data":{"dataType":"VideoBeanForClient","id":225984,"title":"创意爽片｜原来设计灵感都源于生活","description":"这则动画将生活中的元素移动变换，迸发创意灵感。小球在管道中穿梭，牙齿在模拟牙床上浮动。基础图形穿插重叠，形成新的 Logo 设计。气球虽然爆炸，但却散落出明亮的碎片。将视角放大，在生活中寻找创意。换个角度看世界，就能获得全新的灵感。From TIMEON","library":"DAILY","tags":[{"id":744,"name":"每日创意灵感","actionUrl":"eyepetizer://tag/744/?title=%E6%AF%8F%E6%97%A5%E5%88%9B%E6%84%8F%E7%81%B5%E6%84%9F","adTrack":null,"desc":"技术与审美结合，探索视觉的无限可能","bgPicture":"http://img.kaiyanapp.com/bc2479c09cd15cb93b69d82e5f21c3fc.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/bc2479c09cd15cb93b69d82e5f21c3fc.png?imageMogr2/quality/60/format/jpg","tagRecType":"IMPORTANT","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":56,"name":"3D","actionUrl":"eyepetizer://tag/56/?title=3D","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/8648e4ce51da8444039ef046194fd6c8.jpeg?imageMogr2/quality/100","headerImage":"http://img.kaiyanapp.com/8648e4ce51da8444039ef046194fd6c8.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":490,"name":"脑洞","actionUrl":"eyepetizer://tag/490/?title=%E8%84%91%E6%B4%9E","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/c8ac7bb1fa9276ce647d4687d93dea34.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/c8ac7bb1fa9276ce647d4687d93dea34.png?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":684,"name":"设计","actionUrl":"eyepetizer://tag/684/?title=%E8%AE%BE%E8%AE%A1","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/35ad4c34a1504cd8d398b315453a0f69.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/35ad4c34a1504cd8d398b315453a0f69.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":1023,"name":"动画","actionUrl":"eyepetizer://tag/1023/?title=%E5%8A%A8%E7%94%BB","adTrack":null,"desc":"有趣的人永远不缺童心","bgPicture":"http://img.kaiyanapp.com/349cbd33cdf71fc74d5e9c7a00b444fd.jpeg?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/208aa67386c045497389f015ae28dd29.jpeg?imageMogr2/quality/60/format/jpg","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":2,"name":"创意","actionUrl":"eyepetizer://tag/2/?title=%E5%88%9B%E6%84%8F","adTrack":null,"desc":"技术与审美结合，探索视觉的无限可能","bgPicture":"http://img.kaiyanapp.com/1b457058cf2b317304ff9f70543c040d.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/fdefdb34cbe3d2ac9964d306febe9025.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0}],"consumption":{"collectionCount":181,"shareCount":112,"replyCount":6,"realCollectionCount":80},"resourceType":"video","slogan":null,"provider":{"name":"YouTube","alias":"youtube","icon":"http://img.kaiyanapp.com/fa20228bc5b921e837156923a58713f6.png"},"category":"创意","author":{"id":2161,"icon":"http://img.kaiyanapp.com/f4a9aba1c6857ee0cefcdc5aee0a1fc9.png?imageMogr2/quality/60/format/jpg","name":"开眼创意精选","description":"技术与审美结合，探索视觉的无限可能","link":"","latestReleaseTime":1606957209000,"videoNum":0,"adTrack":null,"follow":{"itemType":"author","itemId":2161,"followed":false},"shield":{"itemType":"author","itemId":2161,"shielded":false},"approvedNotReadyVideoCount":0,"ifPgc":true,"recSort":0,"expert":false},"cover":{"feed":"http://img.kaiyanapp.com/a4ac0a7cf120ab2249880fa7b7cf1e9b.png?imageMogr2/quality/60/format/jpg","detail":"http://img.kaiyanapp.com/a4ac0a7cf120ab2249880fa7b7cf1e9b.png?imageMogr2/quality/60/format/jpg","blurred":"http://img.kaiyanapp.com/87011075c669d3d9fc76bc8f6cae404e.png?imageMogr2/quality/60/format/jpg","sharing":null,"homepage":"http://img.kaiyanapp.com/a4ac0a7cf120ab2249880fa7b7cf1e9b.png?imageView2/1/w/720/h/560/format/jpg/q/75|watermark/1/image/aHR0cDovL2ltZy5rYWl5YW5hcHAuY29tL2JsYWNrXzMwLnBuZw==/dissolve/100/gravity/Center/dx/0/dy/0|imageslim"},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=225984&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=","thumbPlayUrl":null,"duration":66,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=225984","forWeibo":"https://m.eyepetizer.net/u1/video-detail?video_id=225984&resource_type=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0"},"releaseTime":1608080400000,"playInfo":[],"campaign":null,"waterMarks":null,"ad":false,"adTrack":[],"type":"NORMAL","titlePgc":null,"descriptionPgc":null,"remark":null,"ifLimitVideo":false,"searchWeight":0,"brandWebsiteInfo":null,"videoPosterBean":{"scale":0.725,"url":"http://eyepetizer-videos.oss-cn-beijing.aliyuncs.com/video_poster_share/5aa9ce0ef718dd533fadd72ad0599c9b.mp4","fileSizeStr":"3.09MB"},"idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1608080400000,"promotion":null,"label":null,"labelList":[],"descriptionEditor":"这则动画将生活中的元素移动变换，迸发创意灵感。小球在管道中穿梭，牙齿在模拟牙床上浮动。基础图形穿插重叠，形成新的 Logo 设计。气球虽然爆炸，但却散落出明亮的碎片。将视角放大，在生活中寻找创意。换个角度看世界，就能获得全新的灵感。From TIMEON","collected":false,"reallyCollected":false,"played":false,"subtitles":[],"lastViewTime":null,"playlists":null,"src":null,"recallSource":null,"recall_source":null},"trackingData":null,"tag":null,"id":0,"adIndex":-1},"adTrack":[]},"trackingData":null,"tag":null,"id":0,"adIndex":-1},{"type":"followCard","data":{"dataType":"FollowCard","header":{"id":226093,"title":"凯特·布兰切特：用 100 种方式说我爱你","font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":"eyepetizer://pgc/detail/168/?title=NOWNESS%E7%8E%B0%E5%9C%A8&userType=PGC&tabIndex=1","labelList":null,"rightText":null,"icon":"http://img.kaiyanapp.com/31588812d55435318fef0983e09a19a2.jpeg?imageMogr2/quality/60","iconType":"round","description":null,"time":1607671339000,"showHateVideo":false},"content":{"type":"video","data":{"dataType":"VideoBeanForClient","id":226093,"title":"凯特·布兰切特：用 100 种方式说我爱你","description":"受古希腊哲学家盖伦「Galen」的启发，视频装置艺术家 Marco Brambilla 在他的最新短片「四种气质」中探讨了人类的处境，由奥斯卡金像奖得主凯特·布兰切特主演。Brambilla 用颜色代表四种气质，凯特·布兰切特用多种情绪演绎「我爱你」这句话。该项目是「UnrealCity」活动的一部分，它是伦敦最大的增强现实展览。","library":"DAILY","tags":[{"id":744,"name":"每日创意灵感","actionUrl":"eyepetizer://tag/744/?title=%E6%AF%8F%E6%97%A5%E5%88%9B%E6%84%8F%E7%81%B5%E6%84%9F","adTrack":null,"desc":"技术与审美结合，探索视觉的无限可能","bgPicture":"http://img.kaiyanapp.com/bc2479c09cd15cb93b69d82e5f21c3fc.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/bc2479c09cd15cb93b69d82e5f21c3fc.png?imageMogr2/quality/60/format/jpg","tagRecType":"IMPORTANT","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":2,"name":"创意","actionUrl":"eyepetizer://tag/2/?title=%E5%88%9B%E6%84%8F","adTrack":null,"desc":"技术与审美结合，探索视觉的无限可能","bgPicture":"http://img.kaiyanapp.com/1b457058cf2b317304ff9f70543c040d.png?imageMogr2/quality/60/format/jpg","headerImage":"http://img.kaiyanapp.com/fdefdb34cbe3d2ac9964d306febe9025.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0},{"id":94,"name":"实验性","actionUrl":"eyepetizer://tag/94/?title=%E5%AE%9E%E9%AA%8C%E6%80%A7","adTrack":null,"desc":null,"bgPicture":"http://img.kaiyanapp.com/e1a1a2b35f6916636594fe6bff4c5050.jpeg?imageMogr2/quality/100","headerImage":"http://img.kaiyanapp.com/4aae1da4cea59eb15007e8d306c6eaea.jpeg?imageMogr2/quality/100","tagRecType":"NORMAL","childTagList":null,"childTagIdList":null,"haveReward":false,"ifNewest":false,"newestEndTime":null,"communityIndex":0}],"consumption":{"collectionCount":976,"shareCount":272,"replyCount":8,"realCollectionCount":418},"resourceType":"video","slogan":null,"provider":{"name":"PGC","alias":"PGC","icon":""},"category":"创意","author":{"id":168,"icon":"http://img.kaiyanapp.com/31588812d55435318fef0983e09a19a2.jpeg?imageMogr2/quality/60","name":"NOWNESS现在","description":"全球创意生活短片平台","link":"","latestReleaseTime":1608024806000,"videoNum":166,"adTrack":null,"follow":{"itemType":"author","itemId":168,"followed":false},"shield":{"itemType":"author","itemId":168,"shielded":false},"approvedNotReadyVideoCount":0,"ifPgc":true,"recSort":0,"expert":false},"cover":{"feed":"http://img.kaiyanapp.com/3da4dbe8d4145b750f32b4389be92b5a.png?imageMogr2/quality/60/format/jpg","detail":"http://img.kaiyanapp.com/3da4dbe8d4145b750f32b4389be92b5a.png?imageMogr2/quality/60/format/jpg","blurred":"http://img.kaiyanapp.com/cad113345336fb9c9b73cb392eca30f2.jpeg?imageMogr2/quality/60/format/jpg","sharing":null,"homepage":null},"playUrl":"http://baobab.kaiyanapp.com/api/v1/playUrl?vid=226093&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=","thumbPlayUrl":null,"duration":163,"webUrl":{"raw":"http://www.eyepetizer.net/detail.html?vid=226093","forWeibo":"https://m.eyepetizer.net/u1/video-detail?video_id=226093&resource_type=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0"},"releaseTime":1607671339000,"playInfo":[],"campaign":null,"waterMarks":null,"ad":false,"adTrack":[],"type":"NORMAL","titlePgc":"四种气质","descriptionPgc":"NOWNESS Experiments: The Four Temperaments\n受古希腊哲学家盖伦（Galen）的启发，视频装置艺术家Marco Brambilla在他的最新短片《四种气质》中探讨了人类的处境。 主演奥斯卡金像奖得主凯特·布兰切特，Brambilla用颜色唤起四种幽默。 在这个引人入胜的四联画中，艺术家测试了是否可以使用同一位演员所说的两句对话来创作戏剧。 该项目是#UnrealCity的一部分，它是伦敦最大的增强现实展览。","remark":"NOWNESS Experiments: The Four Temperaments ","ifLimitVideo":false,"searchWeight":0,"brandWebsiteInfo":null,"videoPosterBean":{"scale":0.725,"url":"http://eyepetizer-videos.oss-cn-beijing.aliyuncs.com/video_poster_share/e28df30686bcc37ac964dda1dee6259c.mp4","fileSizeStr":"1.74MB"},"idx":0,"shareAdTrack":null,"favoriteAdTrack":null,"webAdTrack":null,"date":1608080400000,"promotion":null,"label":null,"labelList":[],"descriptionEditor":"受古希腊哲学家盖伦「Galen」的启发，视频装置艺术家 Marco Brambilla 在他的最新短片「四种气质」中探讨了人类的处境，由奥斯卡金像奖得主凯特·布兰切特主演。Brambilla 用颜色代表四种气质，凯特·布兰切特用多种情绪演绎「我爱你」这句话。该项目是「UnrealCity」活动的一部分，它是伦敦最大的增强现实展览。","collected":false,"reallyCollected":false,"played":false,"subtitles":[],"lastViewTime":null,"playlists":null,"src":null,"recallSource":null,"recall_source":null},"trackingData":null,"tag":null,"id":0,"adIndex":-1},"adTrack":[]},"trackingData":null,"tag":null,"id":0,"adIndex":-1}]
-         * count : 5
-         * adTrack : null
-         * footer : null
-         */
 
         private String dataType;
         private HeaderBean header;
@@ -150,6 +175,52 @@ public class OpenRecBean implements MultiItemEntity {
         private ItemListBean.DataBeanX.ContentBean.DataBean.AuthorBean author;
         private ItemListBean.DataBeanX.ContentBean.DataBean.CoverBean cover;
         private ItemListBean.DataBeanX.ContentBean content;
+
+        private String createTime;
+        private String likeCount;
+        private String message;
+        private User user;
+        private ParentReply parentReply;
+
+        public String getLikeCount() {
+            return likeCount;
+        }
+
+        public void setLikeCount(String likeCount) {
+            this.likeCount = likeCount;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public ParentReply getParentReply() {
+            return parentReply;
+        }
+
+        public void setParentReply(ParentReply parentReply) {
+            this.parentReply = parentReply;
+        }
 
         public Label getLabel() {
             return label;
@@ -230,7 +301,8 @@ public class OpenRecBean implements MultiItemEntity {
         public void setContent(ItemListBean.DataBeanX.ContentBean content) {
             this.content = content;
         }
-        public static class Label{
+
+        public static class Label {
             private String text;
 
             public String getText() {
@@ -242,7 +314,7 @@ public class OpenRecBean implements MultiItemEntity {
             }
         }
 
-        public static class DetailBean{
+        public static class DetailBean {
             private int id;
             private String icon;
             private String title;
@@ -1994,6 +2066,50 @@ public class OpenRecBean implements MultiItemEntity {
                 }
             }
         }
+
+        public static class User {
+            private String nickname;
+            private String avatar;
+
+            public String getNickName() {
+                return nickname;
+            }
+
+            public void setNickName(String nickName) {
+                this.nickname = nickName;
+            }
+
+            public String getAvatar() {
+                return avatar;
+            }
+
+            public void setAvatar(String avatar) {
+                this.avatar = avatar;
+            }
+        }
+
+        public static class ParentReply {
+            private User user;
+            private String message;
+
+            public User getUser() {
+                return user;
+            }
+
+            public void setUser(User user) {
+                this.user = user;
+            }
+
+            public String getMessage() {
+                return message;
+            }
+
+            public void setMessage(String message) {
+                this.message = message;
+            }
+        }
+
+
     }
 }
 

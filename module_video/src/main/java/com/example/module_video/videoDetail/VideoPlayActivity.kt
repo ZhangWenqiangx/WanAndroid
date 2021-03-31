@@ -1,10 +1,12 @@
 package com.example.module_video.videoDetail
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -19,11 +21,14 @@ import com.example.common_base.util.StatusBarUtil
 import com.example.module_video.BR
 import com.example.module_video.R
 import com.example.module_video.VideoViewModelFactory
-import com.example.module_video.data.VideoInfoBean
 import com.example.module_video.databinding.VideoActivityPlayBinding
 import com.example.module_video.databinding.VideoItemHeaderViewBinding
-import com.example.module_video.recommend.adapter.VideoPlayMultiAdapter
+import com.example.module_video.recommend.bean.VideoInfoBean
+import com.example.module_video.videoDetail.adapter.VideoPlayMultiAdapter
 
+/**
+ * 视频详情页
+ */
 @Route(path = AConstance.ACTIVITY_URL_VIDEO_PLAY)
 class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayViewModel>() {
     private lateinit var mAdapter: VideoPlayMultiAdapter
@@ -34,10 +39,11 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
 
     override fun initView() {
         ARouter.getInstance().inject(this)
-        StatusBarUtil.setTranslucent(this)
+        StatusBarUtil.setDarkMode(this)
+        StatusBarUtil.setColor(this, Color.BLACK)
+
         initRecycler()
         initRefresh()
-        mAdapter.setHeaderView(generateHeaderView())
     }
 
     override fun initData() {
@@ -52,23 +58,33 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
                     viewDataBinding?.videoPlayBg?.background = BitmapDrawable(resource)
                 }
             })
+        viewModel.videoId = videoInfo!!.videoId
+        viewModel.loadData()
+
+        viewModel.relatedData.observe(this) {
+            mAdapter.setNewInstance(it)
+        }
     }
 
     private fun initRefresh() {
         viewDataBinding!!.srlRefresh.apply {
             setOnRefreshListener {}
-            setOnLoadMoreListener {}
+            setOnLoadMoreListener {
+                viewModel.getRelatedReplies(isLoadMore = true)
+            }
             setEnableLoadMore(true)
             setEnableRefresh(true)
         }
     }
 
     private fun initRecycler() {
-        mAdapter = VideoPlayMultiAdapter()
+        mAdapter =
+            VideoPlayMultiAdapter()
         viewDataBinding!!.rvContent.apply {
             layoutManager = LinearLayoutManager(this@VideoPlayActivity)
             adapter = mAdapter
         }
+        mAdapter.setHeaderView(generateHeaderView())
     }
 
     private fun generateHeaderView(): View {

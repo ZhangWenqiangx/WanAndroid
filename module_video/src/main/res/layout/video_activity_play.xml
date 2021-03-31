@@ -36,9 +36,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_content"
+                    android:background="@drawable/common_shape_video_trans30_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/common_shape_video_trans30_bg" />
+                    android:layout_height="match_parent" />
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

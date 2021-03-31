@@ -1,4 +1,4 @@
-package com.example.module_video.recommend.adapter
+package com.example.module_video.videoDetail.adapter
 
 import android.view.View
 import com.chad.library.adapter.base.provider.BaseItemProvider
@@ -13,22 +13,16 @@ import com.youth.banner.util.LogUtils
  *  @date : 2021/3/30
  *  description :
  */
-class ItemTextCardProvider(val lightMode: Boolean = false) : BaseItemProvider<OpenRecBean>() {
+class ItemViewMoreProvider : BaseItemProvider<OpenRecBean>() {
 
     override val itemViewType: Int
-        get() = OpenRecBean.TEXT_CARD
+        get() = OpenRecBean.SHOW_MORE
 
     override val layoutId: Int
-        get() = R.layout.rec_item_text_card
+        get() = R.layout.rec_item_show_more
 
     override fun convert(helper: BaseViewHolder, item: OpenRecBean) {
-        if(lightMode){
-            helper.setTextColor(
-                R.id.tv_title,
-                context.resources.getColor(R.color.white_f4f5f6)
-            )
-        }
-        helper.setText(R.id.tv_title, item.data.text)
+        helper.setText(R.id.tv_title, "查看更多")
     }
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {

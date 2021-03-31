@@ -7,13 +7,12 @@
 
         <variable
                 name="videoInfo"
-                type="com.example.module_video.data.VideoInfoBean" />
+                type="com.example.module_video.recommend.bean.VideoInfoBean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/common_shape_video_trans30_bg"
             android:paddingBottom="@dimen/commonLeftMargin">
 
         <FrameLayout
@@ -47,7 +46,6 @@
                 android:id="@+id/tv_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="5dp"
                 android:text="@{videoInfo.category}"
                 android:textColor="@android:color/darker_gray"
@@ -84,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_good"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="@{String.valueOf(videoInfo.collectionCount)}"
@@ -103,11 +102,11 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_collection_count"
-                app:layout_constraintEnd_toStartOf="@+id/tv_real_count"
+                app:layout_constraintEnd_toStartOf="@+id/tv_create_time"
                 app:layout_constraintStart_toEndOf="@+id/tv_collection_count" />
 
         <TextView
-                android:id="@+id/tv_real_count"
+                android:id="@+id/tv_create_time"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:drawablePadding="5dp"

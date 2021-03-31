@@ -1,4 +1,4 @@
-package com.example.module_video.data
+package com.example.module_video.recommend.bean
 
 import android.os.Parcel
 import android.os.Parcelable

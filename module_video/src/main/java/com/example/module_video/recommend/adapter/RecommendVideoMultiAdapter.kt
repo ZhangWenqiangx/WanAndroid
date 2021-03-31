@@ -1,7 +1,7 @@
 package com.example.module_video.recommend.adapter
 
 import com.chad.library.adapter.base.BaseProviderMultiAdapter
-import com.example.module_video.data.OpenRecBean
+import com.example.module_video.recommend.bean.OpenRecBean
 
 
 /**

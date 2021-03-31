@@ -5,7 +5,7 @@ import com.example.common_base.base.data.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.base.viewmodel.SuccessState
 import com.example.module_video.data.OpenEyeRepository
-import com.example.module_video.data.OpenRecBean
+import com.example.module_video.recommend.bean.OpenRecBean
 
 /**
  *  @author : zhang.wenqiang
@@ -25,7 +25,6 @@ class OpenEyeViewModel(
 
     val recommentListData = mutableListOf<OpenRecBean>()
 
-    //处理异常
     fun getRecommendData(isRefresh: Boolean = false) {
         if(isRefresh){
             recommentListData.clear()

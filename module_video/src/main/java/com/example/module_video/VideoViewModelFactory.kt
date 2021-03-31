@@ -18,7 +18,7 @@ class VideoViewModelFactory : ViewModelProvider.Factory {
             isAssignableFrom(OpenEyeViewModel::class.java) ->
                 OpenEyeViewModel(DefOpenEyeRepository())
             isAssignableFrom(VideoPlayViewModel::class.java) ->
-                VideoPlayViewModel()
+                VideoPlayViewModel(DefOpenEyeRepository())
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
