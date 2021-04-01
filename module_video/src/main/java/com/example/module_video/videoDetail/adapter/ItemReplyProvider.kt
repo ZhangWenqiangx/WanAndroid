@@ -7,6 +7,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common_base.util.DataTimeUtils
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
 
@@ -33,7 +34,7 @@ class ItemReplyProvider : BaseItemProvider<OpenRecBean>() {
         helper.apply {
             setText(R.id.tv_title, item.data.user.nickName)
             setText(R.id.tv_content, item.data.message)
-            setText(R.id.tv_create_time, item.data.createTime)
+            setText(R.id.tv_create_time, DataTimeUtils.getImTime(item.data.createTime.toLong()))
             setText(R.id.tv_like_count, item.data.likeCount)
         }
 
@@ -50,10 +51,8 @@ class ItemReplyProvider : BaseItemProvider<OpenRecBean>() {
                         .apply(RequestOptions.bitmapTransform(CircleCrop()))
                         .into(inflate.findViewById(R.id.iv_parent_avatar))
 
-                    inflate.findViewById<TextView>(R.id.tv_parent_title)
-                        .setText(item.data.parentReply.user.nickName)
-                    inflate.findViewById<TextView>(R.id.tv_parent_content)
-                        .setText(item.data.parentReply.message)
+                    inflate.findViewById<TextView>(R.id.tv_parent_title).text = item.data.parentReply.user.nickName
+                    inflate.findViewById<TextView>(R.id.tv_parent_content).text = item.data.parentReply.message
                 } catch (e: Exception) {
                 }
 

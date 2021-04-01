@@ -1,15 +1,19 @@
 package com.example.module_video.recommend.adapter
 
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common_base.constants.AConstance
+import com.example.common_base.constants.Constants
 import com.example.common_base.util.time
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
+import com.example.module_video.recommend.bean.VideoInfoBean
 import com.youth.banner.util.LogUtils
 
 
@@ -52,6 +56,26 @@ class ItemFollowCardProvider : BaseItemProvider<OpenRecBean>() {
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {
         super.onClick(helper, view, data, position)
-        LogUtils.d(data.toString())
+        val openRecBean = data.data
+        val infoBean = VideoInfoBean()
+            .apply {
+                videoTitle = openRecBean.header.title
+                category = openRecBean.content.data.author.name + " / #" +
+                        openRecBean.content.data.category
+                video_description = openRecBean.content.data.description
+                collectionCount = openRecBean.content.data.consumption.collectionCount
+                shareCount = openRecBean.content.data.consumption.shareCount
+                avatar = openRecBean.content.data.author.icon
+                nickName = openRecBean.content.data.author.name
+                user_description = openRecBean.content.data.author.description
+                playerUrl = openRecBean.content.data.playUrl
+                blurredUrl = openRecBean.content.data.cover.blurred
+                videoId = openRecBean.content.data.id
+            }
+
+        ARouter.getInstance()
+            .build(AConstance.ACTIVITY_URL_VIDEO_PLAY)
+            .withParcelable(Constants.VIDEO_PLAY_VIDEO_INFO, infoBean)
+            .navigation()
     }
 }

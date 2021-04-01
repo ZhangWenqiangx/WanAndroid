@@ -30,9 +30,4 @@ class ItemTextCardProvider(val lightMode: Boolean = false) : BaseItemProvider<Op
         }
         helper.setText(R.id.tv_title, item.data.text)
     }
-
-    override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {
-        super.onClick(helper, view, data, position)
-        LogUtils.d(data.toString())
-    }
 }

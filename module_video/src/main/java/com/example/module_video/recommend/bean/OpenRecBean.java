@@ -157,6 +157,7 @@ public class OpenRecBean implements MultiItemEntity {
 
     public static class DataBeanXX {
 
+        private String id;
         private String dataType;
         private HeaderBean header;
         private int count;
@@ -181,6 +182,33 @@ public class OpenRecBean implements MultiItemEntity {
         private String message;
         private User user;
         private ParentReply parentReply;
+        private String playUrl;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        private ItemListBean.DataBeanX.ContentBean.DataBean.ConsumptionBean consumption;
+
+        public ItemListBean.DataBeanX.ContentBean.DataBean.ConsumptionBean getConsumption() {
+            return consumption;
+        }
+
+        public void setConsumption(ItemListBean.DataBeanX.ContentBean.DataBean.ConsumptionBean consumption) {
+            this.consumption = consumption;
+        }
+
+        public String getPlayUrl() {
+            return playUrl;
+        }
+
+        public void setPlayUrl(String playUrl) {
+            this.playUrl = playUrl;
+        }
 
         public String getLikeCount() {
             return likeCount;

@@ -4,7 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10">
+        android:paddingHorizontal="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10">
 
     <ImageView
             android:id="@+id/iv_user_avatar"
@@ -47,18 +48,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_good"
-            android:text="500个赞"
+            android:text="500"
             android:textColor="@color/gray_ea"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/iv_user_avatar" />
 
     <TextView
             android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:text="妄自菲薄是这个意思吗？"
             android:textColor="@color/gray_ea"
-            app:layout_constraintEnd_toEndOf="@+id/tv_like_count"
+            android:textSize="@dimen/textSizePrimaryRemark"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_des"
@@ -71,10 +74,10 @@
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:textColor="@android:color/darker_gray"
-            android:textSize="12sp"
+            android:textSize="@dimen/textSizePrimaryDescribed"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/video_vs_parent_reply"
+            app:layout_constraintTop_toBottomOf="@id/tv_content"
             tools:text="查看对话" />
 
     <TextView
@@ -86,10 +89,11 @@
             android:gravity="center_vertical"
             android:text="回复"
             android:textColor="@color/white_bf"
-            android:textSize="12sp"
+            android:textSize="@dimen/textSizePrimaryDescribed"
             app:layout_constraintStart_toEndOf="@+id/tv_show_reply"
             app:layout_constraintTop_toTopOf="@+id/tv_show_reply"
-            app:layout_goneMarginStart="@dimen/dp_0" />
+            app:layout_goneMarginStart="@dimen/dp_0"
+            app:layout_goneMarginTop="@dimen/dp_5" />
 
     <TextView
             android:id="@+id/tv_create_time"
@@ -100,28 +104,35 @@
             android:gravity="center_vertical"
             android:text="2021/03/21"
             android:textColor="@color/white_bf"
-            android:textSize="12sp"
+            android:textSize="@dimen/textSizePrimaryDescribed"
             app:layout_constraintStart_toEndOf="@+id/tv_reply"
-            app:layout_constraintTop_toTopOf="@+id/tv_show_reply" />
+            app:layout_constraintTop_toTopOf="@+id/tv_show_reply"
+            app:layout_goneMarginTop="@dimen/dp_5" />
 
-    <TextView
+    <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:text="分享"
-            android:textColor="@color/white_bf"
-            android:textSize="12sp"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:background="@drawable/ic_share_white"
             app:layout_constraintEnd_toEndOf="@+id/tv_like_count"
-            app:layout_constraintTop_toTopOf="@+id/video_vs_parent_reply" />
+            app:layout_constraintTop_toTopOf="@+id/tv_show_reply"
+            app:layout_goneMarginTop="@dimen/dp_5" />
 
     <ViewStub
             android:id="@+id/video_vs_parent_reply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout="@layout/video_vs_parent_reply"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+
+    <View
+            style="@style/CommonLineStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/dp_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/tv_reply"
+            app:layout_constraintTop_toBottomOf="@+id/tv_reply" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

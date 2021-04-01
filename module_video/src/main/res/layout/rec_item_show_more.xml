@@ -9,14 +9,21 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_45"
+            android:gravity="center"
             android:textColor="@color/gray_ea"
             android:textSize="@dimen/textSizeTertiaryTitle"
             android:textStyle="bold"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="查看更多" />
+
+    <View
+            style="@style/CommonLineStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

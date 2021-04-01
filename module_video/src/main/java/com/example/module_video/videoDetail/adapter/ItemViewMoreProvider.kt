@@ -27,6 +27,6 @@ class ItemViewMoreProvider : BaseItemProvider<OpenRecBean>() {
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {
         super.onClick(helper, view, data, position)
-        LogUtils.d(data.toString())
+        //todo shou all rec list at dialog
     }
 }

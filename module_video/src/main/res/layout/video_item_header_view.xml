@@ -12,10 +12,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/commonLeftMargin">
+            android:layout_height="wrap_content">
 
         <FrameLayout
+                android:id="@+id/video_framelayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="@dimen/dp_15"
@@ -168,6 +168,14 @@
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/tv_nike_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nike_name" />
+
+        <View
+                style="@style/CommonLineStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@+id/iv_author" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

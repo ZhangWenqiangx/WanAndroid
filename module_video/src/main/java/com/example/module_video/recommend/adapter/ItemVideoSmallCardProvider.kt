@@ -1,13 +1,17 @@
 package com.example.module_video.recommend.adapter
 
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common_base.constants.AConstance
+import com.example.common_base.constants.Constants
 import com.example.common_base.util.time
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
+import com.example.module_video.recommend.bean.VideoInfoBean
 import com.youth.banner.util.LogUtils
 
 
@@ -49,6 +53,25 @@ class ItemVideoSmallCardProvider(val lightMode: Boolean = false) : BaseItemProvi
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {
         super.onClick(helper, view, data, position)
-        LogUtils.d(data.toString())
+        val openRecBean = data.data
+        val infoBean = VideoInfoBean()
+            .apply {
+                videoTitle = openRecBean.title
+                category = openRecBean.category
+                video_description = openRecBean.description
+                collectionCount = openRecBean.consumption.collectionCount
+                shareCount = openRecBean.consumption.shareCount
+                avatar = openRecBean.author.icon
+                nickName = openRecBean.author.name
+                user_description = openRecBean.author.description
+                playerUrl = openRecBean.playUrl
+                blurredUrl = openRecBean.cover.blurred
+                videoId = openRecBean.id.toInt()
+            }
+
+        ARouter.getInstance()
+            .build(AConstance.ACTIVITY_URL_VIDEO_PLAY)
+            .withParcelable(Constants.VIDEO_PLAY_VIDEO_INFO, infoBean)
+            .navigation()
     }
 }
