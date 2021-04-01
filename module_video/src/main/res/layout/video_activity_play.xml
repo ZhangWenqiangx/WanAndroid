@@ -14,10 +14,11 @@
             android:id="@+id/video_play_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
             tools:context=".videoDetail.VideoPlayActivity">
 
-        <ImageView
-                android:id="@+id/video_imageview"
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+                android:id="@+id/video_player"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:background="@color/black"
@@ -29,20 +30,21 @@
                 android:id="@+id/srl_refresh"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@drawable/common_shape_video_trans30_bg"
                 app:layout_constraintBottom_toTopOf="@+id/video_edittext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/video_imageview">
+                app:layout_constraintTop_toBottomOf="@+id/video_player">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_content"
-                    android:background="@drawable/common_shape_video_trans30_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
         <EditText
+                android:visibility="gone"
                 android:id="@+id/video_edittext"
                 android:background="@drawable/common_shape_video_trans60_bg"
                 android:layout_width="match_parent"

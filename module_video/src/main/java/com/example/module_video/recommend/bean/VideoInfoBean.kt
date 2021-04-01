@@ -20,6 +20,7 @@ class VideoInfoBean() : Parcelable {
     var user_description: String? = null
     var playerUrl: String? = null
     var blurredUrl: String? = null
+    var coverImg: String? = null
 
     constructor(parcel: Parcel) : this() {
         videoTitle = parcel.readString()
@@ -32,6 +33,7 @@ class VideoInfoBean() : Parcelable {
         user_description = parcel.readString()
         playerUrl = parcel.readString()
         blurredUrl = parcel.readString()
+        coverImg = parcel.readString()
         videoId = parcel.readInt()
     }
 
@@ -62,6 +64,7 @@ class VideoInfoBean() : Parcelable {
         parcel.writeString(user_description)
         parcel.writeString(playerUrl)
         parcel.writeString(blurredUrl)
+        parcel.writeString(coverImg)
         parcel.writeInt(videoId)
     }
 

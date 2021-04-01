@@ -71,6 +71,7 @@ class ItemFollowCardProvider : BaseItemProvider<OpenRecBean>() {
                 playerUrl = openRecBean.content.data.playUrl
                 blurredUrl = openRecBean.content.data.cover.blurred
                 videoId = openRecBean.content.data.id
+                coverImg  = openRecBean.content.data.cover.detail
             }
 
         ARouter.getInstance()

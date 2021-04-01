@@ -44,19 +44,20 @@ class ItemSquareCardProvider : BaseItemProvider<OpenRecBean>() {
 
                     val infoBean = VideoInfoBean()
                         .apply {
-                        videoTitle = openRecBean.header.title
-                        category = openRecBean.content.data.author.name + " / #" +
-                                openRecBean.content.data.category
-                        video_description = openRecBean.content.data.description
-                        collectionCount = openRecBean.content.data.consumption.collectionCount
-                        shareCount = openRecBean.content.data.consumption.shareCount
-                        avatar = openRecBean.content.data.author.icon
-                        nickName = openRecBean.content.data.author.name
-                        user_description = openRecBean.content.data.author.description
-                        playerUrl = openRecBean.content.data.playUrl
-                        blurredUrl = openRecBean.content.data.cover.blurred
-                        videoId = openRecBean.content.data.id
-                    }
+                            videoTitle = openRecBean.header.title
+                            category = openRecBean.content.data.author.name + " / #" +
+                                    openRecBean.content.data.category
+                            video_description = openRecBean.content.data.description
+                            collectionCount = openRecBean.content.data.consumption.collectionCount
+                            shareCount = openRecBean.content.data.consumption.shareCount
+                            avatar = openRecBean.content.data.author.icon
+                            nickName = openRecBean.content.data.author.name
+                            user_description = openRecBean.content.data.author.description
+                            playerUrl = openRecBean.content.data.playUrl
+                            blurredUrl = openRecBean.content.data.cover.blurred
+                            videoId = openRecBean.content.data.id
+                            coverImg = openRecBean.content.data.cover.detail
+                        }
 
                     ARouter.getInstance()
                         .build(AConstance.ACTIVITY_URL_VIDEO_PLAY)

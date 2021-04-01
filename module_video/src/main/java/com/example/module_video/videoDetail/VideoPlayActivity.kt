@@ -1,9 +1,11 @@
 package com.example.module_video.videoDetail
 
+import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -25,12 +27,18 @@ import com.example.module_video.databinding.VideoActivityPlayBinding
 import com.example.module_video.databinding.VideoItemHeaderViewBinding
 import com.example.module_video.recommend.bean.VideoInfoBean
 import com.example.module_video.videoDetail.adapter.VideoPlayMultiAdapter
+import com.shuyu.gsyvideoplayer.GSYVideoManager
+import com.shuyu.gsyvideoplayer.utils.OrientationUtils
+import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+
 
 /**
  * 视频详情页
  */
 @Route(path = AConstance.ACTIVITY_URL_VIDEO_PLAY)
 class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayViewModel>() {
+    private lateinit var videoPlayer: StandardGSYVideoPlayer
+    private lateinit var orientationUtils: OrientationUtils
     private lateinit var mAdapter: VideoPlayMultiAdapter
 
     @JvmField
@@ -42,8 +50,39 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
         StatusBarUtil.setDarkMode(this)
         StatusBarUtil.setColor(this, Color.BLACK)
 
+        initPlayer()
         initRecycler()
         initRefresh()
+    }
+
+    private fun initPlayer() {
+        videoPlayer = findViewById<View>(R.id.video_player) as StandardGSYVideoPlayer
+        videoPlayer.setUp(videoInfo!!.playerUrl, true, videoInfo!!.videoTitle)
+        //增加封面
+        val imageView = ImageView(this)
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        Glide.with(imageView.context)
+            .asBitmap()
+            .load(videoInfo?.coverImg)
+            .into(imageView)
+        videoPlayer.thumbImageView = imageView
+        //增加title
+        videoPlayer.titleTextView.visibility = View.VISIBLE
+        //设置返回键
+        videoPlayer.backButton.visibility = View.VISIBLE
+        //设置旋转
+        orientationUtils = OrientationUtils(this, videoPlayer)
+        //设置全屏按键功能,这是使用的是选择屏幕，而不是全屏
+        videoPlayer.fullscreenButton
+            .setOnClickListener {
+                orientationUtils.isRotateWithSystem
+                orientationUtils.resolveByClick()
+            }
+        //是否可以滑动调整
+        videoPlayer.setIsTouchWiget(true)
+        //设置返回按键功能
+        videoPlayer.backButton.setOnClickListener { onBackPressed() }
+        videoPlayer.startPlayLogic()
     }
 
     override fun initData() {
@@ -68,8 +107,11 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
 
     private fun initRefresh() {
         viewDataBinding!!.srlRefresh.apply {
-            setOnRefreshListener {}
+            setOnRefreshListener {
+                viewDataBinding!!.srlRefresh.finishRefresh()
+            }
             setOnLoadMoreListener {
+                viewDataBinding!!.srlRefresh.finishLoadMore()
                 viewModel.getRelatedReplies(isLoadMore = true)
             }
             setEnableLoadMore(true)
@@ -105,5 +147,32 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
 
     override fun createViewModel(): VideoPlayViewModel {
         return ViewModelProvider(this, VideoViewModelFactory()).get(VideoPlayViewModel::class.java)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        videoPlayer.onVideoPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        videoPlayer.onVideoResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GSYVideoManager.releaseAllVideos()
+        if (orientationUtils != null) orientationUtils.releaseListener()
+    }
+
+    override fun onBackPressed() {
+        //先返回正常状态
+        if (orientationUtils.screenType == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            videoPlayer.fullscreenButton.performClick()
+            return
+        }
+        //释放所有
+        videoPlayer.setVideoAllCallBack(null)
+        super.onBackPressed()
     }
 }

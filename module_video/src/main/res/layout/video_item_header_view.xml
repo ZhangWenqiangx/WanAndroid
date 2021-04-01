@@ -55,6 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_video_title" />
 
         <ImageView
+                android:visibility="gone"
                 android:id="@+id/video_iv_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,6 +99,7 @@
                 android:layout_height="25dp"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
+                android:drawableLeft="@drawable/ic_share_white"
                 android:text="@{String.valueOf(videoInfo.shareCount)}"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
@@ -112,6 +114,7 @@
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="缓存"
+                android:drawableLeft="@drawable/ic_cache"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_collection_count"
@@ -125,6 +128,7 @@
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="收藏"
+                android:drawableLeft="@drawable/ic_favorites"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_collection_count"

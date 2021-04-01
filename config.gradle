@@ -3,7 +3,7 @@ ext {
             applicationId    : "com.example.android_kt_wandroid",
             compileSdkVersion: 29,
             buildToolsVersion: "28.0.3",
-            minSdkVersion    : 16,
+            minSdkVersion    : 19,
             targetSdkVersion : 29,
             versionCode      : 1,
             versionName      : "1.0"

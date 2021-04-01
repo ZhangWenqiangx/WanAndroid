@@ -67,6 +67,7 @@ class ItemVideoSmallCardProvider(val lightMode: Boolean = false) : BaseItemProvi
                 playerUrl = openRecBean.playUrl
                 blurredUrl = openRecBean.cover.blurred
                 videoId = openRecBean.id.toInt()
+                coverImg  = openRecBean.cover.detail
             }
 
         ARouter.getInstance()
