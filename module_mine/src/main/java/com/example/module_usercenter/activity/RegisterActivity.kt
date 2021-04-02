@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common_base.constants.AConstance
 import com.example.common_base.base.mvp.BaseMVPActivity
+import com.example.common_base.util.StatusBarUtil
 import com.example.module_usercenter.R
 import com.example.module_usercenter.contract.RegisterContract
 import com.example.module_usercenter.presenter.RegisterPresenter
@@ -18,6 +19,7 @@ class RegisterActivity : BaseMVPActivity<RegisterPresenter>(),RegisterContract.V
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initView() {
+        StatusBarUtil.setLightMode(this)
         btn_register.setOnClickListener {
             val imm =
                 et_register_username.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

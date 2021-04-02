@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.common_base.base.mvvm.BaseMvvmActivity
+import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.widget.SearchableView
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.BR
@@ -13,10 +14,13 @@ import com.example.module_home.R
 import com.example.module_home.databinding.ActivitySearchBinding
 import kotlinx.android.synthetic.main.activity_search.*
 
-
+/**
+ * 搜索文章页
+ */
 class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>() {
 
     override fun initView() {
+        StatusBarUtil.setLightMode(this)
         viewDataBinding?.tvCancle?.setOnClickListener { finish() }
 
         search_input.apply {

@@ -15,6 +15,7 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER
 import com.example.common_base.constants.Constants
+import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.util.ToastUtil
 import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
@@ -50,6 +51,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
     override fun createPresenter(): LoginPresenter = LoginPresenter()
 
     override fun initView() {
+        StatusBarUtil.setLightMode(this)
         iv_close.setOnClickListener { finish() }
     }
 

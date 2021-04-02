@@ -1,21 +1,27 @@
 package com.example.module_main.ui
 
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.BaseActivity
 import com.example.common_base.constants.AConstance
 import com.example.common_base.util.StatusBarUtil
+import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_main.R
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)
 class MainActivity : BaseActivity() {
 
-    private var currentSelectionId = R.id.rb_home
-    private lateinit var fm: FragmentManager
-    private var fragments = mutableListOf<Fragment>()
+    private lateinit var viewPager: ViewPager2
+    private var tabList = mutableListOf<TabItemBean>()
 
     override fun getLayoutResId(): Int = R.layout.activity_main
 
@@ -23,22 +29,62 @@ class MainActivity : BaseActivity() {
         StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
         StatusBarUtil.setLightMode(this)
 
-        fm = supportFragmentManager
-        createFragment()
-        selectFragment(0)
-        rb_home.isChecked = true
+        createTabData()
 
-        rg_radio_group.setOnCheckedChangeListener { _, checkedId ->
-            if (currentSelectionId == checkedId) {
-                return@setOnCheckedChangeListener
+        viewPager = findViewById(R.id.fl_main_container)
+        viewPager.isUserInputEnabled = false
+        val screenSlidePagerAdapter = ScreenSlidePagerAdapter(this)
+        viewPager.adapter = screenSlidePagerAdapter
+
+        TabLayoutMediator(main_tablayout, viewPager, object :
+            TabLayoutMediator.OnConfigureTabCallback {
+            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
+                tab?.text = tabList[position].tabTitle
             }
-            currentSelectionId = checkedId
-            when (checkedId) {
-                R.id.rb_home -> selectFragment(0)
-                R.id.rb_project -> selectFragment(1)
-                R.id.rb_mine -> selectFragment(2)
+        }).attach()
+
+        for (i in 0 until screenSlidePagerAdapter.itemCount) {
+            val tab: TabLayout.Tab? = main_tablayout.getTabAt(i)
+            tab?.run {
+                this.setCustomView(R.layout.main_tab_item)
+                this.customView!!.findViewById<ImageView>(R.id.main_iv_icon)
+                    .setBackgroundResource(if (i == 0) tabList[i].tabSelectedIcon else tabList[i].tabUnSelectedIcon)
+                (tab.customView!!.findViewById<View>(R.id.main_tv_title) as TextView).text =
+                    tabList[i].tabTitle
+            }
+        }
+
+        main_tablayout.addOnTabSelectedListener(object :
+            TabLayout.BaseOnTabSelectedListener<TabLayout.Tab> {
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+
             }
 
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+                p0!!.customView!!.findViewById<ImageView>(R.id.main_iv_icon).setBackgroundResource(
+                    tabList[p0.position].tabUnSelectedIcon
+                )
+            }
+
+            override fun onTabSelected(p0: TabLayout.Tab?) {
+                p0!!.customView!!.findViewById<ImageView>(R.id.main_iv_icon)
+                    .setBackgroundResource(tabList[p0.position].tabSelectedIcon)
+                viewPager.currentItem = p0.position
+            }
+        })
+    }
+
+    private fun createTabData() {
+        tabList.apply {
+            add(TabItemBean("文章", R.drawable.icon_menu_home_sel, R.drawable.icon_menu_home_unsel))
+            add(
+                TabItemBean(
+                    "视频",
+                    R.drawable.icon_menu_project_sel,
+                    R.drawable.icon_menu_project_unsel
+                )
+            )
+            add(TabItemBean("我的", R.drawable.icon_menu_mine_sel, R.drawable.icon_menu_mine_unsel))
         }
     }
 
@@ -46,39 +92,34 @@ class MainActivity : BaseActivity() {
 
     }
 
-    private fun selectFragment(index: Int) {
-        val ft = fm.beginTransaction()
-        for (i in fragments.indices) {
-            if (i == index) {
-                ft.show(fragments[i])
-            } else {
-                ft.hide(fragments[i])
+    private inner class TabItemBean(
+        var tabTitle: String,
+        var tabSelectedIcon: Int,
+        var tabUnSelectedIcon: Int
+    )
+
+    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        private var fragments = mutableListOf<Fragment>()
+
+        init {
+            fragments.apply {
+                add(
+                    ARouter.getInstance().build(AConstance.FRAGMENT_URL_HOME)
+                        .navigation() as Fragment
+                )
+                add(
+                    ARouter.getInstance().build(AConstance.FRAGMENT_URL_VIDEO)
+                        .navigation() as Fragment
+                )
+                add(
+                    ARouter.getInstance().build(AConstance.FRAGMENT_URL_MINE)
+                        .navigation() as Fragment
+                )
             }
         }
-        ft.commit()
-    }
 
-    private fun createFragment() {
-        val transaction = fm.beginTransaction()
+        override fun getItemCount(): Int = fragments.size
 
-        val homeFragment =
-            ARouter.getInstance().build(AConstance.FRAGMENT_URL_HOME).navigation() as Fragment
-        val videoFragment =
-            ARouter.getInstance().build(AConstance.FRAGMENT_URL_VIDEO).navigation() as Fragment
-        val mineFragment =
-            ARouter.getInstance().build(AConstance.FRAGMENT_URL_MINE).navigation() as Fragment
-
-        transaction.apply {
-            add(R.id.fl_main_container, homeFragment)
-            add(R.id.fl_main_container, videoFragment)
-            add(R.id.fl_main_container, mineFragment)
-        }
-
-        fragments.apply {
-            add(homeFragment)
-            add(videoFragment)
-            add(mineFragment)
-        }
-        transaction.commit()
+        override fun createFragment(position: Int): Fragment = fragments[position]
     }
 }
