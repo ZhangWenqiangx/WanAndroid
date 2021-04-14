@@ -115,7 +115,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
 
     override fun getLayoutResId(): Int = R.layout.activity_search
 
-    override fun initVariableId(): Int = BR.viewmodel
+    override fun initVariableId(): Int = BR.viewModel
 
     override fun createViewModel(): SearchViewModel {
         return ViewModelProvider(this, ArticleViewModelFactory()).get(SearchViewModel::class.java)

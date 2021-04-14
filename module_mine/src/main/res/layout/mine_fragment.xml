@@ -1,96 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.module_usercenter.fragment.MineFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+    </data>
+
+    <com.example.common_base.widget.HeadZoomScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-        <ImageView
-                android:id="@+id/iv_avatar_background"
+        <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/test" />
-
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="-30dp"
-                android:background="@android:color/transparent">
-
-            <LinearLayout
+                android:layout_height="wrap_content">
+            <!-- 背景图 放大缩小 -->
+            <ImageView
+                    android:id="@+id/iv_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@android:color/white" />
-
-            <View
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="12dp"
-                    android:background="@drawable/shape_circle_white" />
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            <!-- 覆盖在背景图上的viewgroup 控制下拉 -->
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
+                <!-- 主体部分 -->
+                <ImageView
+                        android:id="@+id/iv_content_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="700dp"
+                        android:layout_marginTop="-150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/me_home_bg_mask"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:ellipsize="end"
-                        android:maxLength="8"
-                        android:text="Title"
-                        android:textColor="@color/black_333"
-                        android:textSize="18sp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="5dp"
-                        android:ellipsize="end"
-                        android:text="stubTitle"
-                        android:textColor="@color/black_999"
-                        android:textSize="14sp" />
+                    <ImageView
+                            android:id="@+id/mine_imageview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_110"
+                            android:layout_marginRight="@dimen/dp_30"
+                            android:background="@color/colorLightYellow"
+                            android:src="@mipmap/ic_launcher"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                    <TextView
+                            android:id="@+id/mine_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/commonLeftMargin"
+                            android:text="用户名称"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/commonLevel1TitleSize"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/mine_imageview"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/mine_imageview" />
 
-        </RelativeLayout>
+                    <TextView
+                            android:id="@+id/mine_textview3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/commonTopMargin"
+                            android:text="等级：13"
+                            android:textColor="@color/colorWhite"
+                            app:layout_constraintEnd_toStartOf="@+id/mine_textview2"
+                            app:layout_constraintStart_toStartOf="@+id/mine_textview"
+                            app:layout_constraintTop_toBottomOf="@+id/mine_textview" />
 
-        <com.example.common_base.widget.ItemView
-                android:id="@+id/iv_mine_favorite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:itemTitle="@string/favorite" />
+                    <TextView
+                            android:id="@+id/mine_textview2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="排名：1169"
+                            android:textColor="@color/colorWhite"
+                            app:layout_constraintEnd_toStartOf="@+id/mine_imageview"
+                            app:layout_constraintStart_toStartOf="@+id/mine_textview"
+                            app:layout_constraintTop_toTopOf="@+id/mine_textview3" />
 
-        <com.example.common_base.widget.ItemView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemTitle="@string/setting"
-           />
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/mine_rv_setting"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/commonLeftMargin"
+                            android:layout_marginTop="@dimen/dp_45"
+                            android:background="@color/colorWhite"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mine_imageview" />
 
-        <com.example.common_base.widget.ItemView
-                android:id="@+id/iv_mine_about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerVisible="false"
-                app:itemTitle="@string/about"
-                />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </LinearLayout>
-</RelativeLayout>
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </com.example.common_base.widget.HeadZoomScrollView>
+
+</layout>
+
+
 

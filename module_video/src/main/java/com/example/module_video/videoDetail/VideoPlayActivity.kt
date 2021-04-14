@@ -143,7 +143,7 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
 
     override fun getLayoutResId(): Int = R.layout.video_activity_play
 
-    override fun initVariableId(): Int = BR.viewmodel
+    override fun initVariableId(): Int = BR.viewModel
 
     override fun createViewModel(): VideoPlayViewModel {
         return ViewModelProvider(this, VideoViewModelFactory()).get(VideoPlayViewModel::class.java)

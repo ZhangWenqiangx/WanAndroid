@@ -1,27 +1,34 @@
 package com.example.module_usercenter.fragment
 
-
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
-import com.example.common_base.base.BaseFragment
+import com.example.common_base.base.mvvm.BaseMvvmFragment
+import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
 import com.example.module_usercenter.R
-import kotlinx.android.synthetic.main.mine_fragment.*
+import com.example.module_usercenter.adapter.MineSettingAdapter
+import com.example.module_usercenter.databinding.MineFragmentBinding
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
-class MineFragment : BaseFragment() {
+class MineFragment : BaseMvvmFragment<MineFragmentBinding, BaseViewModel>() {
+
+    private lateinit var mAdapter: MineSettingAdapter
 
     override fun initView(view: View?) {
-        iv_avatar.setOnClickListener {
-            ARouter.getInstance()
-                .build(AConstance.ACTIVITY_URL_LOGIN).navigation()
+        mAdapter = MineSettingAdapter(R.layout.mine_item_setting)
+        viewDataBinding.mineRvSetting.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = mAdapter
         }
     }
 
     override fun initData() {
+        val settingList = mutableListOf("我的积分", "我的分享", "我的搜藏", "TODO", "关于作者", "系统设置")
+        mAdapter.setNewInstance(settingList)
     }
 
-    override fun getLayoutResId(): Int =
-        R.layout.mine_fragment
+    override fun getLayoutResId(): Int = R.layout.mine_fragment
+
+    override fun createViewModel(): BaseViewModel = BaseViewModel()
 }
