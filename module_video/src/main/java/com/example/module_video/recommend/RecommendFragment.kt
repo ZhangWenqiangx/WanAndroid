@@ -1,8 +1,7 @@
 package com.example.module_video.recommend
 
-import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseMvvmFragment
@@ -13,6 +12,7 @@ import com.example.module_video.R
 import com.example.module_video.VideoViewModelFactory
 import com.example.module_video.databinding.FragmentRecommendBinding
 import com.example.module_video.recommend.adapter.RecommendVideoMultiAdapter
+import com.youth.banner.util.LogUtils
 
 /**
  * 视频推荐页
@@ -25,8 +25,13 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
         return ViewModelProvider(this, VideoViewModelFactory()).get(OpenEyeViewModel::class.java)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun initData() {
+        super.initData()
+        viewDataBinding.srlRefresh.autoRefresh()
+    }
+
+    override fun initView(view: View?) {
+        super.initView(view)
         initRecycler()
         initRefresh()
     }
@@ -43,7 +48,6 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
             }
             setEnableLoadMore(true)
             setEnableRefresh(true)
-            autoRefresh()
         }
     }
 
@@ -65,11 +69,11 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
     override fun addObserver() {
         super.addObserver()
 
-        viewModel.recommentData.observe(this, Observer {
+        viewModel.recommentData.observe(this, {
             mAdapter?.setList(it)
         })
 
-        viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.mStateLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is SuccessState -> {
                     viewDataBinding.srlRefresh.finishRefresh()

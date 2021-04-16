@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import androidx.core.widget.NestedScrollView;
+
 import com.example.common_base.util.ExtensionsKt;
 
 /**
@@ -15,7 +17,7 @@ import com.example.common_base.util.ExtensionsKt;
  * @date : 2021/4/9
  * description :
  */
-public class HeadZoomScrollView extends ScrollView {
+public class HeadZoomScrollView extends NestedScrollView {
 
     /**
      * 缩放view
@@ -107,7 +109,7 @@ public class HeadZoomScrollView extends ScrollView {
                 }
                 int distance = (int) ((ev.getY() - firstPosition) * mScrollRate);
                 // 滚动距离乘以一个系数
-                if (distance < 0 || ExtensionsKt.dp(140) < distance) {
+                if (distance < 0 || ExtensionsKt.dp(150) < distance) {
                     // 当前位置比记录位置要小，正常返回
                     break;
                 }

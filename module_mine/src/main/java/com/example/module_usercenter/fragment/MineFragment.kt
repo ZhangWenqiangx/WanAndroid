@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
+import com.example.common_base.util.ToastUtil
 import com.example.module_usercenter.R
 import com.example.module_usercenter.adapter.MineSettingAdapter
 import com.example.module_usercenter.databinding.MineFragmentBinding
@@ -18,14 +19,26 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, BaseViewModel>() {
     override fun initView(view: View?) {
         mAdapter = MineSettingAdapter(R.layout.mine_item_setting)
         viewDataBinding.mineRvSetting.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = object : LinearLayoutManager(requireContext()) {
+                override fun canScrollVertically(): Boolean = false
+            }
             adapter = mAdapter
+            isNestedScrollingEnabled = false
+            setHasFixedSize(true)
         }
-    }
 
-    override fun initData() {
-        val settingList = mutableListOf("我的积分", "我的分享", "我的搜藏", "TODO", "关于作者", "系统设置")
+        val settingList = mutableListOf(
+            "我的积分",
+            "我的分享",
+            "我的搜藏",
+            "TODO",
+            "关于作者",
+            "系统设置"
+        )
         mAdapter.setNewInstance(settingList)
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            ToastUtil.showToast(requireContext(), position.toString())
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.mine_fragment

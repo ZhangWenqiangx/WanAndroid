@@ -5,17 +5,16 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.CompleteState
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
-import com.example.common_base.base.mvvm.BaseLazyFragment
 import com.example.common_base.web.WebViewActivity
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.R
 import com.example.module_home.composite.bean.Project
 import com.example.module_home.databinding.FragmentCompositePageBinding
 import com.example.module_home.home.ArticleViewModel
-import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.fragment_composite_page.*
 
 private const val CID = "cid"
@@ -23,7 +22,7 @@ private const val CID = "cid"
 /**
  * 综合
  */
-class CompositePageFragment : BaseLazyFragment<FragmentCompositePageBinding, ArticleViewModel>() {
+class CompositePageFragment : BaseMvvmFragment<FragmentCompositePageBinding, ArticleViewModel>() {
 
     private var mCurPage: Int = 1
     private var cid: Int = 0
@@ -31,13 +30,10 @@ class CompositePageFragment : BaseLazyFragment<FragmentCompositePageBinding, Art
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            cid = it.getInt(CID)
-            LogUtils.d(cid.toString())
-        }
+        cid = arguments?.getInt(CID) ?: 0
     }
 
-    override fun loadData() {
+    override fun initData() {
         srl_composite.autoRefresh()
     }
 

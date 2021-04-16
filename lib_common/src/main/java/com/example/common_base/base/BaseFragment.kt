@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
  * Description:
  */
 abstract class BaseFragment : Fragment() {
-
+    private var isFirstLoad = true
     lateinit var mContext: Context
 
     override fun onAttach(context: Context) {
@@ -20,14 +20,25 @@ abstract class BaseFragment : Fragment() {
         mContext = context
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(getLayoutResId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        initData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isFirstLoad) {
+            initData()
+            isFirstLoad = false
+        }
     }
 
     abstract fun initView(view: View?)

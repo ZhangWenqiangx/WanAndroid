@@ -69,7 +69,13 @@ class MainActivity : BaseActivity() {
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 p0!!.customView!!.findViewById<ImageView>(R.id.main_iv_icon)
                     .setBackgroundResource(tabList[p0.position].tabSelectedIcon)
-                viewPager.currentItem = p0.position
+
+                when (p0.position) {
+                    0, 1 -> StatusBarUtil.setLightMode(this@MainActivity)
+                    2 -> StatusBarUtil.setDarkMode(this@MainActivity)
+                    else -> {
+                    }
+                }
             }
         })
     }

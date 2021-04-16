@@ -20,29 +20,29 @@
             <ImageView
                     android:id="@+id/iv_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="380dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/user_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            <!-- 覆盖在背景图上的viewgroup 控制下拉 -->
+            <!-- 覆盖在背景图上的viewgroup 控制整个内容下拉 -->
             <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                <!-- 主体部分 -->
+                <!-- 黑色背景图 -->
                 <ImageView
                         android:id="@+id/iv_content_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="700dp"
+                        android:layout_height="670dp"
                         android:layout_marginTop="-150dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/me_home_bg_mask"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
-
+                <!-- 整体内容部分 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -51,7 +51,7 @@
                             android:id="@+id/mine_imageview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_110"
+                            android:layout_marginTop="110dp"
                             android:layout_marginRight="@dimen/dp_30"
                             android:background="@color/colorLightYellow"
                             android:src="@mipmap/ic_launcher"
@@ -93,18 +93,17 @@
                             app:layout_constraintTop_toTopOf="@+id/mine_textview3" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                            android:paddingHorizontal="@dimen/commonLeftMargin"
                             android:id="@+id/mine_rv_setting"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/commonLeftMargin"
-                            android:layout_marginTop="@dimen/dp_45"
+                            android:layout_marginTop="@dimen/dp_55"
                             android:background="@color/colorWhite"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/mine_imageview" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </FrameLayout>
 

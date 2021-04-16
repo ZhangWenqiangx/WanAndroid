@@ -24,6 +24,11 @@ class VideoFragment : BaseMvvmFragment<FragmentVideoBinding, BaseViewModel>() {
     private val titles: MutableList<String> = mutableListOf("推荐")
 
     override fun initView(view: View?) {
+
+    }
+
+    override fun initData() {
+        super.initData()
         fragments.add(RecommendFragment())
 
         viewDataBinding.pager.adapter = object :

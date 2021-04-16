@@ -2,7 +2,6 @@ package com.example.module_video.videoDetail
 
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.widget.ImageView
@@ -47,8 +46,7 @@ class VideoPlayActivity : BaseMvvmActivity<VideoActivityPlayBinding, VideoPlayVi
 
     override fun initView() {
         ARouter.getInstance().inject(this)
-        StatusBarUtil.setDarkMode(this)
-        StatusBarUtil.setColor(this, Color.BLACK)
+        StatusBarUtil.setDarkMode(this, true)
 
         initPlayer()
         initRecycler()

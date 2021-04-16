@@ -23,7 +23,7 @@ class CompositeFragment : BaseMvvmFragment<FragmentCompositeBinding, ArticleView
 
     override fun addObserver() {
         super.addObserver()
-        viewModel.treeData.observe(this, Observer {
+        viewModel.treeData.observe(this, {
 
             pager.offscreenPageLimit = it.size
 
