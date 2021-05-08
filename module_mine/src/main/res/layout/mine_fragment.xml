@@ -93,12 +93,12 @@
                             app:layout_constraintTop_toTopOf="@+id/mine_textview3" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                            android:paddingHorizontal="@dimen/commonLeftMargin"
                             android:id="@+id/mine_rv_setting"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_55"
                             android:background="@color/colorWhite"
+                            android:paddingHorizontal="@dimen/commonLeftMargin"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/mine_imageview" />

@@ -7,12 +7,13 @@ import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
 import com.example.common_base.util.ToastUtil
+import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.R
 import com.example.module_usercenter.adapter.MineSettingAdapter
 import com.example.module_usercenter.databinding.MineFragmentBinding
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
-class MineFragment : BaseMvvmFragment<MineFragmentBinding, BaseViewModel>() {
+class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
 
     private lateinit var mAdapter: MineSettingAdapter
 
@@ -36,12 +37,12 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, BaseViewModel>() {
             "系统设置"
         )
         mAdapter.setNewInstance(settingList)
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { _, _, position ->
             ToastUtil.showToast(requireContext(), position.toString())
         }
     }
 
     override fun getLayoutResId(): Int = R.layout.mine_fragment
 
-    override fun createViewModel(): BaseViewModel = BaseViewModel()
+    override fun createViewModel(): MineViewModel = MineViewModel()
 }

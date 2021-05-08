@@ -58,7 +58,7 @@ class CompositePageFragment : BaseMvvmFragment<FragmentCompositePageBinding, Art
     }
 
     private fun initRecycler() {
-        mAdapter = CompositeAdapter(R.layout.item_composite)
+        mAdapter = CompositeAdapter(R.layout.article_rv_item_composite)
         rv_page.apply {
             layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
             adapter = mAdapter

@@ -5,21 +5,24 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import com.example.common_base.base.BaseApplication
 import com.example.common_base.base.mvvm.BaseMvvmActivity
 import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.widget.SearchableView
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.BR
 import com.example.module_home.R
-import com.example.module_home.databinding.ActivitySearchBinding
-import kotlinx.android.synthetic.main.activity_search.*
+import com.example.module_home.databinding.ArticleActivitySearchBinding
+import kotlinx.android.synthetic.main.article_activity_search.*
 
 /**
  * 搜索文章页
  */
-class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>() {
+class SearchActivity : BaseMvvmActivity<ArticleActivitySearchBinding, SearchViewModel>() {
 
     override fun initView() {
+        BaseApplication.obj = this
+
         StatusBarUtil.setLightMode(this)
         viewDataBinding?.tvCancle?.setOnClickListener { finish() }
 
@@ -113,7 +116,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
         return super.onKeyDown(keyCode, event)
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_search
+    override fun getLayoutResId(): Int = R.layout.article_activity_search
 
     override fun initVariableId(): Int = BR.viewModel
 
