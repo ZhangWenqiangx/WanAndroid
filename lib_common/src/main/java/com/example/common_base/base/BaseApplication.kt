@@ -1,8 +1,10 @@
 package com.example.common_base.base
 
 import android.app.Application
+import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.R
+import com.example.common_base.performance.BlockPrinter
 import com.example.common_base.hotfix.HotFix
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -34,6 +36,8 @@ open class BaseApplication : Application() {
         sApplication = this
         initArouter()
         HotFix.init(this)
+        Looper.getMainLooper()
+            .setMessageLogging(BlockPrinter(applicationContext))
     }
 
     private fun initArouter() {
