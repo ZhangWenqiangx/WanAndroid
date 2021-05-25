@@ -9,7 +9,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 /**
  *  @author : zhang.wenqiang
  *  @date : 2021/5/24
- *  description :
+ *  description :检测mainlooper 是否间隔大于16后处理事件
  */
 class BlockPrinter constructor(context: Context) : Printer {
     private var mFinishTimeMillis: Long = 0
