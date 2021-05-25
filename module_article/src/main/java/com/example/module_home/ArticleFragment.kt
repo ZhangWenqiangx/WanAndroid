@@ -3,11 +3,12 @@ package com.example.module_home
 import android.content.Intent
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.constants.AConstance
+import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
+import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_home.composite.CompositeFragment
@@ -70,14 +71,15 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
             }
         }
         viewModel.getBanner()
+        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+            .recordingTimeTag("ArticleFragment-initView-end")
     }
 
     override fun addObserver() {
         super.addObserver()
-        viewModel.bannersData.observe(viewLifecycleOwner, Observer {
+        viewModel.bannersData.observe(viewLifecycleOwner, {
             viewDataBinding.banner.setDatas(it)
         })
-
     }
 
     override fun getLayoutResId(): Int =

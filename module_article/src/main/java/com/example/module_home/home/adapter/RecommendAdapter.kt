@@ -3,9 +3,13 @@ package com.example.module_home.home.adapter
 import android.os.Build
 import android.text.Html
 import android.text.TextUtils
+import android.view.ViewTreeObserver
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
+import com.example.common_base.performance.TimeMonitorManager
 import com.example.module_home.R
 import com.example.module_home.home.bean.Article
 
@@ -15,6 +19,8 @@ import com.example.module_home.home.bean.Article
  * @author zwq 2020/11/20
  */
 class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHolder>(layoutResId) {
+    var mHasRecorded: Boolean = false
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun convert(holder: BaseViewHolder, item: Article) {
         var tip: String? = null
@@ -40,5 +46,20 @@ class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHol
                 !((item.type == 1 || item.fresh) && !TextUtils.isEmpty(tip))
             )
             .setText(R.id.tv_home_recent, tip)
+
+        if (holder.layoutPosition == 1 && !mHasRecorded) {
+            mHasRecorded = true
+            holder.getView<TextView>(R.id.tv_home_title).viewTreeObserver.addOnPreDrawListener(
+                object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        holder.getView<TextView>(R.id.tv_home_title).viewTreeObserver.removeOnPreDrawListener(
+                            this
+                        )
+                        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+                            .end("on rv show--end", true)
+                        return true
+                    }
+                });
+        }
     }
 }

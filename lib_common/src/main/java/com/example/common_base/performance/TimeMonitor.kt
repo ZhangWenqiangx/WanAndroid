@@ -44,9 +44,9 @@ class TimeMonitor(mMonitorId: Int) {
 
     fun end(writeLog: Boolean) {
         if (writeLog) {
-            //写入到本地文件
+            //输出日志or上报
             for ((key, value) in timeTags) {
-                Log.d("99788", "：  Key = $key  ----  Value = $value")
+                Log.d(TAG, "event： $key --time--> $value")
             }
         }
     }

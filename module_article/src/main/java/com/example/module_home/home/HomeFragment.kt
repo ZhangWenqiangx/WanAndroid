@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
+import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.ArticleViewModelFactory
@@ -31,6 +33,8 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
         super.onActivityCreated(savedInstanceState)
         initRecycler()
         initRefresh()
+        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+            .recordingTimeTag("HomeFragment-onActivityCreated-end")
     }
 
     private fun initRefresh() {
