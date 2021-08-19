@@ -71,12 +71,12 @@ class WebViewActivity : BaseActivity() {
     /**
      * 菜单项点击事件
      */
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.item_more) {
-//            showMoreDialog()
-        }
-        return true
-    }
+//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//        if (item?.itemId == R.id.item_more) {
+////            showMoreDialog()
+//        }
+//        return true
+//    }
 
     /**
      * 创建菜单
@@ -92,7 +92,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     override fun initData() {
-        val stringExtra = intent.getStringExtra(URL)
+        val stringExtra = intent.getStringExtra(URL)!!
         webView.loadUrl(stringExtra)
     }
 }

@@ -12,6 +12,9 @@ import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 
 
 /**
@@ -22,6 +25,8 @@ open class BaseApplication : Application() {
     companion object {
         lateinit var sApplication: Application
     }
+
+    private lateinit var flutterEngine: FlutterEngine
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
@@ -47,7 +52,13 @@ open class BaseApplication : Application() {
         Looper.getMainLooper()
             .setMessageLogging(BlockPrinter(applicationContext))
 
-        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE).recordingTimeTag("aplication-onCreate-end")
+        flutterEngine = FlutterEngine(this).apply {
+            this.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+            FlutterEngineCache.getInstance().put("engine_id", this)
+        }
+
+        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+            .recordingTimeTag("aplication-onCreate-end")
     }
 
     private fun initArouter() {
@@ -59,4 +70,9 @@ open class BaseApplication : Application() {
     }
 
     private fun isDebug(): Boolean = true
+
+    override fun onTerminate() {
+        flutterEngine.destroy()
+        super.onTerminate()
+    }
 }
