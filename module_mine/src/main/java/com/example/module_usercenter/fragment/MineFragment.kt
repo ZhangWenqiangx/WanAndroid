@@ -32,7 +32,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
         val settingList = mutableListOf(
             "我的积分",
             "我的分享",
-            "我的搜藏",
+            "我的收藏",
             "TODO",
             "关于作者",
             "系统设置"
