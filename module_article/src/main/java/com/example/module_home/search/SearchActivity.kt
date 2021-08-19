@@ -5,7 +5,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.example.common_base.base.BaseApplication
 import com.example.common_base.base.mvvm.BaseMvvmActivity
 import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.widget.SearchableView
@@ -21,8 +20,6 @@ import kotlinx.android.synthetic.main.article_activity_search.*
 class SearchActivity : BaseMvvmActivity<ArticleActivitySearchBinding, SearchViewModel>() {
 
     override fun initView() {
-        BaseApplication.obj = this
-
         StatusBarUtil.setLightMode(this)
         viewDataBinding?.tvCancle?.setOnClickListener { finish() }
 

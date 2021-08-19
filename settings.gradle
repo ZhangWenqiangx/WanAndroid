@@ -2,6 +2,12 @@ include ':lib_banner'
 include ':module_article'
 include ':app', ':lib_common', ':module_video', ':module_main', ':module_mine'
 
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'my_flutter/.android/include_flutter.groovy'
+))
+
 gradle.addBuildListener(new BuildListener() {
     void buildStarted(Gradle var1) {
         println '开始构建'
@@ -62,3 +68,6 @@ gradle.buildFinished {
     println '执行阶段，耗时：' + (System.currentTimeMillis() -
             beginOfProjectExcute) + 'ms'
 }
+
+include ':my_flutter'
+project(':my_flutter').projectDir = new File('../my_flutter')

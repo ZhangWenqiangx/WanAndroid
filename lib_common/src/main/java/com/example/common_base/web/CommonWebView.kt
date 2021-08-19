@@ -27,17 +27,17 @@ class CommonWebView : WebView, LifecycleObserver {
     private lateinit var webProgressBar: WebProgressBar
     private var onWebViewCallback: OnWebViewCallback? = null
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         initWebSetting()
         initProgressBar()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initWebSetting()
         initProgressBar()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
