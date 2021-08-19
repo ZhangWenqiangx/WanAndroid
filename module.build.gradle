@@ -24,9 +24,17 @@ android {
             }
         }
     }
+    //构建类型
     buildTypes {
+        debug {
+
+        }
         release {
-            minifyEnabled true
+            //清理无效资源 指id强引用
+            shrinkResources false
+            //代码混淆
+            minifyEnabled false
+            //混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,7 +46,7 @@ android {
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 java {
-                    // 全部 module 一起编译时剔除 debug 目录
+                    // 全部 module 一起编译时删除 debug 目录
                     exclude '**/debug/**'
                 }
             }
