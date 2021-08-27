@@ -2,6 +2,7 @@ package com.example.common_base.base
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.R
@@ -10,11 +11,16 @@ import com.example.common_base.hotfix.HotFix
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.widget.refresh.ClassicsHeader
+import com.idlefish.flutterboost.FlutterBoost
+import com.idlefish.flutterboost.FlutterBoostDelegate
+import com.idlefish.flutterboost.FlutterBoostRouteOptions
+import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 
 
 /**
@@ -25,8 +31,6 @@ open class BaseApplication : Application() {
     companion object {
         lateinit var sApplication: Application
     }
-
-    private lateinit var flutterEngine: FlutterEngine
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
@@ -52,10 +56,30 @@ open class BaseApplication : Application() {
         Looper.getMainLooper()
             .setMessageLogging(BlockPrinter(applicationContext))
 
-        flutterEngine = FlutterEngine(this).apply {
-            this.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-            FlutterEngineCache.getInstance().put("engine_id", this)
-        }
+        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
+            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
+                //这里根据options.pageName来判断你想跳转哪个页面，这里简单给一个
+//                val intent = Intent(
+//                    FlutterBoost.instance().currentActivity(),
+//                    YourTargetAcitvity::class.java
+//                )
+//                FlutterBoost.instance().currentActivity()
+//                    .startActivityForResult(intent, options.requestCode())
+            }
+
+            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
+                val intent: Intent = FlutterBoostActivity.CachedEngineIntentBuilder(
+                    FlutterBoostActivity::class.java
+                )
+                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
+                    .destroyEngineWithActivity(false)
+                    .uniqueId(options.uniqueId())
+                    .url(options.pageName())
+                    .urlParams(options.arguments())
+                    .build(FlutterBoost.instance().currentActivity())
+                FlutterBoost.instance().currentActivity().startActivity(intent)
+            }
+        }) { }
 
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("aplication-onCreate-end")
@@ -70,9 +94,4 @@ open class BaseApplication : Application() {
     }
 
     private fun isDebug(): Boolean = true
-
-    override fun onTerminate() {
-        flutterEngine.destroy()
-        super.onTerminate()
-    }
 }

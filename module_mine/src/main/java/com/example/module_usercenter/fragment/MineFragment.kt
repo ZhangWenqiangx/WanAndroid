@@ -11,6 +11,8 @@ import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.R
 import com.example.module_usercenter.adapter.MineSettingAdapter
 import com.example.module_usercenter.databinding.MineFragmentBinding
+import com.idlefish.flutterboost.FlutterBoost
+import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import io.flutter.embedding.android.FlutterActivity
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
@@ -44,9 +46,12 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
 
         viewDataBinding.mineImageview.apply {
             setOnClickListener {
-                startActivity(
-                    FlutterActivity.withCachedEngine("engine_id").build(requireContext())
-                )
+                val options =  FlutterBoostRouteOptions.Builder()
+                    .pageName("index")
+                    .arguments(hashMapOf())
+                    .requestCode(11)
+                    .build()
+                FlutterBoost.instance().open(options);
             }
 
             setOnLongClickListener {
