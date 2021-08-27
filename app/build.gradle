@@ -63,7 +63,7 @@ dependencies {
         implementation project(':module_video')
         implementation project(':module_article')
     }
-    kapt rootProject.ext.dependencies['arouter-compiler']
+    kapt rootProject.ext.compiler['arouter-compiler']
 }
 
 task hotfix {
