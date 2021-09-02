@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
+import android.widget.FrameLayout;
 
 import androidx.core.widget.NestedScrollView;
 
@@ -26,7 +26,7 @@ public class HeadZoomScrollView extends NestedScrollView {
     /**
      * 下滑view
      */
-    private View mScrollView;
+    private ViewGroup mScrollView;
     private int mZoomViewWidth;
     private int mZoomViewHeight;
     /**
@@ -45,6 +45,11 @@ public class HeadZoomScrollView extends NestedScrollView {
      * 回调系数，越大，回调越慢
      */
     private float mReplyRate = 0.5f;
+
+    /**
+     * 下拉极限
+     */
+    private float pullLimit = 0f;
 
     public HeadZoomScrollView(Context context) {
         super(context);
@@ -80,7 +85,11 @@ public class HeadZoomScrollView extends NestedScrollView {
                 mZoomView = vg.getChildAt(0);
             }
             if (vg.getChildAt(1) != null) {
-                mScrollView = vg.getChildAt(1);
+                mScrollView = (ViewGroup) vg.getChildAt(1);
+                if (mScrollView.getChildAt(0) != null) {
+                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mScrollView.getChildAt(0).getLayoutParams();
+                    pullLimit = Math.abs(lp.topMargin);
+                }
             }
         }
     }
@@ -115,8 +124,10 @@ public class HeadZoomScrollView extends NestedScrollView {
                 }
                 // 处理放大
                 isScrolling = true;
-                setZoom(distance);
-                setScroll(distance);
+                if (distance <= pullLimit) {
+                    setZoom(distance);
+                    setScroll(distance);
+                }
                 return true;
             // 返回true表示已经完成触摸事件，不再处理
             default:

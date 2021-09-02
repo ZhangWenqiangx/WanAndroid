@@ -28,6 +28,7 @@ class HomeBannerAdapter(val context: Context, data: MutableList<BannerBean>?) :
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP;
         return ViewHolder(imageView)
     }
 

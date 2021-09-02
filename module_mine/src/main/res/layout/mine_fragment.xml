@@ -20,7 +20,7 @@
             <ImageView
                     android:id="@+id/iv_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="380dp"
+                    android:layout_height="@dimen/dp_375"
                     android:scaleType="centerCrop"
                     android:src="@drawable/user_bg"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -35,8 +35,8 @@
                 <ImageView
                         android:id="@+id/iv_content_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="670dp"
-                        android:layout_marginTop="-150dp"
+                        android:layout_height="@dimen/dp_650"
+                        android:layout_marginTop="@dimen/dp_m_150"
                         android:scaleType="centerCrop"
                         android:src="@drawable/me_home_bg_mask"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,23 +47,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.example.common_base.widget.CircleImageView
                             android:id="@+id/mine_imageview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="110dp"
-                            android:layout_marginRight="@dimen/dp_30"
-                            android:background="@color/colorLightYellow"
-                            android:src="@mipmap/ic_launcher"
+                            android:layout_width="@dimen/dp_100"
+                            android:layout_height="@dimen/dp_100"
+                            android:layout_marginTop="@dimen/dp_85"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:src="@drawable/ic_user"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                            android:id="@+id/mine_textview"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:id="@+id/mine_tv"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/commonLeftMargin"
-                            android:text="用户名称"
+                            android:text="去登录"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/commonLevel1TitleSize"
                             android:textStyle="bold"
@@ -72,36 +72,52 @@
                             app:layout_constraintTop_toTopOf="@id/mine_imageview" />
 
                     <TextView
-                            android:id="@+id/mine_textview3"
+                            android:id="@+id/mine_tv_level"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/commonTopMargin"
-                            android:text="等级：13"
+                            android:text="等级：--"
                             android:textColor="@color/colorWhite"
-                            app:layout_constraintEnd_toStartOf="@+id/mine_textview2"
-                            app:layout_constraintStart_toStartOf="@+id/mine_textview"
-                            app:layout_constraintTop_toBottomOf="@+id/mine_textview" />
+                            app:layout_constraintEnd_toStartOf="@+id/mine_tv_rank"
+                            app:layout_constraintStart_toStartOf="@+id/mine_tv"
+                            app:layout_constraintTop_toBottomOf="@+id/mine_tv" />
 
                     <TextView
-                            android:id="@+id/mine_textview2"
+                            android:id="@+id/mine_tv_rank"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="排名：1169"
+                            android:text="排名：--"
                             android:textColor="@color/colorWhite"
                             app:layout_constraintEnd_toStartOf="@+id/mine_imageview"
-                            app:layout_constraintStart_toStartOf="@+id/mine_textview"
-                            app:layout_constraintTop_toTopOf="@+id/mine_textview3" />
+                            app:layout_constraintStart_toStartOf="@+id/mine_tv"
+                            app:layout_constraintTop_toTopOf="@+id/mine_tv_level" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/mine_rv_setting"
+                    <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_55"
-                            android:background="@color/colorWhite"
-                            android:paddingHorizontal="@dimen/commonLeftMargin"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/dp_45"
+                            android:background="@drawable/common_white_round_5"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/mine_imageview" />
+                            app:layout_constraintTop_toBottomOf="@+id/mine_imageview">
+
+                        <ImageView
+                                android:background="@drawable/common_bg_gary_round"
+                                android:layout_width="@dimen/dp_65"
+                                android:layout_height="@dimen/dp_5"
+                                android:layout_marginVertical="@dimen/dp_10"
+                                android:layout_gravity="center" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/mine_rv_setting"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorWhite"
+                                android:paddingHorizontal="@dimen/commonLeftMargin" />
+
+                    </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

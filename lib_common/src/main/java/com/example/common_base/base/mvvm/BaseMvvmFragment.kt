@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.common_base.base.BaseFragment
-import com.example.common_base.base.viewmodel.BaseViewModel
-import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.base.viewmodel.LoadingState
-import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.base.viewmodel.*
 import com.youth.banner.util.LogUtils
+import java.lang.reflect.ParameterizedType
 
 /**
  *  @author : zhang.wenqiang
@@ -57,7 +56,7 @@ abstract class BaseMvvmFragment<V : ViewDataBinding, VM : BaseViewModel> : BaseF
     }
 
     open fun addObserver() {
-        viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.mStateLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is SuccessState -> LogUtils.d("success")
                 is ErrorState -> LogUtils.d("error ${it.message}")
@@ -66,6 +65,17 @@ abstract class BaseMvvmFragment<V : ViewDataBinding, VM : BaseViewModel> : BaseF
             }
         })
     }
+
+//    private fun createViewModel() {
+//        val type = javaClass.genericSuperclass
+//        if (type is ParameterizedType) {
+//            val tp = type.actualTypeArguments[0]
+//            val tClass = tp as? Class<VM> ?: BaseViewModel::class.java
+//            viewModel = ViewModelProvider(this,
+//                ViewModelFactory()
+//            ).get(tClass) as VM
+//        }
+//    }
 
     abstract fun createViewModel(): VM
 }

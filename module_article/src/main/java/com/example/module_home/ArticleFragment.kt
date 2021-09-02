@@ -1,7 +1,10 @@
 package com.example.module_home
 
 import android.content.Intent
+import android.content.res.Resources
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -62,6 +65,13 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
         }
 
         viewDataBinding.banner.apply {
+            val screenWidth: Int = Resources.getSystem().displayMetrics.widthPixels
+            val screenHeight: Int = Resources.getSystem().displayMetrics.heightPixels
+            val height = (screenWidth.coerceAtMost(screenHeight) * (9f / 16f)).toInt()
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                height
+            )
             addBannerLifecycleObserver(this@ArticleFragment)
             adapter = HomeBannerAdapter(requireContext(), mutableListOf())
             indicator = RectangleIndicator(requireContext())

@@ -9,15 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
-            app:layout_constraintBottom_toTopOf="@+id/main_view"
+            app:layout_constraintBottom_toTopOf="@+id/main_tablayout"
             app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-            android:id="@+id/main_view"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/gray_ea"
-            app:layout_constraintBottom_toTopOf="@+id/main_tablayout" />
 
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tablayout"
