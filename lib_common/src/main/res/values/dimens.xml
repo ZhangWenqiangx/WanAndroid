@@ -474,9 +474,18 @@
     <dimen name="dp_374">374dp</dimen>
     <dimen name="dp_375">375dp</dimen>
     <dimen name="dp_400">400dp</dimen>
+    <dimen name="dp_500">500dp</dimen>
+    <dimen name="dp_550">550dp</dimen>
+    <dimen name="dp_600">600dp</dimen>
+    <dimen name="dp_620">620dp</dimen>
+    <dimen name="dp_650">650dp</dimen>
+    <dimen name="dp_670">670dp</dimen>
     <dimen name="actionbar_content_size">48dp</dimen>
     <dimen name="bottom_high_size">44dp</dimen>
     <dimen name="dp_m_10">-10dp</dimen>
+    <dimen name="dp_m_150">-150dp</dimen>
+    <dimen name="dp_m_130">-130dp</dimen>
+    <dimen name="dp_m_140">-140dp</dimen>
 
     <dimen name="sp_6">6sp</dimen>
     <dimen name="sp_7">7sp</dimen>

@@ -1,27 +1,35 @@
-package com.example.module_usercenter.api;
+package com.example.module_usercenter.api
 
-import com.example.common_base.base.data.BaseResponse;
-import com.example.module_usercenter.bean.LoginResult;
-import com.example.module_usercenter.bean.RegisterResult;
-import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.POST
+import retrofit2.http.FormUrlEncoded
+import com.example.common_base.base.data.BaseResponse
+import com.example.module_usercenter.bean.LoginResult
+import com.example.module_usercenter.bean.RegisterResult
+import com.example.module_usercenter.bean.UserInfoResult
+import io.reactivex.Observable
+import retrofit2.http.Field
+import retrofit2.http.GET
 
 /**
  * Description:
  */
-public interface UserCenterApiService {
+interface UserCenterApiService {
 
     @POST("user/login")
     @FormUrlEncoded
-    Observable<BaseResponse<LoginResult>> login(@Field("username") String name,
-                                                @Field("password") String pwd);
+    fun login(
+        @Field("username") name: String?,
+        @Field("password") pwd: String?
+    ): Observable<BaseResponse<LoginResult?>?>?
 
     @POST("user/register")
     @FormUrlEncoded
-    Observable<BaseResponse<RegisterResult>> register(@Field("username") String name,
-                                                      @Field("password") String pwd,
-                                                      @Field("repassword") String repwd);
+    fun register(
+        @Field("username") name: String?,
+        @Field("password") pwd: String?,
+        @Field("repassword") repwd: String?
+    ): Observable<BaseResponse<RegisterResult?>?>?
 
+    @GET("user/lg/userinfo/json")
+    suspend fun getUserInfo(): BaseResponse<UserInfoResult>
 }
