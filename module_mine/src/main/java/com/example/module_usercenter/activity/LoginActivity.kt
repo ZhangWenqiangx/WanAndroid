@@ -14,14 +14,16 @@ import com.example.common_base.base.mvp.BaseMVPActivity
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER
-import com.example.common_base.constants.Constants
 import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.util.ToastUtil
+import com.example.common_base.util.UserHelper
 import com.example.module_usercenter.R
 import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
+import com.example.module_usercenter.event.LoginEvent
 import com.example.module_usercenter.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.mine_activity_login.*
+import org.greenrobot.eventbus.EventBus
 
 @Route(path = AConstance.ACTIVITY_URL_LOGIN)
 class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, View.OnClickListener {
@@ -38,11 +40,12 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
     }
 
     override fun loginSuccess(loginResult: LoginResult) {
-        presenter.saveUserNamePwd(
+        UserHelper.saveUserNamePwd(
             et_login_username.text.trim().toString(),
             et_login_password.text.trim().toString()
         )
         ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
+        EventBus.getDefault().post(LoginEvent())
         finish()
     }
 
@@ -60,8 +63,8 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         //设置下划线
         tv_register.paint.flags = Paint.UNDERLINE_TEXT_FLAG
         //拿取以登录过的账号密码显示
-        val userName = presenter.readUserNamePwd(Constants.USERNAME)
-        val passWord = presenter.readUserNamePwd(Constants.PASSWORD)
+        val userName = UserHelper.getUserName()
+        val passWord = UserHelper.getUserPwd()
 
         et_login_username.setText(userName)
         et_login_username.setSelection(userName.length)

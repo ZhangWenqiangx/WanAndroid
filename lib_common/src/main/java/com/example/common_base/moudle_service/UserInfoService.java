@@ -1,4 +1,4 @@
-package com.example.common_base;
+package com.example.common_base.moudle_service;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 
@@ -7,6 +7,11 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * @date : 2021/4/26
  * description :
  */
-public interface HelloService extends IProvider {
+public interface UserInfoService extends IProvider {
     String sayHello(String name);
+
+    /**
+     * @return 是否登录
+     */
+    Boolean isLogged();
 }
