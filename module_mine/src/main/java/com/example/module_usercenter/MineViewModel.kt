@@ -1,14 +1,10 @@
 package com.example.module_usercenter
 
-import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
-import androidx.room.util.StringUtil
 import com.example.common_base.base.data.BaseResult
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.base.viewmodel.ErrorState
-import com.example.common_base.constants.Constants
-import com.example.common_base.util.SpUtil
-import com.example.common_base.util.SpUtil.read
+import com.example.common_base.util.UserHelper
 import com.example.module_usercenter.api.MineRepository
 import com.example.module_usercenter.bean.UserInfoResult
 
@@ -25,9 +21,7 @@ class MineViewModel(
         MutableLiveData<UserInfoResult>()
     }
 
-    fun isLogin(): Boolean {
-        return !TextUtils.isEmpty(read(Constants.USER_LOGIN, Constants.PASSWORD, ""))
-    }
+    fun isLogin(): Boolean = UserHelper.isLogin()
 
     fun getUserInfo() {
         launch(tryBlock = {

@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
+import com.example.common_base.moudle_service.UserInfoService
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
@@ -16,6 +18,7 @@ import com.example.module_home.R
 import com.example.module_home.databinding.FragmentFirstPageBinding
 import com.example.module_home.home.adapter.RecommendAdapter
 import com.example.module_home.home.bean.Article
+import com.youth.banner.util.LogUtils
 import kotlinx.android.synthetic.main.fragment_first_page.*
 
 /**
@@ -25,6 +28,10 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     private lateinit var mAdapter: RecommendAdapter
 
+    @JvmField
+    @Autowired
+    var userService: UserInfoService? = null
+
     override fun createViewModel(): ArticleViewModel {
         return ArticleViewModelFactory().create(ArticleViewModel::class.java)
     }
@@ -33,6 +40,8 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
         super.onActivityCreated(savedInstanceState)
         initRecycler()
         initRefresh()
+        LogUtils.d(userService?.isLogged()?.toString()?:"")
+
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("HomeFragment-onActivityCreated-end")
     }
@@ -69,11 +78,11 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     override fun addObserver() {
         super.addObserver()
-        viewModel.articleData.observe(viewLifecycleOwner, Observer {
+        viewModel.articleData.observe(viewLifecycleOwner, {
             mAdapter.setList(it)
         })
 
-        viewModel.mStateLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.mStateLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is SuccessState -> {
                     srl_refresh.finishRefresh()
