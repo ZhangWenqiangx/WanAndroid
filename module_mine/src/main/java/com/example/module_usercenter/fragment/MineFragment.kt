@@ -12,7 +12,7 @@ import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_COIN_LIST
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
 import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_ARG_COIN_COUNT
-import com.example.common_base.util.ToastUtil
+import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_COIN_RANK
 import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.MineViewModelFactory
 import com.example.module_usercenter.R
@@ -24,6 +24,7 @@ import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import com.idlefish.flutterboost.ListenerRemover
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.util.*
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
 class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
@@ -42,15 +43,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             isNestedScrollingEnabled = false
             setHasFixedSize(true)
         }
-
-        val settingList = mutableListOf(
-            "我的积分",
-            "积分排行",
-            "我的收藏",
-            "TODO",
-            "关于作者",
-            "系统设置"
-        )
+        val settingList = resources.getStringArray(R.array.mine_menu_config).toMutableList()
         mAdapter.setNewInstance(settingList)
 
         mAdapter.setOnItemClickListener { _, _, position ->
@@ -84,22 +77,25 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
     }
 
     private fun onItemClick(position: Int) {
-        val options: FlutterBoostRouteOptions
         when (position) {
-            0 -> {
-                options = FlutterBoostRouteOptions.Builder()
-                    .pageName(FLUTTER_PAGE_COIN_LIST)
-                    .arguments(mapOf(FLUTTER_ARG_COIN_COUNT to coinCount.toString()))
-                    .requestCode(11)
-                    .build()
-                FlutterBoost.instance().open(options)
-            }
+            0 -> openRoute(
+                FLUTTER_PAGE_COIN_LIST,
+                mapOf(FLUTTER_ARG_COIN_COUNT to coinCount.toString())
+            )
+            1 -> openRoute(FLUTTER_PAGE_COIN_RANK)
+
             else -> {
 
             }
         }
+    }
 
-        ToastUtil.showToast(requireContext(), position.toString())
+    private fun openRoute(name: String, arguments: Map<String, Any>? = mapOf()) {
+        val options = FlutterBoostRouteOptions.Builder()
+            .pageName(name)
+            .arguments(arguments)
+            .build()
+        FlutterBoost.instance().open(options)
     }
 
     @Subscribe

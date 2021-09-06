@@ -6,10 +6,13 @@ import android.content.Intent
 import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.R
+import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
 import com.example.common_base.performance.BlockPrinter
 import com.example.common_base.hotfix.HotFix
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
+import com.example.common_base.web.URL
+import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.FlutterBoostDelegate
@@ -58,13 +61,15 @@ open class BaseApplication : Application() {
 
         FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
             override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
-                //这里根据options.pageName来判断你想跳转哪个页面，这里简单给一个
-//                val intent = Intent(
-//                    FlutterBoost.instance().currentActivity(),
-//                    YourTargetAcitvity::class.java
-//                )
-//                FlutterBoost.instance().currentActivity()
-//                    .startActivityForResult(intent, options.requestCode())
+                if(options.pageName().equals(FLUTTER_PAGE_WEB)){
+                    val intent = Intent(
+                        FlutterBoost.instance().currentActivity(),
+                        WebViewActivity::class.java
+                    )
+                    intent.putExtra(URL,options.arguments()["url"].toString())
+                    FlutterBoost.instance().currentActivity()
+                        .startActivityForResult(intent, options.requestCode())
+                }
             }
 
             override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
