@@ -63,7 +63,6 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
                 val options = FlutterBoostRouteOptions.Builder()
                     .pageName(FLUTTER_PAGE_LOGIN)
                     .arguments(hashMapOf())
-                    .requestCode(11)
                     .build()
                 FlutterBoost.instance().open(options)
             }
