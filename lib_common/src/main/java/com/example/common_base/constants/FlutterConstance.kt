@@ -13,6 +13,8 @@ object FlutterConstance {
     const val FLUTTER_PAGE_LOGIN = "login"
     const val FLUTTER_PAGE_COIN_LIST = "coin_list"
     const val FLUTTER_PAGE_COIN_RANK = "coin_rank"
+    const val FLUTTER_PAGE_SHARE = "my_share"
+    const val FLUTTER_PAGE_COLLECTION = "my_collection"
     // event name
     const val TO_FLUTTER_EVENT_COOKIE = "resultOfCookie"
     const val FROM_FLUTTER_EVENT_COOKIE = "getCookie"

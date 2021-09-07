@@ -13,6 +13,8 @@ import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
 import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_ARG_COIN_COUNT
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_COIN_RANK
+import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_COLLECTION
+import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_SHARE
 import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.MineViewModelFactory
 import com.example.module_usercenter.R
@@ -83,7 +85,8 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
                 mapOf(FLUTTER_ARG_COIN_COUNT to coinCount.toString())
             )
             1 -> openRoute(FLUTTER_PAGE_COIN_RANK)
-
+            2 -> openRoute(FLUTTER_PAGE_SHARE)
+            3 -> openRoute(FLUTTER_PAGE_COLLECTION)
             else -> {
 
             }
