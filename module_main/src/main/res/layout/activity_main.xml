@@ -12,14 +12,20 @@
             app:layout_constraintBottom_toTopOf="@+id/main_tablayout"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_ea"
+            app:layout_constraintBottom_toTopOf="@+id/main_tablayout" />
+
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tablayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_45"
-            app:tabRippleColor="@null"
-            app:tabIndicatorHeight="@dimen/dp_0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabIndicatorHeight="@dimen/dp_0"
+            app:tabRippleColor="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
