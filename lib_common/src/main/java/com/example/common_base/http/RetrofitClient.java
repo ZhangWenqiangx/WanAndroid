@@ -1,10 +1,5 @@
 package com.example.common_base.http;
 
-import com.example.common_base.base.BaseApplication;
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -21,17 +16,14 @@ public class RetrofitClient {
     private static Retrofit retrofit;
 
     private RetrofitClient() {
-
-        PersistentCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(),
-                new SharedPrefsCookiePersistor(BaseApplication.sApplication));
-
         okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
-                .cookieJar(cookieJar)
                 .eventListenerFactory(new LoggingEventListener.Factory())
                 .addInterceptor(InterceptorUtil.headerInterceptor())
+                .addInterceptor(InterceptorUtil.cookieInterceptor())
                 .addInterceptor(InterceptorUtil.logInterceptor())
+                .addInterceptor(InterceptorUtil.cacheInterceptor())
                 .build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(API_HOST)
