@@ -13,20 +13,16 @@ import com.example.common_base.base.BaseActivity
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_COOKIE
 import com.example.common_base.constants.FlutterConstance.TO_FLUTTER_EVENT_COOKIE
+import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_main.R
-import com.franmontiel.persistentcookiejar.persistence.SerializableCookie
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
 import com.idlefish.flutterboost.EventListener
-import kotlinx.android.synthetic.main.activity_main.*
 import com.idlefish.flutterboost.FlutterBoost
-
 import com.idlefish.flutterboost.ListenerRemover
-import com.youth.banner.util.LogUtils
-import okhttp3.Cookie
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 @Route(path = AConstance.ACTIVITY_URL_MAIN)
 class MainActivity : BaseActivity() {
@@ -55,17 +51,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getCookieMap(): MutableMap<Any, Any> {
-        val sharedPreferences = this.getSharedPreferences("CookiePersistence", MODE_PRIVATE)
-        val cookies: MutableList<Cookie> = ArrayList<Cookie>(sharedPreferences.all.size)
-
-        for ((_, value) in sharedPreferences.all.entries) {
-            val serializedCookie = value as String
-            val cookie = SerializableCookie().decode(serializedCookie)
-            if (cookie != null) {
-                cookies.add(cookie)
-            }
-        }
-        return hashMapOf("result" to Gson().toJson(cookies))
+        return hashMapOf("result" to CookieHelper.getDefCookie())
     }
 
     private fun initViewPager() {

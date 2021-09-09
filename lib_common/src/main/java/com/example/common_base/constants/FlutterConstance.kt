@@ -16,7 +16,8 @@ object FlutterConstance {
     const val FLUTTER_PAGE_SHARE = "my_share"
     const val FLUTTER_PAGE_COLLECTION = "my_collection"
     // event name
-    const val TO_FLUTTER_EVENT_COOKIE = "resultOfCookie"
-    const val FROM_FLUTTER_EVENT_COOKIE = "getCookie"
+    const val TO_FLUTTER_EVENT_COOKIE = "result_cookie"
+    const val FROM_FLUTTER_EVENT_COOKIE = "get_cookie"
+    const val FROM_FLUTTER_EVENT_COLLECT = "cancle_collect"
     const val FROM_FLUTTER_EVENT_LOGIN = "login_event"
 }
