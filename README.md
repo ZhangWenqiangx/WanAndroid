@@ -5,7 +5,7 @@ A-Project是一个融合了各种技术的App,主要是为了将平时学习的�
 平时在闲暇之余，可以刷刷文章也可以看看视频。
 
 ## 主要功能
-- [**玩 Android 开放 API**](http://www.wanandroid.com/blog/show/2)首页、项目
+- [**玩 Android 开放 API**](http://www.wanandroid.com/blog/show/2)首页、项目等
 - 浏览文章
 - 开眼视频Api-视频列表
 - 视频播放、详情、评论
@@ -13,7 +13,7 @@ A-Project是一个融合了各种技术的App,主要是为了将平时学习的�
 - 个人信息页面
 - 搜索功能：热门搜索、搜索历史
 - 收藏功能：添加收藏、取消收藏
-- 我的积分、积分排行榜功能
+- 我的积分、积分排行榜
 
 ## 主要开源框架
  - [RxJava](https://github.com/ReactiveX/RxJava)
@@ -30,6 +30,15 @@ A-Project是一个融合了各种技术的App,主要是为了将平时学习的�
  - [ARouter](https://github.com/alibaba/ARouter)
 
 ## 更新
+
+### v1.4
+ - 列表增加收藏
+ - 增加退出登录
+
+### v1.3
+ - 积分排行动画
+ - 我的模块功能列表配置
+ - 设置
 
 ### v1.2
  - 新增我的分享

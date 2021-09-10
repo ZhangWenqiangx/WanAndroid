@@ -10,6 +10,7 @@ data class MenuBean(
     var title: String,
     var stubTitle: String? = "",
     var routeUrl: String,
+    var checkLogin: Boolean = false,
     var showRightIcon: Boolean = true,
     var arguments: Map<String, Any>? = mapOf(),
 )

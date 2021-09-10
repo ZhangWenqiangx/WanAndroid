@@ -7,6 +7,7 @@
     <string name="happy_a_minute">轻松一刻</string>
     <string name="about">关于</string>
     <string name="setting">设置</string>
+    <string name="common_login_first">请先登录</string>
 
     <string name="srl_header_pulling">Pull Down To Refresh</string>
     <string name="srl_header_release">Release To Refresh</string>

@@ -44,6 +44,7 @@ class MineViewModel(
                     imageResId = R.drawable.ic_coin,
                     title = "我的积分",
                     routeUrl = FlutterConstance.FLUTTER_PAGE_COIN_LIST,
+                    checkLogin = true
                 )
             )
             add(
@@ -58,6 +59,7 @@ class MineViewModel(
                     imageResId = R.drawable.ic_share,
                     title = "我的分享",
                     routeUrl = FlutterConstance.FLUTTER_PAGE_SHARE,
+                    checkLogin = true
                 )
             )
             add(
@@ -65,13 +67,14 @@ class MineViewModel(
                     imageResId = R.drawable.ic_collect,
                     title = "我的收藏",
                     routeUrl = FlutterConstance.FLUTTER_PAGE_COLLECTION,
+                    checkLogin = true
                 )
             )
             add(
                 MenuBean(
                     imageResId = R.drawable.ic_mine_setting,
                     title = "系统设置",
-                    routeUrl = FlutterConstance.FLUTTER_PAGE_COIN_LIST,
+                    routeUrl = FlutterConstance.FLUTTER_PAGE_SETTING,
                 )
             )
         }
