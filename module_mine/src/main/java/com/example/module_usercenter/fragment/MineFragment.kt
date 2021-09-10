@@ -11,6 +11,12 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
 import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_ARG_COIN_COUNT
+import com.example.common_base.constants.FlutterConstance.FLUTTER_EVENT_TYPE
+import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_IN
+import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_OUT
+import com.example.common_base.util.CookieHelper
+import com.example.common_base.util.ToastUtil
+import com.example.common_base.util.UserHelper
 import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.MineViewModelFactory
 import com.example.module_usercenter.R
@@ -63,12 +69,23 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             viewModel.getUserInfo()
         }
 
-        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_LOGIN) { _, _ ->
-            viewModel.getUserInfo()
+        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_LOGIN) { _, args ->
+            val type = args[FLUTTER_EVENT_TYPE]
+            if (type == FLUTTER_TYPE_LOGIN_IN) {
+                viewModel.getUserInfo()
+            } else if (type == FLUTTER_TYPE_LOGIN_OUT) {
+                logout()
+            }
         }
     }
 
     private fun onItemClick(item: MenuBean) {
+        if (item.checkLogin) {
+            if (!UserHelper.isLogin()) {
+                ToastUtil.showShortToast(requireContext(), getString(R.string.common_login_first))
+                return
+            }
+        }
         openRoute(item.routeUrl, item.arguments)
     }
 
@@ -81,8 +98,17 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
     }
 
     @Subscribe
-    fun onLoginEvent(event: LoginEvent) {
+    fun onLoginSuccessEvent(event: LoginEvent) {
         viewModel.getUserInfo()
+    }
+
+    private fun logout() {
+        viewDataBinding.mineTv.text = getString(R.string.mine_str_go_login)
+        viewDataBinding.mineTvLevel.text = "等级：--"
+        viewDataBinding.mineTvRank.text = "排名：----"
+        mAdapter.setNewInstance(viewModel.generateMenuList())
+        UserHelper.clearUser()
+        CookieHelper.clearCookie()
     }
 
     @SuppressLint("SetTextI18n")
@@ -92,7 +118,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             val coinCount = it.userInfo.coinCount.toString()
             mAdapter.data[0].stubTitle = coinCount
             mAdapter.data[0].arguments = mapOf(FLUTTER_ARG_COIN_COUNT to coinCount)
-            mAdapter.notifyItemRangeChanged(0,1)
+            mAdapter.notifyItemRangeChanged(0, 1)
 
             viewDataBinding.mineTv.text = it.userInfo.nickname
             viewDataBinding.mineTvLevel.text = "等级：${it.coinInfo.level}"

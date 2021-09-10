@@ -29,4 +29,14 @@ object SpUtil {
         val sp = BaseApplication.sApplication.getSharedPreferences(name, Context.MODE_PRIVATE)
         return sp.getString(key, defValue) ?: ""
     }
+
+    @SuppressLint("CommitPrefEdits")
+    fun clear(name: String) {
+        val sp = BaseApplication.sApplication.getSharedPreferences(name, Context.MODE_PRIVATE)
+        sp.edit().run {
+            clear()
+            commit()
+        }
+    }
+
 }

@@ -14,6 +14,8 @@ import com.example.common_base.base.mvp.BaseMVPActivity
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_MAIN
 import com.example.common_base.constants.AConstance.ACTIVITY_URL_REGISTER
+import com.example.common_base.constants.FlutterConstance
+import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.StatusBarUtil
 import com.example.common_base.util.ToastUtil
 import com.example.common_base.util.UserHelper
@@ -22,6 +24,7 @@ import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
 import com.example.module_usercenter.event.LoginEvent
 import com.example.module_usercenter.presenter.LoginPresenter
+import com.idlefish.flutterboost.FlutterBoost
 import kotlinx.android.synthetic.main.mine_activity_login.*
 import org.greenrobot.eventbus.EventBus
 
@@ -46,6 +49,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         )
         ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
         EventBus.getDefault().post(LoginEvent())
+        FlutterBoost.instance().sendEventToFlutter(FlutterConstance.TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
         finish()
     }
 

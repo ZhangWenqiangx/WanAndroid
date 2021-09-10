@@ -63,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/commonLeftMargin"
                             android:layout_marginTop="@dimen/dp_30"
-                            android:text="去登录"
+                            android:text="@string/mine_str_go_login"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/commonLevel1TitleSize"
                             android:textStyle="bold"

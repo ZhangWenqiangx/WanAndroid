@@ -8,10 +8,14 @@ import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
 import com.example.common_base.constants.FlutterConstance
+import com.example.common_base.constants.FlutterConstance.FLUTTER_EVENT_TYPE
+import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_OUT
 import com.example.common_base.moudle_service.UserInfoService
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
+import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.ToastUtil
+import com.example.common_base.util.UserHelper
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.LinearItemDecoration
 import com.example.module_home.ArticleViewModelFactory
@@ -29,7 +33,8 @@ import kotlinx.android.synthetic.main.fragment_first_page.*
 class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel>() {
 
     private lateinit var mAdapter: RecommendAdapter
-    private lateinit var remover: ListenerRemover
+    private lateinit var collectListener: ListenerRemover
+    private lateinit var loginListener: ListenerRemover
 
     @JvmField
     @Autowired
@@ -43,9 +48,16 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
         super.onActivityCreated(savedInstanceState)
         initRecycler()
         initRefresh()
-        remover = FlutterBoost.instance()
+        collectListener = FlutterBoost.instance()
             .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_COLLECT) { _, _ ->
                 viewModel.getArticles(isRefresh = true)
+            }
+        loginListener = FlutterBoost.instance()
+            .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_LOGIN) { _, args ->
+                if(args[FLUTTER_EVENT_TYPE] == FLUTTER_TYPE_LOGIN_OUT){
+                    CookieHelper.clearCookie()
+                    viewModel.getArticles(isRefresh = true)
+                }
             }
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("HomeFragment-onActivityCreated-end")
@@ -57,8 +69,8 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             setOnLoadMoreListener { viewModel.getArticles() }
             setEnableLoadMore(true)
             setEnableRefresh(true)
-            autoRefresh()
         }
+        viewModel.getArticles(isRefresh = true)
     }
 
     private fun initRecycler() {
@@ -66,6 +78,10 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             addChildClickViewIds(R.id.iv_home_like)
             setOnItemChildClickListener { _, view, position ->
                 if (view.id == R.id.iv_home_like) {
+                    if(!UserHelper.isLogin()){
+                        ToastUtil.showShortToast(requireContext(),getString(R.string.common_login_first))
+                        return@setOnItemChildClickListener
+                    }
                     val article = mAdapter.data[position]
                     article.collect = !article.collect
                     mAdapter.setData(position, article)
@@ -118,6 +134,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     override fun onDestroy() {
         super.onDestroy()
-        remover.remove()
+        collectListener.remove()
+        loginListener.remove()
     }
 }

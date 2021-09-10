@@ -15,9 +15,15 @@ object FlutterConstance {
     const val FLUTTER_PAGE_COIN_RANK = "coin_rank"
     const val FLUTTER_PAGE_SHARE = "my_share"
     const val FLUTTER_PAGE_COLLECTION = "my_collection"
+    const val FLUTTER_PAGE_SETTING = "page_setting"
     // event name
     const val TO_FLUTTER_EVENT_COOKIE = "result_cookie"
     const val FROM_FLUTTER_EVENT_COOKIE = "get_cookie"
     const val FROM_FLUTTER_EVENT_COLLECT = "cancle_collect"
     const val FROM_FLUTTER_EVENT_LOGIN = "login_event"
+
+    const val FLUTTER_EVENT_TYPE = "flutter_event_type"
+    const val FLUTTER_TYPE_LOGIN_IN= "type_login"
+    const val FLUTTER_TYPE_LOGIN_OUT= "type_logout"
+
 }
