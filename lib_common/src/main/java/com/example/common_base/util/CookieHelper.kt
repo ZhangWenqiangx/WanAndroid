@@ -14,6 +14,10 @@ object CookieHelper {
         return if (spDomain.isNotEmpty()) spDomain else ""
     }
 
+    fun getDefCookieMap(): MutableMap<Any, Any> {
+        return hashMapOf("result" to getDefCookie())
+    }
+
     fun encodeCookie(cookies: List<String>): String {
         val sb = StringBuilder()
         val set = HashSet<String>()
@@ -41,5 +45,9 @@ object CookieHelper {
         SpUtil.write(FILE_NAME, url, cookies)
         domain ?: return
         SpUtil.write(FILE_NAME, domain, cookies)
+    }
+
+    fun clearCookie() {
+        SpUtil.clear(FILE_NAME)
     }
 }

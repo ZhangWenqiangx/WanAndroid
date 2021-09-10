@@ -2,6 +2,7 @@ package com.example.common_base.util
 
 import android.text.TextUtils
 import com.example.common_base.constants.Constants
+import com.example.common_base.util.SpUtil.clear
 import com.example.common_base.util.SpUtil.read
 import com.example.common_base.util.SpUtil.write
 
@@ -26,5 +27,9 @@ object UserHelper {
 
     fun getUserPwd(): String {
         return read(Constants.USER_LOGIN, Constants.PASSWORD, "")
+    }
+
+    fun clearUser(){
+        clear(Constants.USER_LOGIN)
     }
 }

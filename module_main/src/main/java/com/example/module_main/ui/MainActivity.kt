@@ -45,13 +45,9 @@ class MainActivity : BaseActivity() {
 
     private fun initFlutterEvent() {
         val listener = EventListener { _, _ ->
-            FlutterBoost.instance().sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, getCookieMap())
+            FlutterBoost.instance().sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
         }
         remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_COOKIE, listener)
-    }
-
-    private fun getCookieMap(): MutableMap<Any, Any> {
-        return hashMapOf("result" to CookieHelper.getDefCookie())
     }
 
     private fun initViewPager() {
