@@ -43,4 +43,12 @@ interface RemoteApi {
         @Path("page") page: Int,
         @Query("cid") id: Int
     ): BaseResponse<ProjectResponse>
+
+    @POST("lg/collect/{id}/json")
+    suspend fun collect(@Path("id") id: Int): BaseResponse<Any>
+
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun unCollect(
+        @Path("id") id: Int
+    ): BaseResponse<Any>
 }

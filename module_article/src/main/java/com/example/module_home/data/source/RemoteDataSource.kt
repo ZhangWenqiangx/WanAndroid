@@ -41,4 +41,10 @@ class RemoteDataSource : BaseDataOperate() {
 
     suspend fun getTreeNode(page: Int, id: Int): BaseResult<ProjectResponse> =
         execute { convert(api.getTreeNode(page, id)) }
+
+    suspend fun unCollect(id: Int): BaseResult<Any> =
+        execute { convert(api.unCollect(id)) }
+
+    suspend fun collect(id: Int): BaseResult<Any> =
+        execute { convert(api.collect(id)) }
 }
