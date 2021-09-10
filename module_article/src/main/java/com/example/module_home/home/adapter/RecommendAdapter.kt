@@ -29,7 +29,6 @@ class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHol
         } else if (item.fresh) {
             tip = "新"
         }
-
         if (!TextUtils.isEmpty(item.author)) {
             holder.setText(R.id.tv_home_author, item.author)
         } else if (!TextUtils.isEmpty(item.shareUser)) {
@@ -46,6 +45,10 @@ class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHol
                 !((item.type == 1 || item.fresh) && !TextUtils.isEmpty(tip))
             )
             .setText(R.id.tv_home_recent, tip)
+            .setImageResource(
+                R.id.iv_home_like,
+                if (item.collect) R.drawable.ic_like else R.drawable.ic_like_not
+            )
 
         if (holder.layoutPosition == 1 && !mHasRecorded) {
             mHasRecorded = true

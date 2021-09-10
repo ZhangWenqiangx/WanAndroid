@@ -11,6 +11,6 @@ data class Article(
     val desc: String,
     val fresh: Boolean,
     val shareUser:String,
-    val collect: Boolean,
+    var collect: Boolean,
     val type: Int
 )

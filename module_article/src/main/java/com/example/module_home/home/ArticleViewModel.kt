@@ -74,6 +74,28 @@ class ArticleViewModel constructor(
         })
     }
 
+    fun changeCollect(collect: Boolean,id: Int) {
+        launch(tryBlock = {
+            if(collect){
+                repository.collect(id).let {
+                    if (it is BaseResult.Success) {
+                        mStateLiveData.value = ErrorState("收藏成功")
+                    } else if (it is BaseResult.Error) {
+                        mStateLiveData.value = ErrorState(it.exception.message)
+                    }
+                }
+            }else{
+                repository.unCollect(id).let {
+                    if (it is BaseResult.Success) {
+                        mStateLiveData.value = ErrorState("取消收藏成功")
+                    } else if (it is BaseResult.Error) {
+                        mStateLiveData.value = ErrorState(it.exception.message)
+                    }
+                }
+            }
+        })
+    }
+
     fun getTree() {
         launch(tryBlock = {
             repository.getTree().let {
