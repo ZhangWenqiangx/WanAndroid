@@ -2,18 +2,18 @@ package com.example.module_video.recommend.adapter
 
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.Constants
+import com.example.common_base.glide.GlideApp
+import com.example.common_base.glide.ProgressImageViewTarget
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
 import com.example.module_video.recommend.bean.VideoInfoBean
-import com.youth.banner.util.LogUtils
 
 
 /**
@@ -33,17 +33,24 @@ class ItemAutoPlayVideoProvider : BaseItemProvider<OpenRecBean>() {
         holder.setText(R.id.tv_title, item.data.detail.title)
         holder.setText(R.id.tv_description, item.data.detail.description)
 
-        Glide.with(holder.itemView)
+        GlideApp.with(holder.itemView)
             .load(item.data.detail.icon)
+            .progress(context)
             .placeholder(R.drawable.img_def)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
-            .into(holder.getView(R.id.iv_author))
+            .into(ProgressImageViewTarget(item.data.detail.icon, holder.getView(R.id.iv_author)))
 
-        Glide.with(holder.itemView)
+        GlideApp.with(holder.itemView)
             .load(item.data.detail.imageUrl)
+            .progress(context)
             .transform(GlideRoundTransform(context))
             .placeholder(R.drawable.img_def)
-            .into(holder.getView(R.id.iv_video_cover))
+            .into(
+                ProgressImageViewTarget(
+                    item.data.detail.imageUrl,
+                    holder.getView(R.id.iv_video_cover)
+                )
+            )
     }
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {

@@ -2,19 +2,19 @@ package com.example.module_video.recommend.adapter
 
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.Constants
+import com.example.common_base.glide.GlideApp
+import com.example.common_base.glide.ProgressImageViewTarget
 import com.example.common_base.util.time
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
 import com.example.module_video.recommend.bean.VideoInfoBean
-import com.youth.banner.util.LogUtils
 
 
 /**
@@ -39,19 +39,26 @@ class ItemFollowCardProvider : BaseItemProvider<OpenRecBean>() {
 
         holder.setText(R.id.tv_video_time, item.data.content.data.duration.time())
 
-        Glide.with(holder.itemView)
+        GlideApp.with(holder.itemView)
             .load(item.data.header.icon)
             .placeholder(R.drawable.img_def)
+            .progress(context)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
-            .into(holder.getView(R.id.iv_author))
+            .into(ProgressImageViewTarget(item.data.header.icon, holder.getView(R.id.iv_author)))
 
-        Glide.with(holder.itemView)
+        GlideApp.with(holder.itemView)
             .load(item.data.content.data.cover.detail)
+            .placeholder(R.drawable.img_def)
             .skipMemoryCache(false)
             .dontAnimate()
             .transform(GlideRoundTransform(context))
-            .placeholder(R.drawable.img_def)
-            .into(holder.getView(R.id.iv_video_cover))
+            .progress(context)
+            .into(
+                ProgressImageViewTarget(
+                    item.data.content.data.cover.detail,
+                    holder.getView(R.id.iv_video_cover)
+                )
+            )
     }
 
     override fun onClick(helper: BaseViewHolder, view: View, data: OpenRecBean, position: Int) {
@@ -71,7 +78,7 @@ class ItemFollowCardProvider : BaseItemProvider<OpenRecBean>() {
                 playerUrl = openRecBean.content.data.playUrl
                 blurredUrl = openRecBean.content.data.cover.blurred
                 videoId = openRecBean.content.data.id
-                coverImg  = openRecBean.content.data.cover.detail
+                coverImg = openRecBean.content.data.cover.detail
             }
 
         ARouter.getInstance()
