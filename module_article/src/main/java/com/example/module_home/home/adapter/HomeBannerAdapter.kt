@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.common_base.widget.GlideRoundTransform
+import com.example.common_base.glide.GlideApp
+import com.example.common_base.glide.ProgressImageViewTarget
 import com.example.module_home.R
 import com.example.module_home.home.bean.BannerBean
 import com.youth.banner.adapter.BannerAdapter
@@ -33,10 +33,10 @@ class HomeBannerAdapter(val context: Context, data: MutableList<BannerBean>?) :
     }
 
     override fun onBindView(holder: ViewHolder?, data: BannerBean?, position: Int, size: Int) {
-        Glide.with(holder!!.itemView)
+        GlideApp.with(holder!!.itemView)
             .load(data!!.imagePath)
             .placeholder(R.drawable.img_def)
-            .transform(GlideRoundTransform(context))
-            .into(holder.imageView)
+            .progress(context)
+            .into(ProgressImageViewTarget(data.imagePath, holder.imageView))
     }
 }

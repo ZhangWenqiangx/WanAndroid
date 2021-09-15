@@ -54,7 +54,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             }
         loginListener = FlutterBoost.instance()
             .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_LOGIN) { _, args ->
-                if(args[FLUTTER_EVENT_TYPE] == FLUTTER_TYPE_LOGIN_OUT){
+                if (args[FLUTTER_EVENT_TYPE] == FLUTTER_TYPE_LOGIN_OUT) {
                     CookieHelper.clearCookie()
                     viewModel.getArticles(isRefresh = true)
                 }
@@ -69,8 +69,8 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             setOnLoadMoreListener { viewModel.getArticles() }
             setEnableLoadMore(true)
             setEnableRefresh(true)
+            autoRefresh()
         }
-        viewModel.getArticles(isRefresh = true)
     }
 
     private fun initRecycler() {
@@ -78,8 +78,11 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             addChildClickViewIds(R.id.iv_home_like)
             setOnItemChildClickListener { _, view, position ->
                 if (view.id == R.id.iv_home_like) {
-                    if(!UserHelper.isLogin()){
-                        ToastUtil.showShortToast(requireContext(),getString(R.string.common_login_first))
+                    if (!UserHelper.isLogin()) {
+                        ToastUtil.showShortToast(
+                            requireContext(),
+                            getString(R.string.common_login_first)
+                        )
                         return@setOnItemChildClickListener
                     }
                     val article = mAdapter.data[position]

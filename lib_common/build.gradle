@@ -54,7 +54,7 @@ dependencies {
 
     implementationDependencies.each { k, v -> api v }
 
-    annotationProcessor compiler['glide-compiler']
+    kapt compiler['glide-compiler']
     kapt compiler['arouter-compiler']
     kapt compiler['room-compiler']
 

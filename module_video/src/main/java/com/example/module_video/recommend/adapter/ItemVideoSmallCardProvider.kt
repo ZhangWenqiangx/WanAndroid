@@ -2,17 +2,17 @@ package com.example.module_video.recommend.adapter
 
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.Constants
+import com.example.common_base.glide.GlideApp
+import com.example.common_base.glide.ProgressImageViewTarget
 import com.example.common_base.util.time
 import com.example.common_base.widget.GlideRoundTransform
 import com.example.module_video.R
 import com.example.module_video.recommend.bean.OpenRecBean
 import com.example.module_video.recommend.bean.VideoInfoBean
-import com.youth.banner.util.LogUtils
 
 
 /**
@@ -33,13 +33,19 @@ class ItemVideoSmallCardProvider(val lightMode: Boolean = false) : BaseItemProvi
         helper.setText(R.id.textView, item.data.author?.name + " / #" + item.data.category)
         helper.setText(R.id.tv_video_time, item.data.duration.time())
 
-        Glide.with(helper.itemView)
+        GlideApp.with(helper.itemView)
             .load(item.data.cover.detail)
-            .transform(GlideRoundTransform(context))
             .placeholder(R.drawable.img_def)
             .skipMemoryCache(false)
             .dontAnimate()
-            .into(helper.getView(R.id.iv_video_cover))
+            .transform(GlideRoundTransform(context))
+            .progress(context)
+            .into(
+                ProgressImageViewTarget(
+                    item.data.cover.detail,
+                    helper.getView(R.id.iv_video_cover)
+                )
+            )
 
         if (lightMode) {
             helper.setTextColor(
@@ -67,7 +73,7 @@ class ItemVideoSmallCardProvider(val lightMode: Boolean = false) : BaseItemProvi
                 playerUrl = openRecBean.playUrl
                 blurredUrl = openRecBean.cover.blurred
                 videoId = openRecBean.id.toInt()
-                coverImg  = openRecBean.cover.detail
+                coverImg = openRecBean.cover.detail
             }
 
         ARouter.getInstance()
