@@ -23,19 +23,30 @@ class OpenEyeViewModel(
         MutableLiveData<MutableList<OpenRecBean>>()
     }
 
+    val recommentMoreDatas: MutableLiveData<MutableList<OpenRecBean>> by lazy {
+        MutableLiveData<MutableList<OpenRecBean>>()
+    }
+
     val recommentListData = mutableListOf<OpenRecBean>()
+    val recommentMoreListDatas = mutableListOf<OpenRecBean>()
 
     fun getRecommendData(isRefresh: Boolean = false) {
         if(isRefresh){
             recommentListData.clear()
+            recommentMoreListDatas.clear()
         }
         launch(tryBlock = {
             repository.getRecommend(isRefresh).let {
                 if (it is BaseResult.Success) {
                     it.data.let { list ->
-                        recommentListData.addAll(list)
+                        if(!isRefresh){
+                            recommentMoreListDatas.addAll(list)
+                            recommentMoreDatas.value = recommentMoreListDatas
+                        }else{
+                            recommentListData.addAll(list)
+                            recommentData.value = recommentListData
+                        }
                     }
-                    recommentData.value = recommentListData
                     mStateLiveData.value = SuccessState
                 }
             }

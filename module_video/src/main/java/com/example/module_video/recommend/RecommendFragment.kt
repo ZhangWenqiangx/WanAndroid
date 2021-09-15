@@ -12,7 +12,6 @@ import com.example.module_video.R
 import com.example.module_video.VideoViewModelFactory
 import com.example.module_video.databinding.FragmentRecommendBinding
 import com.example.module_video.recommend.adapter.RecommendVideoMultiAdapter
-import com.youth.banner.util.LogUtils
 
 /**
  * 视频推荐页
@@ -70,7 +69,11 @@ class RecommendFragment : BaseMvvmFragment<FragmentRecommendBinding, OpenEyeView
         super.addObserver()
 
         viewModel.recommentData.observe(this, {
-            mAdapter?.setList(it)
+            mAdapter?.setNewInstance(it)
+        })
+
+        viewModel.recommentMoreDatas.observe(this, {
+            mAdapter?.addData(it)
         })
 
         viewModel.mStateLiveData.observe(viewLifecycleOwner, {
