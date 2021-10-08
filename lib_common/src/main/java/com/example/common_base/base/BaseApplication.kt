@@ -3,27 +3,29 @@ package com.example.common_base.base
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.os.Debug
 import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.R
+import com.example.common_base.constants.FlutterConstance
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
-import com.example.common_base.performance.BlockPrinter
 import com.example.common_base.hotfix.HotFix
+import com.example.common_base.performance.BlockPrinter
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
+import com.example.common_base.util.CookieHelper
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
+import com.idlefish.flutterboost.EventListener
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.FlutterBoostDelegate
 import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
+import io.flutter.embedding.engine.FlutterEngine
 
 
 /**
@@ -54,19 +56,28 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         sApplication = this
-        initArouter()
-        HotFix.init(this)
-        Looper.getMainLooper()
-            .setMessageLogging(BlockPrinter(applicationContext))
 
+        HotFix.init(this)
+
+        Looper.getMainLooper().setMessageLogging(BlockPrinter(applicationContext))
+
+        initArouter()
+
+        initFlutter()
+
+        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+            .recordingTimeTag("aplication-onCreate-end")
+    }
+
+    private fun initFlutter() {
         FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
             override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
-                if(options.pageName().equals(FLUTTER_PAGE_WEB)){
+                if (options.pageName().equals(FLUTTER_PAGE_WEB)) {
                     val intent = Intent(
                         FlutterBoost.instance().currentActivity(),
                         WebViewActivity::class.java
                     )
-                    intent.putExtra(URL,options.arguments()["url"].toString())
+                    intent.putExtra(URL, options.arguments()["url"].toString())
                     FlutterBoost.instance().currentActivity()
                         .startActivityForResult(intent, options.requestCode())
                 }
@@ -84,10 +95,7 @@ open class BaseApplication : Application() {
                     .build(FlutterBoost.instance().currentActivity())
                 FlutterBoost.instance().currentActivity().startActivity(intent)
             }
-        }) { }
-
-        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
-            .recordingTimeTag("aplication-onCreate-end")
+        }) {}
     }
 
     private fun initArouter() {

@@ -64,12 +64,11 @@ class MainActivity : BaseActivity() {
         }).attach()
 
         for (i in 0 until screenSlidePagerAdapter.itemCount) {
-            val tab: TabLayout.Tab? = main_tablayout.getTabAt(i)
-            tab?.run {
-                this.setCustomView(R.layout.main_tab_item)
-                this.customView!!.findViewById<ImageView>(R.id.main_iv_icon)
+            main_tablayout.getTabAt(i)?.run {
+                setCustomView(R.layout.main_tab_item)
+                customView!!.findViewById<ImageView>(R.id.main_iv_icon)
                     .setBackgroundResource(if (i == 0) tabList[i].tabSelectedIcon else tabList[i].tabUnSelectedIcon)
-                (tab.customView!!.findViewById<View>(R.id.main_tv_title) as TextView).text =
+                (customView!!.findViewById<View>(R.id.main_tv_title) as TextView).text =
                     tabList[i].tabTitle
             }
         }

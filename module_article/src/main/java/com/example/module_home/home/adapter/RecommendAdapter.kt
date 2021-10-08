@@ -6,12 +6,14 @@ import android.text.TextUtils
 import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DiffUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.module_home.R
 import com.example.module_home.home.bean.Article
+import com.example.module_home.home.bean.ArticleItemDiffCallBack
 
 /**
  * @describe :
@@ -64,5 +66,12 @@ class RecommendAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHol
                     }
                 });
         }
+    }
+
+    fun setData(datas: List<Article>){
+        val diff = DiffUtil.calculateDiff(ArticleItemDiffCallBack(data, datas))
+        diff.dispatchUpdatesTo(this)
+        data.clear()
+        data.addAll(datas)
     }
 }
