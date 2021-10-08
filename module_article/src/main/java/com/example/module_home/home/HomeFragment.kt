@@ -113,7 +113,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
     override fun addObserver() {
         super.addObserver()
         viewModel.articleData.observe(viewLifecycleOwner, {
-            mAdapter.setList(it)
+            mAdapter.setData(it)
         })
 
         viewModel.mStateLiveData.observe(viewLifecycleOwner, {
