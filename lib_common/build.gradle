@@ -49,6 +49,7 @@ def compiler = rootProject.ext.compiler
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':flutter')
+    api project(':lib_trace')
     api project(':flutter_boost')
     api project(':lib_banner')
 

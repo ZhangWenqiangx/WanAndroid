@@ -13,6 +13,7 @@ import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
+import com.example.lib_trace.Trace
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.FlutterBoostDelegate
 import com.idlefish.flutterboost.FlutterBoostRouteOptions
@@ -51,13 +52,15 @@ open class BaseApplication : Application() {
         super.onCreate()
         sApplication = this
 
+        Trace().init(this)
+
         HotFix.init(this)
 
         initArouter()
 
         initFlutter()
 
-        TimeMonitorManager.initBlock(applicationContext)
+//        TimeMonitorManager.initBlock(applicationContext)
 
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("aplication-onCreate-end")

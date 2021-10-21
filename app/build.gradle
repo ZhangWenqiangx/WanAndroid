@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'trace-method-plugin'
+
+traceConfig {
+    open = true
+    logTraceInfo = true
+    traceConfigFile = "${project.rootDir}/traceconfig.txt"
+}
 
 static def getGitBranch() {
     return 'git symbolic-ref --short -q HEAD'.execute().text.trim()
