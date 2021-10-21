@@ -3,21 +3,17 @@ package com.example.common_base.base
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.os.Debug
-import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common_base.BuildConfig
 import com.example.common_base.R
-import com.example.common_base.constants.FlutterConstance
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
 import com.example.common_base.hotfix.HotFix
-import com.example.common_base.performance.BlockPrinter
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
-import com.example.common_base.util.CookieHelper
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
-import com.idlefish.flutterboost.EventListener
+import com.example.lib_trace.Trace
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.FlutterBoostDelegate
 import com.idlefish.flutterboost.FlutterBoostRouteOptions
@@ -25,7 +21,6 @@ import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
-import io.flutter.embedding.engine.FlutterEngine
 
 
 /**
@@ -57,13 +52,15 @@ open class BaseApplication : Application() {
         super.onCreate()
         sApplication = this
 
-        HotFix.init(this)
+        Trace().init(this)
 
-        Looper.getMainLooper().setMessageLogging(BlockPrinter(applicationContext))
+        HotFix.init(this)
 
         initArouter()
 
         initFlutter()
+
+//        TimeMonitorManager.initBlock(applicationContext)
 
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("aplication-onCreate-end")
@@ -106,5 +103,5 @@ open class BaseApplication : Application() {
         ARouter.init(this)
     }
 
-    private fun isDebug(): Boolean = true
+    private fun isDebug(): Boolean = BuildConfig.DEBUG
 }

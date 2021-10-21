@@ -11,27 +11,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 /**
  *  @author : zhang.wenqiang
  *  @date : 2021/5/24
- *  description :
+ *  description :dump堆栈线程
  */
-class StackInfoCatcher(val mContext: Context) : Thread() {
+class StackInfoCatcher(private val mContext: Context) : Thread() {
     private var stop = false
     private var mLastTime: Long = 0
     private val mList: MutableList<StackTraceInfo> = ArrayList(SIZE)
     private val mBroadcastReceiver: BroadcastReceiver
-
-    private fun getInfoByTime(endTime: Long, startTime: Long): StackTraceInfo? {
-        for (info in mList) {
-            if (info.mTime in startTime..endTime) {
-                return info
-            }
-        }
-        return null
-    }
-
-    fun stopTrace() {
-        stop = true
-        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mBroadcastReceiver)
-    }
 
     override fun run() {
         super.run()
@@ -51,6 +37,15 @@ class StackInfoCatcher(val mContext: Context) : Thread() {
         }
     }
 
+    private fun getInfoByTime(endTime: Long, startTime: Long): StackTraceInfo? {
+        for (info in mList) {
+            if (info.mTime in startTime..endTime) {
+                return info
+            }
+        }
+        return null
+    }
+
     private fun stackTraceToString(elements: Array<StackTraceElement>?): String {
         val result = StringBuilder()
         if (null != elements && elements.isNotEmpty()) {
@@ -61,6 +56,11 @@ class StackInfoCatcher(val mContext: Context) : Thread() {
             }
         }
         return result.toString()
+    }
+
+    fun stopTrace() {
+        stop = true
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mBroadcastReceiver)
     }
 
     private inner class StackTraceInfo {
@@ -81,7 +81,7 @@ class StackInfoCatcher(val mContext: Context) : Thread() {
                 val startTime = intent.getLongExtra("start", 0)
                 val info = getInfoByTime(endTime, startTime)
                 if (null != info) {
-                    Log.e(TAG, "find block line" + (endTime - startTime))
+                    Log.e(TAG, "find block,use time ->" + (endTime - startTime) + "ms")
                     Log.e(TAG, info.mLog.toString())
                 } else {
                     Log.e(TAG, "no block line find")

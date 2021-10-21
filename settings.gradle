@@ -1,6 +1,8 @@
 include ':lib_banner'
 include ':module_article'
 include ':app', ':lib_common', ':module_video', ':module_main', ':module_mine'
+include ':lib_trace'
+include ':gradle-plugin'
 
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
@@ -65,8 +67,8 @@ gradle.taskGraph.beforeTask { task ->
     }
 }
 gradle.buildFinished {
-    println '执行阶段，耗时：' + (System.currentTimeMillis() -
-            beginOfProjectExcute) + 'ms'
+//    println '执行阶段，耗时：' + (System.currentTimeMillis() -
+//            beginOfProjectExcute) + 'ms'
 }
 
 include ':my_flutter'

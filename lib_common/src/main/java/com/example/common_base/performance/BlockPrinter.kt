@@ -3,6 +3,7 @@ package com.example.common_base.performance
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.util.Log
 import android.util.Printer
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
@@ -11,11 +12,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
  *  @date : 2021/5/24
  *  description :检测 mainlooper 是否间隔大于16后处理事件
  */
-class BlockPrinter constructor(context: Context) : Printer {
+class BlockPrinter constructor(private val mContext: Context) : Printer {
     private var mFinishTimeMillis: Long = 0
     private var mStartTimeMillis: Long = 0
-    private val stackInfoCatcher: StackInfoCatcher = StackInfoCatcher(context)
-    private val mContext: Context = context
+    private val stackInfoCatcher: StackInfoCatcher = StackInfoCatcher(mContext)
 
     override fun println(x: String) {
         when (isStart(x)) {

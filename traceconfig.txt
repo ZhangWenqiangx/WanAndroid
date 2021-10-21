@@ -1,0 +1,15 @@
+#需插桩的包,空,默认所有文件
+-tracepackage com/example/android_kt_wandroid
+-tracepackage com/example/common_base
+-tracepackage com/example/module_home
+-tracepackage com/example/module_usercenter
+-tracepackage com/example/module_video
+
+#无需插桩的包
+-keeppackage com/example/lib_trace
+
+#无需插桩的类
+#-keepclass com/example/android_kt_wandroid/MainActivity
+
+#插桩代码所在类
+-beatclass com/example/lib_trace/core/TraceBeat
