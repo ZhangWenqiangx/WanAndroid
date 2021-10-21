@@ -9,7 +9,7 @@ import com.example.module_home.search.bean.SearchEntity
  *  @date : 2020/12/9
  *  description :
  */
-@Database(entities = [SearchEntity::class], version = 1)
+@Database(entities = [SearchEntity::class], version = 1,exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun searchDao(): SearchDao
 }
