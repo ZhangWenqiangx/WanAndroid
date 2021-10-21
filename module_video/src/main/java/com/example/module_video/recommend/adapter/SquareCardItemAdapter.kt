@@ -27,7 +27,7 @@ class SquareCardItemAdapter(
         holder.setText(R.id.tv_title, item.data.header.title)
         holder.setText(
             R.id.tv_description,
-            item.data.content.data.author.name + " / #" +
+            item.data.content.data.author?.name + " / #" +
                     item.data.content.data.category
         )
 
