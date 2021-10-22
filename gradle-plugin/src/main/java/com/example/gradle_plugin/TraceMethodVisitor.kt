@@ -39,7 +39,7 @@ class TraceMethodVisitor(
             false
         )
         if (traceConfig.mIsNeedLogTraceInfo) {
-            println("MethodTrace-trace-method: ${methodName ?: "未知"}")
+            println("MethodTrace-trace-method: ${methodName ?: "unknown"}")
         }
     }
 
