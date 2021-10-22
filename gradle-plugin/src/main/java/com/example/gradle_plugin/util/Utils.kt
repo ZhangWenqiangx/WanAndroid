@@ -1,4 +1,4 @@
-package com.example.gradle_plugin
+package com.example.gradle_plugin.util
 
 import java.io.*
 import java.util.ArrayList
