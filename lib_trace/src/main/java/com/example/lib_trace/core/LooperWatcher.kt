@@ -8,7 +8,7 @@ import java.util.*
  *  @author : zhang.wenqiang
  *  @date : 2021/5/24
  */
-class BlockPrinter : Printer {
+class LooperWatcher : Printer {
     private var mFinishTimeMillis: Long = 0
     private var mStartTimeMillis: Long = 0
     private var isValid = false
