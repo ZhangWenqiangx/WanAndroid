@@ -62,12 +62,9 @@ public class MethodInfo {
 
     @Override
     public String toString() {
-        return "MethodInfo{" +
-                "name='" + name + '\'' +
-                ", costTime=" + costTime +
-                ", startPos=" + startPos +
-                ", endPos=" + endPos +
-                ", isMainThread=" + isMainThread +
-                '}';
+        return "name:'" + name + '\'' +
+                ", cost:" + costTime + "ms" +
+                ", start/end index:" + startPos + "/" + endPos +
+                ", ui thread:" + isMainThread;
     }
 }

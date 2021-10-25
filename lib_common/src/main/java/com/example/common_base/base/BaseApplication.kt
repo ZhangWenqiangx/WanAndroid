@@ -14,6 +14,7 @@ import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.example.lib_trace.Trace
+import com.example.lib_trace.listeners.LogReporter
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.FlutterBoostDelegate
 import com.idlefish.flutterboost.FlutterBoostRouteOptions
@@ -52,7 +53,11 @@ open class BaseApplication : Application() {
         super.onCreate()
         sApplication = this
 
-        Trace().init(this)
+        val trace = Trace.Builder(this)
+            .logReporter(EvilLogReporter())
+            .enableEvil(enable = true)
+            .build()
+        trace.start()
 
         HotFix.init(this)
 
@@ -61,9 +66,15 @@ open class BaseApplication : Application() {
         initFlutter()
 
 //        TimeMonitorManager.initBlock(applicationContext)
+//
+//        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+//            .recordingTimeTag("aplication-onCreate-end")
+    }
 
-        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
-            .recordingTimeTag("aplication-onCreate-end")
+    private class EvilLogReporter : LogReporter {
+        override fun report(json: String) {
+
+        }
     }
 
     private fun initFlutter() {

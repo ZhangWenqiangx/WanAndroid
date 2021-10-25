@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Looper
-import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.youth.banner.util.LogUtils
 
 /**
  *  @author : zhang.wenqiang
@@ -69,7 +69,7 @@ class StackInfoCatcher(private val mContext: Context) : Thread() {
     }
 
     companion object {
-        private const val TAG = "--99788---Block-----"
+        private const val TAG = "StackInfoCatcher"
         private const val SIZE = 1024
     }
 
@@ -81,10 +81,10 @@ class StackInfoCatcher(private val mContext: Context) : Thread() {
                 val startTime = intent.getLongExtra("start", 0)
                 val info = getInfoByTime(endTime, startTime)
                 if (null != info) {
-                    Log.e(TAG, "find block,use time ->" + (endTime - startTime) + "ms")
-                    Log.e(TAG, info.mLog.toString())
+                    LogUtils.e(TAG, "find block,use time ->" + (endTime - startTime) + "ms")
+                    LogUtils.e(TAG, info.mLog.toString())
                 } else {
-                    Log.e(TAG, "no block line find")
+                    LogUtils.e(TAG, "no block line find")
                 }
             }
         }

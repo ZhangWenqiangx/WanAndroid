@@ -1,8 +1,9 @@
-package com.youth.banner.util;
+package com.example.lib_trace.util;
 
 import android.util.Log;
 
-import com.youth.banner.BuildConfig;
+import com.example.lib_trace.BuildConfig;
+
 
 public class LogUtils {
     public static final String TAG = "99788";

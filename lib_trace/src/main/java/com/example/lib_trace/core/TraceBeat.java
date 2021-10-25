@@ -15,13 +15,6 @@ import java.util.List;
 /**
  * author : zhang.wenqiang
  * date : 2021/10/13
- * description :
- * 1.method in  invoke start record method info(name,curtime,type,mainThread)
- * 2.method out invoke end record method info
- * 3.start collect sign flag true
- * 4.end collect sign flag false and dump List<Entity> methodList data
- * todo - always collect methodList and index a flag when start,at end invoke get the method over a period of time
- * todo 1.# 2.# 3.帧率检测 4.# 5.慢方法上传 6.set/get/return ignore
  */
 public class TraceBeat {
 
