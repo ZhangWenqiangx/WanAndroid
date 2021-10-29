@@ -3,7 +3,6 @@ package com.example.module_home
 import android.content.Intent
 import android.content.res.Resources
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,7 +12,6 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
-import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_home.composite.CompositeFragment
 import com.example.module_home.databinding.ArticleFragmentHomeBinding
 import com.example.module_home.home.ArticleViewModel
@@ -21,7 +19,7 @@ import com.example.module_home.home.HomeFragment
 import com.example.module_home.home.adapter.HomeBannerAdapter
 import com.example.module_home.home.bean.BannerBean
 import com.example.module_home.search.SearchActivity
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.RectangleIndicator
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -45,12 +43,9 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
             override fun createFragment(position: Int) = fragments[position]
         }
 
-        TabLayoutMediator(tab_layout, pager, object :
-            TabLayoutMediator.OnConfigureTabCallback {
-            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                tab?.text = titles[position]
-            }
-        }).attach()
+        TabLayoutMediator(tab_layout, pager) { tab, position ->
+            tab.text = titles[position]
+        }.attach()
 
         viewDataBinding.searchInput.apply {
             queryHint = getString(R.string.str_input_key)

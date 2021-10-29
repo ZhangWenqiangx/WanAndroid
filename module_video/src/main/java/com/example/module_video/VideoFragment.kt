@@ -8,10 +8,9 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.BaseViewModel
 import com.example.common_base.constants.AConstance
-import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_video.databinding.FragmentVideoBinding
 import com.example.module_video.recommend.RecommendFragment
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_video.*
 
 /**
@@ -43,12 +42,9 @@ class VideoFragment : BaseMvvmFragment<FragmentVideoBinding, BaseViewModel>() {
             override fun createFragment(position: Int) = fragments[position]
         }
 
-        TabLayoutMediator(tab_layout, viewDataBinding.pager, object :
-            TabLayoutMediator.OnConfigureTabCallback {
-            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                tab?.text = titles[position]
-            }
-        }).attach()
+        TabLayoutMediator(tab_layout, pager) { tab, position ->
+            tab.text = titles[position]
+        }.attach()
     }
 
     override fun getLayoutResId(): Int =

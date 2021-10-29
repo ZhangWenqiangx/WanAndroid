@@ -15,9 +15,9 @@ import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_COO
 import com.example.common_base.constants.FlutterConstance.TO_FLUTTER_EVENT_COOKIE
 import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.StatusBarUtil
-import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_main.R
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.idlefish.flutterboost.EventListener
 import com.idlefish.flutterboost.FlutterBoost
 import com.idlefish.flutterboost.ListenerRemover
@@ -56,12 +56,9 @@ class MainActivity : BaseActivity() {
         val screenSlidePagerAdapter = ScreenSlidePagerAdapter(this)
         viewPager.adapter = screenSlidePagerAdapter
 
-        TabLayoutMediator(main_tablayout, viewPager, object :
-            TabLayoutMediator.OnConfigureTabCallback {
-            override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                tab?.text = tabList[position].tabTitle
-            }
-        }).attach()
+        TabLayoutMediator(main_tablayout, viewPager) { tab, position ->
+            tab.text = tabList[position].tabTitle
+        }.attach()
 
         for (i in 0 until screenSlidePagerAdapter.itemCount) {
             main_tablayout.getTabAt(i)?.run {
