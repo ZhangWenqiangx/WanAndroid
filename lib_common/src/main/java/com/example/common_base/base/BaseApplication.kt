@@ -10,6 +10,7 @@ import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
 import com.example.common_base.hotfix.HotFix
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
+import com.example.common_base.util.GlobalThreadPools
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
@@ -59,16 +60,17 @@ open class BaseApplication : Application() {
             .build()
         trace.start()
 
-        HotFix.init(this)
-
-        initArouter()
+        GlobalThreadPools.execute {
+            initArouter()
+            HotFix.init(this)
+        }
 
         initFlutter()
 
 //        TimeMonitorManager.initBlock(applicationContext)
-//
-//        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
-//            .recordingTimeTag("aplication-onCreate-end")
+
+        TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
+            .recordingTimeTag("aplication-onCreate-end")
     }
 
     private class EvilLogReporter : LogReporter {
@@ -108,8 +110,8 @@ open class BaseApplication : Application() {
 
     private fun initArouter() {
         if (isDebug()) {
-            ARouter.openLog()
-            ARouter.openDebug()
+//            ARouter.openLog()
+//            ARouter.openDebug()
         }
         ARouter.init(this)
     }
