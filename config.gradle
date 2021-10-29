@@ -17,6 +17,7 @@ ext {
 
     dependencies = [
             "aspectj"                : "org.aspectj:aspectjrt:1.8.9",
+            "lottie"                 : "com.airbnb.android:lottie:4.2.0",
             "arouter-api"            : "com.alibaba:arouter-api:1.5.2",
             "adapter-rxjava"         : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
             "brv"                    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
