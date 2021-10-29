@@ -15,7 +15,7 @@ import com.example.lib_trace.util.TraceHandlerThread
 class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserver {
 
     companion object {
-        val TAG = this::class.java.simpleName
+        val TAG = EvilMethodTracer::class.java.simpleName
         val MARK = "EvilMethodTrace#dispatchBegin"
         val DURATION = 16
     }

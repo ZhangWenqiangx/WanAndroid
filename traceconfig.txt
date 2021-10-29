@@ -1,12 +1,22 @@
 #需插桩的包,空,默认所有文件
--tracepackage com/example/android_kt_wandroid
--tracepackage com/example/common_base
--tracepackage com/example/module_home
--tracepackage com/example/module_usercenter
--tracepackage com/example/module_video
+#-tracepackage com/example/android_kt_wandroid
+#-tracepackage com/example/common_base
+#-tracepackage com/example/module_home
+#-tracepackage com/example/module_usercenter
+#-tracepackage com/example/module_video
+#-tracepackage com/example/lib_banner
+#-tracepackage com/example/lib_common
+#-tracepackage com/example/module_article
+#-tracepackage com/example/module_main
 
 #无需插桩的包
 -keeppackage com/example/lib_trace
+-keeppackage com/example/module_home/home/bean
+-keeppackage com/example/module_home/search/bean
+-keeppackage com/example/module_home/composite/bean
+-keeppackage com/example/module_usercenter/bean
+-keeppackage com/example/module_video/recommend/bean
+-keeppackage com/example/module_video/videoDetail/bean
 
 #无需插桩的类
 #-keepclass com/example/android_kt_wandroid/MainActivity
