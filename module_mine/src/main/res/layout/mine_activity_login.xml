@@ -18,7 +18,6 @@
 
     <LinearLayout
             android:layout_marginTop="@dimen/dp_120"
-            android:id="@+id/ll_wel_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_20"
@@ -35,8 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_input_layout"
-        android:layout_width="match_parent"
+            android:layout_width="match_parent"
         android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonHorizontalMargin"
         android:layout_marginTop="40dp"

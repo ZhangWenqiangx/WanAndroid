@@ -14,6 +14,7 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_COOKIE
 import com.example.common_base.constants.FlutterConstance.TO_FLUTTER_EVENT_COOKIE
 import com.example.common_base.util.CookieHelper
+import com.example.common_base.util.GlobalThreadPools
 import com.example.common_base.util.StatusBarUtil
 import com.example.module_main.R
 import com.google.android.material.tabs.TabLayout
@@ -45,7 +46,8 @@ class MainActivity : BaseActivity() {
 
     private fun initFlutterEvent() {
         val listener = EventListener { _, _ ->
-            FlutterBoost.instance().sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
+            FlutterBoost.instance()
+                .sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
         }
         remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_COOKIE, listener)
     }
@@ -70,8 +72,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        main_tablayout.addOnTabSelectedListener(object :
-            TabLayout.BaseOnTabSelectedListener<TabLayout.Tab> {
+        main_tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
 
             }

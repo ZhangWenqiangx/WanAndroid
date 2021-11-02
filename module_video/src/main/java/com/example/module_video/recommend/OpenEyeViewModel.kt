@@ -39,12 +39,14 @@ class OpenEyeViewModel(
             repository.getRecommend(isRefresh).let {
                 if (it is BaseResult.Success) {
                     it.data.let { list ->
-                        if(!isRefresh){
-                            recommentMoreListDatas.addAll(list)
-                            recommentMoreDatas.value = recommentMoreListDatas
-                        }else{
-                            recommentListData.addAll(list)
-                            recommentData.value = recommentListData
+                        list?.let {
+                            if(!isRefresh){
+                                recommentMoreListDatas.addAll(list)
+                                recommentMoreDatas.value = recommentMoreListDatas
+                            }else{
+                                recommentListData.addAll(list)
+                                recommentData.value = recommentListData
+                            }
                         }
                     }
                     mStateLiveData.value = SuccessState

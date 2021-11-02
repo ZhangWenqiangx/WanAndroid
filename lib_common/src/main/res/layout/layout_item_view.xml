@@ -18,8 +18,7 @@
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dp_12"
-                tools:src="@drawable/test" />
+                android:layout_marginLeft="@dimen/dp_12" />
 
         <TextView
                 android:id="@+id/tv_item_title"

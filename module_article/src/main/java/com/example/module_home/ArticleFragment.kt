@@ -2,8 +2,12 @@ package com.example.module_home
 
 import android.content.Intent
 import android.content.res.Resources
+import android.os.Build
+import android.os.Debug
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -12,6 +16,7 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
+import com.example.lib_trace.util.LogUtils
 import com.example.module_home.composite.CompositeFragment
 import com.example.module_home.databinding.ArticleFragmentHomeBinding
 import com.example.module_home.home.ArticleViewModel
@@ -32,9 +37,17 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
     private val fragments: MutableList<Fragment> = mutableListOf()
     private val titles: MutableList<String> = mutableListOf("首页", "综合")
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun initView(view: View?) {
         fragments.add(HomeFragment())
         fragments.add(CompositeFragment())
+
+        // GC使用的总耗时，单位是毫秒
+        val runtimeStat = Debug.getRuntimeStat("art.gc.gc-time")
+        // 阻塞式GC的总耗时
+        val runtimeStat1 = Debug.getRuntimeStat("art.gc.blocking-gc-time")
+
+        Log.d("99788", "GC使用的总耗时:$runtimeStat /阻塞式GC的总耗时:$runtimeStat1")
 
         pager.adapter = object :
             FragmentStateAdapter(requireActivity().supportFragmentManager, lifecycle) {

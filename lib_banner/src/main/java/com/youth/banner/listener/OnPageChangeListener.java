@@ -28,9 +28,6 @@ public interface OnPageChangeListener {
      * Called when the scroll state changes. Useful for discovering when the user begins
      * dragging, when a fake drag is started, when the pager is automatically settling to the
      * current page, or when it is fully stopped/idle. {@code state} can be one of
-     * {@link ViewPager2.SCROLL_STATE_IDLE},
-     * {@link ViewPager2.SCROLL_STATE_DRAGGING},
-     * {@link ViewPager2.SCROLL_STATE_SETTLING}.
      */
     void onPageScrollStateChanged(@ViewPager2.ScrollState int state);
 }
