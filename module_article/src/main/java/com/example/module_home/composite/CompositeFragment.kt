@@ -1,14 +1,12 @@
 package com.example.module_home.composite
 
-import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
-import com.example.common_base.widget.TabLayoutMediator
 import com.example.module_home.ArticleViewModelFactory
 import com.example.module_home.R
 import com.example.module_home.databinding.FragmentCompositeBinding
 import com.example.module_home.home.ArticleViewModel
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_composite.*
 
 /**
@@ -28,20 +26,16 @@ class CompositeFragment : BaseMvvmFragment<FragmentCompositeBinding, ArticleView
             pager.offscreenPageLimit = it.size
 
             pager.adapter = object :
-                FragmentStateAdapter(requireActivity().supportFragmentManager,lifecycle) {
+                FragmentStateAdapter(requireActivity().supportFragmentManager, lifecycle) {
                 override fun getItemCount(): Int = it.size
 
                 override fun createFragment(position: Int) =
                     CompositePageFragment.newInstance(it[position].id)
             }
 
-            TabLayoutMediator(tab_layout, pager,
-                object :
-                    TabLayoutMediator.OnConfigureTabCallback {
-                    override fun onConfigureTab(tab: TabLayout.Tab?, position: Int) {
-                        tab?.text = it[position].name
-                    }
-                }).attach()
+            TabLayoutMediator(tab_layout, pager) { tab, position ->
+                tab.text = it[position].name
+            }.attach()
 
         })
     }

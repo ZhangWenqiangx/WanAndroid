@@ -13,7 +13,7 @@ interface OpenEyeRepository {
     /**
      * 推荐页 获取推荐视频
      */
-    suspend fun getRecommend(isRefresh: Boolean): BaseResult<MutableList<OpenRecBean>>
+    suspend fun getRecommend(isRefresh: Boolean): BaseResult<MutableList<OpenRecBean>?>
 
     /**
      * 获取相关视频

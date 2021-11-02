@@ -31,11 +31,11 @@ android {
         }
         release {
             //清理无效资源 指id强引用
-            shrinkResources false
+//            shrinkResources false
             //代码混淆
-            minifyEnabled false
+//            minifyEnabled false
             //混淆文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 

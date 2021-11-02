@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
-        android:id="@+id/video_parent_reply"
         android:background="@drawable/common_shape_video_trans30_bg"
         android:padding="@dimen/dp_10">
 

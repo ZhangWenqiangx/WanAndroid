@@ -25,24 +25,23 @@ class SplashActivity : BaseActivity() {
         val animate = findViewById<LottieAnimationView>(R.id.animate_view)
         animate.apply {
             setAnimation("c.json")
+            addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator?) {
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    toMainPage()
+                    overridePendingTransition(R.anim.translate_in, R.anim.translate_out)
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+            })
             playAnimation()
         }
-        animate.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator?) {
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
-                toMainPage()
-                overridePendingTransition(R.anim.translate_in, R.anim.translate_out)
-            }
-
-            override fun onAnimationCancel(animation: Animator?) {
-            }
-
-            override fun onAnimationRepeat(animation: Animator?) {
-            }
-
-        })
     }
 
     private fun toMainPage() {
