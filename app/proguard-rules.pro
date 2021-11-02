@@ -54,23 +54,6 @@
  # 包含有类名->混淆后类名的映射关系
 -verbose
 
-# ----------------------------- eventbus -----------------------------
--keepattributes *Annotation*
--keepclassmembers class * {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
-
-# And if you use AsyncExecutor:
--keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
-    <init>(java.lang.Throwable);
-}
-# ----------------------------- arouter -----------------------------
--keep public class com.alibaba.android.arouter.routes.**{*;}
--keep public class com.alibaba.android.arouter.facade.**{*;}
--keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
--keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
-
 # ----------------------------- 默认保留 -----------------------------
 # 保持哪些类不被混淆
 #继承activity,application,service,broadcastReceiver,contentprovider....不进行混淆
@@ -181,6 +164,9 @@
 -keep class com.example.module_usercenter.bean.** { *; }
 -keep class com.example.module_video.recommend.bean.** { *; }
 -keep class com.example.module_video.videoDetail.bean.** { *; }
+-keep class com.example.module_video.data.** { *; }
+-keep class com.example.common_base.base.data.** { *; }
+-keep class com.example.common_base.base.viewmodel.** { *; }
 #
 # ----------------------------- 其他的 -----------------------------
 #
@@ -211,5 +197,30 @@
 -keep class com.google.gson.**{*;}
 -keep interface com.google.gson.**{*;}
 
+# ----------------------------- eventbus -----------------------------
+-keepattributes *Annotation*
+-keepclassmembers class * {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
 
-
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
+# ----------------------------- arouter -----------------------------
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+-keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
+# ----------------------------- glide -----------------------------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+ <init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+  *** rewind();
+}
