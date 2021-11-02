@@ -16,7 +16,6 @@ import com.example.common_base.constants.AConstance
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.web.WebViewActivity
-import com.example.lib_trace.util.LogUtils
 import com.example.module_home.composite.CompositeFragment
 import com.example.module_home.databinding.ArticleFragmentHomeBinding
 import com.example.module_home.home.ArticleViewModel
@@ -26,7 +25,7 @@ import com.example.module_home.home.bean.BannerBean
 import com.example.module_home.search.SearchActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.RectangleIndicator
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.article_fragment_home.*
 
 /**
  * Home页
