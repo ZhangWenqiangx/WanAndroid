@@ -5,6 +5,7 @@ import android.os.Looper
 import com.example.lib_trace.core.LooperWatcher
 import com.example.lib_trace.listeners.LogReporter
 import com.example.lib_trace.listeners.LooperObserver
+import com.example.lib_trace.tracer.AnrTracer
 import com.example.lib_trace.tracer.EvilMethodTracer
 
 /**
@@ -13,10 +14,17 @@ import com.example.lib_trace.tracer.EvilMethodTracer
  *  description :
  */
 class Trace(builder: Builder) {
-    val app:Application = builder.application
-    private var observers: List<LooperObserver> = builder.observers
 
+    private var observers: List<LooperObserver> = builder.observers
     private val looperWatcher: LooperWatcher = LooperWatcher()
+
+    companion object {
+        var sApp: Application ?= null
+    }
+
+    init {
+        sApp = builder.application
+    }
 
     fun start() {
         observers.forEach {
@@ -39,6 +47,12 @@ class Trace(builder: Builder) {
         fun enableEvil(enable: Boolean): Builder {
             if (enable)
                 observers.add(EvilMethodTracer(logReporter))
+            return this
+        }
+
+        fun enableAnr(enable: Boolean): Builder {
+            if (enable)
+                observers.add(AnrTracer(logReporter))
             return this
         }
 

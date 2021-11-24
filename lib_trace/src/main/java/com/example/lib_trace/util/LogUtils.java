@@ -1,48 +1,113 @@
 package com.example.lib_trace.util;
 
-import android.util.Log;
-
-import com.example.lib_trace.BuildConfig;
-
 
 public class LogUtils {
-    public static final String TAG = "99788";
+    private static TraceLogImp debugLog = new TraceLogImp() {
 
-    private static final boolean DEBUG = BuildConfig.DEBUG;
+        @Override
+        public void v(final String tag, final String format, final Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            android.util.Log.v(tag, log);
+        }
 
-    public static void d(String msg) {
-        if (DEBUG) {
-            Log.d(TAG, msg);
+        @Override
+        public void i(final String tag, final String format, final Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            android.util.Log.i(tag, log);
+
+        }
+
+        @Override
+        public void d(final String tag, final String format, final Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            android.util.Log.d(tag, log);
+        }
+
+        @Override
+        public void w(final String tag, final String format, final Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            android.util.Log.w(tag, log);
+        }
+
+        @Override
+        public void e(final String tag, final String format, final Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            android.util.Log.e(tag, log);
+        }
+
+        @Override
+        public void printErrStackTrace(String tag, Throwable tr, String format, Object... params) {
+            String log = (params == null || params.length == 0) ? format : String.format(format, params);
+            if (log == null) {
+                log = "";
+            }
+            log += "  " + android.util.Log.getStackTraceString(tr);
+            android.util.Log.e(tag, log);
+        }
+    };
+
+    private static TraceLogImp matrixLogImp = debugLog;
+
+    private LogUtils() {
+    }
+
+    public static TraceLogImp getMatrixLogImp() {
+        return matrixLogImp;
+    }
+
+    public static void setMatrixLogImp(TraceLogImp matrixLogImp) {
+        LogUtils.matrixLogImp = matrixLogImp;
+    }
+
+    public static void v(final String tag, final String msg, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.v(tag, msg, obj);
         }
     }
 
-    public static void e(String msg) {
-        if (DEBUG) {
-            Log.e(TAG, msg);
+    public static void e(final String tag, final String msg, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.e(tag, msg, obj);
         }
     }
 
-    public static void i(String msg) {
-        if (DEBUG) {
-            Log.i(TAG, msg);
+    public static void w(final String tag, final String msg, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.w(tag, msg, obj);
         }
     }
 
-    public static void v(String msg) {
-        if (DEBUG) {
-            Log.v(TAG, msg);
+    public static void i(final String tag, final String msg, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.i(tag, msg, obj);
         }
     }
 
-    public static void w(String msg) {
-        if (DEBUG) {
-            Log.w(TAG, msg);
+    public static void d(final String tag, final String msg, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.d(tag, msg, obj);
         }
     }
 
-    public static void e(String tag, String msg) {
-        if (DEBUG) {
-            Log.d(tag, msg);
+    public static void printErrStackTrace(String tag, Throwable tr, final String format, final Object... obj) {
+        if (matrixLogImp != null) {
+            matrixLogImp.printErrStackTrace(tag, tr, format, obj);
         }
+    }
+
+    public interface TraceLogImp {
+
+        void v(final String tag, final String msg, final Object... obj);
+
+        void i(final String tag, final String msg, final Object... obj);
+
+        void w(final String tag, final String msg, final Object... obj);
+
+        void d(final String tag, final String msg, final Object... obj);
+
+        void e(final String tag, final String msg, final Object... obj);
+
+        void printErrStackTrace(String tag, Throwable tr, final String format, final Object... obj);
+
     }
 }

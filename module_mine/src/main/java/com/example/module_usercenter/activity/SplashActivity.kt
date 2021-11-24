@@ -6,6 +6,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.BaseActivity
 import com.example.common_base.constants.AConstance
+import com.example.common_base.util.YearUtil
+import com.example.common_base.util.YearUtil.CLASS_2016
 import com.example.module_usercenter.R
 import kotlin.random.Random
 
@@ -14,7 +16,7 @@ class SplashActivity : BaseActivity() {
     override fun getLayoutResId(): Int = R.layout.activity_splash
 
     override fun initView() {
-        if (Random.nextBoolean()) {
+        if (Random.nextBoolean() && YearUtil[applicationContext] > CLASS_2016) {
             playAnimation()
         } else {
             toMainPage()
