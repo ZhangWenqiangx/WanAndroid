@@ -1,16 +1,19 @@
 package com.example.lib_trace.tracer
 
-import com.example.lib_trace.bean.MethodInfo
 import com.example.lib_trace.core.TraceBeat
 import com.example.lib_trace.listeners.LogReporter
 import com.example.lib_trace.listeners.LooperObserver
 import com.example.lib_trace.util.LogUtils
 import com.example.lib_trace.util.TraceHandlerThread
+import com.example.lib_trace.util.Utils.stackTraceToString
 
 /**
  *  author : zhang.wenqiang
  *  date : 2021/10/19
- *  description : 慢方法监控 检测每次dispatchMsg期间的超时方法
+ *  description : 慢方法监控
+ *  1. begin record index method
+ *  2. end check cost
+ *  3. collect trace data by index
  */
 class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserver {
 
@@ -27,7 +30,7 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
         TraceBeat.resetTraceData()
     }
 
-    override fun dispatchBegin(beginNs: Long) {
+    override fun dispatchBegin(beginNs: Long, first: Long) {
         indexRecord = TraceBeat.mark(MARK)
     }
 
@@ -54,20 +57,8 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
         fun analyse() {
             val data = TraceBeat.collectTraceData(indexRecord)
             TraceBeat.openTrace = true
-            LogUtils.e("99788/$TAG", stackTraceToString(data))
+            LogUtils.e(TAG, stackTraceToString(data))
             reporter?.report(data.toString())
-        }
-
-        private fun stackTraceToString(elements: List<MethodInfo>?): String {
-            val result = StringBuilder()
-            if (null != elements && elements.isNotEmpty()) {
-                for (i in elements.indices) {
-                    result.append("\t ")
-                    result.append(elements[i].toString())
-                    result.append("\n")
-                }
-            }
-            return result.toString()
         }
     }
 }

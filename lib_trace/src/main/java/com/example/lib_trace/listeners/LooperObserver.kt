@@ -8,7 +8,7 @@ package com.example.lib_trace.listeners
  */
 interface LooperObserver {
 
-    fun dispatchBegin(beginNs: Long)
+    fun dispatchBegin(beginNs: Long, first: Long)
 
     fun dispatchEnd(beginNs: Long, endNs: Long)
 }

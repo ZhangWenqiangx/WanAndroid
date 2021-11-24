@@ -5,6 +5,7 @@ import android.os.Looper
 import com.example.lib_trace.core.LooperWatcher
 import com.example.lib_trace.listeners.LogReporter
 import com.example.lib_trace.listeners.LooperObserver
+import com.example.lib_trace.tracer.AnrTracer
 import com.example.lib_trace.tracer.EvilMethodTracer
 
 /**
@@ -39,6 +40,12 @@ class Trace(builder: Builder) {
         fun enableEvil(enable: Boolean): Builder {
             if (enable)
                 observers.add(EvilMethodTracer(logReporter))
+            return this
+        }
+
+        fun enableAnr(enable: Boolean): Builder {
+            if (enable)
+                observers.add(AnrTracer(logReporter))
             return this
         }
 

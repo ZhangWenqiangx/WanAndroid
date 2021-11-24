@@ -11,6 +11,7 @@ import java.util.*
 class LooperWatcher : Printer {
     private var mFinishTimeMillis: Long = 0
     private var mStartTimeMillis: Long = 0
+    private var mFirstTimeMillis: Long = 0
     private var isValid = false
     private val observers: HashSet<LooperObserver> = HashSet<LooperObserver>()
 
@@ -23,9 +24,9 @@ class LooperWatcher : Printer {
 
     private fun dispatch(isBegin: Boolean, log: String) {
         if (isBegin) {
-            mStartTimeMillis = System.currentTimeMillis()
+            mFirstTimeMillis = System.currentTimeMillis().also { mStartTimeMillis = it }
             for (observer in observers) {
-                observer.dispatchBegin(mStartTimeMillis)
+                observer.dispatchBegin(mStartTimeMillis, mFirstTimeMillis)
             }
         } else {
             mFinishTimeMillis = System.currentTimeMillis()

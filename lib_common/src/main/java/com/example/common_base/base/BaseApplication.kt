@@ -10,6 +10,7 @@ import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
 import com.example.common_base.hotfix.HotFix
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
+import com.example.common_base.util.CrashHandler
 import com.example.common_base.util.GlobalThreadPools
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
@@ -53,10 +54,12 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         sApplication = this
+        CrashHandler.getInstance().init(applicationContext)
 
         val trace = Trace.Builder(this)
             .logReporter(EvilLogReporter())
             .enableEvil(enable = true)
+            .enableAnr(enable = true)
             .build()
         trace.start()
 
@@ -68,7 +71,6 @@ open class BaseApplication : Application() {
         initFlutter()
 
 //        TimeMonitorManager.initBlock(applicationContext)
-
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("aplication-onCreate-end")
     }
