@@ -14,10 +14,17 @@ import com.example.lib_trace.tracer.EvilMethodTracer
  *  description :
  */
 class Trace(builder: Builder) {
-    val app:Application = builder.application
-    private var observers: List<LooperObserver> = builder.observers
 
+    private var observers: List<LooperObserver> = builder.observers
     private val looperWatcher: LooperWatcher = LooperWatcher()
+
+    companion object {
+        var sApp: Application ?= null
+    }
+
+    init {
+        sApp = builder.application
+    }
 
     fun start() {
         observers.forEach {

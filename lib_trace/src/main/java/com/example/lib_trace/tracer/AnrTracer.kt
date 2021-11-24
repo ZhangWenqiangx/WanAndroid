@@ -2,6 +2,7 @@ package com.example.lib_trace.tracer
 
 import android.os.Handler
 import android.os.Looper
+import com.example.lib_trace.Trace
 import com.example.lib_trace.config.ShareInfo.TRACE_MEMORY_DALVIK
 import com.example.lib_trace.config.ShareInfo.TRACE_MEMORY_NATIVE
 import com.example.lib_trace.config.ShareInfo.TRACE_MEMORY_VM_SIZE
@@ -49,12 +50,12 @@ class AnrTracer(private val reporter: LogReporter? = null) : LooperObserver {
 
     inner class AnrTask : Runnable {
         override fun run() {
-            val jsonObject = JSONObject()
+            var jsonObject = JSONObject()
             val memory = dumpMemory()
             val status = Looper.getMainLooper().thread.state
             val stackTrace = Looper.getMainLooper().thread.stackTrace
             val wholeStack = Utils.getWholeStack(stackTrace, "|*\t\t")
-
+            jsonObject = DeviceUtil.getDeviceInfo(jsonObject, Trace.sApp)
             jsonObject.put(TRACE_TYPE, TRACE_TYPE_ANR)
             jsonObject.put(TRACE_MEMORY_DALVIK, memory[0])
             jsonObject.put(TRACE_MEMORY_NATIVE, memory[1])
