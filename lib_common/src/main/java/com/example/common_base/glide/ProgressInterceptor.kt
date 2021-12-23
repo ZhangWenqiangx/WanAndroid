@@ -6,7 +6,7 @@ import okhttp3.Response
 /**
  *  author : zhang.wenqiang
  *  date : 2021/9/15
- *  description :
+ *  description : 拦截body计算进度
  */
 class ProgressInterceptor : Interceptor {
 

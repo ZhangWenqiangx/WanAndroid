@@ -12,7 +12,7 @@ import java.lang.Integer.min
 /**
  *  author : zhang.wenqiang
  *  date : 2021/9/15
- *  description :
+ *  description :显示进度
  */
 class ProgressPlaceholderDrawable(
     private var context: Context,
@@ -70,7 +70,7 @@ class ProgressPlaceholderDrawable(
         if (radius > dp30 * 1.25F) {
             radius = dp30
         } else {
-            radius *= 0.8F
+            radius *= 0.6F
         }
 
         // draw outline circle
