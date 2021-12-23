@@ -24,7 +24,6 @@ class CompositeAdapter(layoutResId: Int) : BaseQuickAdapter<Project, BaseViewHol
 
         GlideApp.with(holder.itemView)
             .load(item.envelopePic)
-            .placeholder(R.drawable.img_def)
             .progress(context)
             .into(ProgressImageViewTarget(item.envelopePic, holder.getView(R.id.iv_envelope)))
     }

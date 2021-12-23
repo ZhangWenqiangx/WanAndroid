@@ -28,7 +28,6 @@ class ItemReplyProvider : BaseItemProvider<OpenRecBean>() {
     override fun convert(helper: BaseViewHolder, item: OpenRecBean) {
         Glide.with(helper.itemView)
             .load(item.data.user.avatar)
-            .placeholder(R.drawable.img_def)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(helper.getView(R.id.iv_user_avatar))
         helper.apply {
@@ -47,7 +46,6 @@ class ItemReplyProvider : BaseItemProvider<OpenRecBean>() {
                     val inflate = inflate()
                     Glide.with(helper.itemView)
                         .load(item.data.parentReply.user.avatar)
-                        .placeholder(R.drawable.img_def)
                         .apply(RequestOptions.bitmapTransform(CircleCrop()))
                         .into(inflate.findViewById(R.id.iv_parent_avatar))
 

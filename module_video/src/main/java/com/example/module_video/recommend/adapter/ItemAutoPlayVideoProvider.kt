@@ -36,7 +36,6 @@ class ItemAutoPlayVideoProvider : BaseItemProvider<OpenRecBean>() {
         GlideApp.with(holder.itemView)
             .load(item.data.detail.icon)
             .progress(context)
-            .placeholder(R.drawable.img_def)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(ProgressImageViewTarget(item.data.detail.icon, holder.getView(R.id.iv_author)))
 
@@ -44,7 +43,6 @@ class ItemAutoPlayVideoProvider : BaseItemProvider<OpenRecBean>() {
             .load(item.data.detail.imageUrl)
             .progress(context)
             .transform(GlideRoundTransform(context))
-            .placeholder(R.drawable.img_def)
             .into(
                 ProgressImageViewTarget(
                     item.data.detail.imageUrl,

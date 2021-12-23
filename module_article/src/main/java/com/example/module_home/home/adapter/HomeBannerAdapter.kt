@@ -35,7 +35,6 @@ class HomeBannerAdapter(val context: Context, data: MutableList<BannerBean>?) :
     override fun onBindView(holder: ViewHolder?, data: BannerBean?, position: Int, size: Int) {
         GlideApp.with(holder!!.itemView)
             .load(data!!.imagePath)
-            .placeholder(R.drawable.img_def)
             .progress(context)
             .into(ProgressImageViewTarget(data.imagePath, holder.imageView))
     }

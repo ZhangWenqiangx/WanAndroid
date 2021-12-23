@@ -23,7 +23,6 @@ class CommonBindingAdapter {
             url?.run {
                 Glide.with(imageView.context)
                     .load(this)
-                    .placeholder(R.drawable.img_def)
                     .apply(RequestOptions.bitmapTransform(CircleCrop()))
                     .into(imageView)
             }

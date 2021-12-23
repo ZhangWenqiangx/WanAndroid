@@ -9,7 +9,7 @@ import com.bumptech.glide.request.transition.Transition
 /**
  *  author : zhang.wenqiang
  *  date : 2021/9/15
- *  description :
+ *  description : 监听加载图片的状态
  */
 class ProgressImageViewTarget<T>(
     private val url: String,

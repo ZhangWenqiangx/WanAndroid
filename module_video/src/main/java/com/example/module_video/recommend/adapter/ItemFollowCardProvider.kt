@@ -41,14 +41,12 @@ class ItemFollowCardProvider : BaseItemProvider<OpenRecBean>() {
 
         GlideApp.with(holder.itemView)
             .load(item.data.header.icon)
-            .placeholder(R.drawable.img_def)
             .progress(context)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(ProgressImageViewTarget(item.data.header.icon, holder.getView(R.id.iv_author)))
 
         GlideApp.with(holder.itemView)
             .load(item.data.content.data.cover.detail)
-            .placeholder(R.drawable.img_def)
             .skipMemoryCache(false)
             .dontAnimate()
             .transform(GlideRoundTransform(context))

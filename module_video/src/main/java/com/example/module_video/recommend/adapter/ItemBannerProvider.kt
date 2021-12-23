@@ -34,14 +34,12 @@ class ItemBannerProvider : BaseItemProvider<OpenRecBean>() {
         GlideApp.with(holder.itemView)
             .load(item.data.header.icon)
             .progress(context)
-            .placeholder(R.drawable.img_def)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(ProgressImageViewTarget(item.data.header.icon, holder.getView(R.id.iv_author)))
 
         GlideApp.with(holder.itemView)
             .load(item.data.image)
             .progress(context)
-            .placeholder(R.drawable.img_def)
             .transform(GlideRoundTransform(context))
             .into(ProgressImageViewTarget(item.data.image, holder.getView(R.id.banner_bg)))
 
