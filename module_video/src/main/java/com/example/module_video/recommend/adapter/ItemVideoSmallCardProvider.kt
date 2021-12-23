@@ -35,7 +35,6 @@ class ItemVideoSmallCardProvider(val lightMode: Boolean = false) : BaseItemProvi
 
         GlideApp.with(helper.itemView)
             .load(item.data.cover.detail)
-            .placeholder(R.drawable.img_def)
             .skipMemoryCache(false)
             .dontAnimate()
             .transform(GlideRoundTransform(context))
