@@ -1,4 +1,6 @@
-package com.example.gradle_plugin;
+package com.example.gradle_plugin.trace;
+
+import com.example.gradle_plugin.util.Log;
 
 import org.apache.http.util.TextUtils;
 import org.objectweb.asm.ClassVisitor;
@@ -18,8 +20,8 @@ public class TraceClassVisitor extends ClassVisitor {
     private boolean isConfigTraceClass;
     private Config traceConfig;
 
-    private int api;
-    private ClassVisitor cv;
+    private final int api;
+    private final ClassVisitor cv;
 
     public TraceClassVisitor(int api, ClassVisitor cv, Config traceConfig) {
         super(api, cv);
@@ -48,7 +50,7 @@ public class TraceClassVisitor extends ClassVisitor {
 
         boolean isNotNeedTraceClass = isAbsClass || isBeatClass || !isConfigTraceClass;
         if (traceConfig.getMIsNeedLogTraceInfo() && !isNotNeedTraceClass) {
-            System.out.println("MethodTrace-trace-class:" + className);
+            Log.log("MethodTraceClassName::" + className);
         }
     }
 
@@ -58,7 +60,7 @@ public class TraceClassVisitor extends ClassVisitor {
             return super.visitMethod(access, name, desc, signature, exceptions);
         } else {
             MethodVisitor visitor = cv.visitMethod(access, name, desc, signature, exceptions);
-            
+
             return new TraceMethodVisitor(api, visitor, access, name, desc, className, traceConfig);
         }
     }

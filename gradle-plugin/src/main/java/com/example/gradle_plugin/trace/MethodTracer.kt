@@ -1,6 +1,7 @@
-package com.example.gradle_plugin
+package com.example.gradle_plugin.trace
 
 import com.android.build.api.transform.*
+import com.example.gradle_plugin.util.Utils
 import groovyjarjarasm.asm.ClassReader.EXPAND_FRAMES
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
@@ -37,7 +38,7 @@ class MethodTracer(
             traceJarFiles(it, outputProvider, futures)
         }
         input.directoryInputs.forEach {
-            traceSrcFiles(it, outputProvider, futures)
+            traceDirectoryFiles(it, outputProvider, futures)
         }
         for (future in futures) {
             future.get()
@@ -45,21 +46,21 @@ class MethodTracer(
         futures.clear()
     }
 
-    private fun traceSrcFiles(
+    private fun traceDirectoryFiles(
         directoryInput: DirectoryInput,
         outputProvider: TransformOutputProvider,
         futures: MutableList<Future<*>>
     ) {
         val classFileList = ArrayList<File>()
         if (directoryInput.file.isDirectory) {
-            listClassFiles(classFileList, directoryInput.file)
+            Utils.listClassFiles(classFileList, directoryInput.file)
         } else {
             classFileList.add(directoryInput.file)
         }
 
         classFileList.forEach {
             if (config.isNeedTraceClass(it.name)) {
-                futures.add(executor.submit(CollectSrcTask(it)))
+                futures.add(executor.submit(CollectDirectoryTask(it)))
             }
         }
 
@@ -79,23 +80,7 @@ class MethodTracer(
         futures.add(executor.submit(CollectJarTask(jarInput, outputProvider)))
     }
 
-    private fun listClassFiles(classFiles: ArrayList<File>, folder: File) {
-        val files = folder.listFiles()
-        for (file in files) {
-            if (file == null) {
-                continue
-            }
-            if (file.isDirectory) {
-                listClassFiles(classFiles, file)
-            } else {
-                if (file.isFile) {
-                    classFiles.add(file)
-                }
-            }
-        }
-    }
-
-    internal inner class CollectSrcTask(private val it: File) : Runnable {
+    internal inner class CollectDirectoryTask(private val it: File) : Runnable {
         override fun run() {
             val classReader = ClassReader(it.readBytes())
             val classWriter = ClassWriter(
@@ -148,7 +133,12 @@ class MethodTracer(
                         jarOutputStream.putNextEntry(zipEntry)
                         val classReader = ClassReader(IOUtils.toByteArray(inputStream))
                         val classWriter = ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
-                        val cv = TraceClassVisitor(Opcodes.ASM7, classWriter, config)
+                        val cv =
+                            TraceClassVisitor(
+                                Opcodes.ASM7,
+                                classWriter,
+                                config
+                            )
                         classReader.accept(cv, EXPAND_FRAMES)
                         val code = classWriter.toByteArray()
                         jarOutputStream.write(code)

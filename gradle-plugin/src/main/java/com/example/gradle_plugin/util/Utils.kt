@@ -1,7 +1,6 @@
 package com.example.gradle_plugin.util
 
 import java.io.*
-import java.util.ArrayList
 import java.util.zip.ZipFile
 
 class Utils {
@@ -37,7 +36,6 @@ class Utils {
             return fileData.toString()
         }
 
-
         private fun closeQuietly(obj: Any?) {
             if (obj == null) {
                 return
@@ -71,7 +69,7 @@ class Utils {
                 if (file.isDirectory) {
                     listClassFiles(classFiles, file)
                 } else {
-                    if (null != file && file.isFile) {
+                    if (file.isFile) {
                         classFiles.add(file)
                     }
 

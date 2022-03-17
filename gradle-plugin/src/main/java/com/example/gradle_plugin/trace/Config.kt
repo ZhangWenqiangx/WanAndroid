@@ -1,4 +1,4 @@
-package com.example.gradle_plugin
+package com.example.gradle_plugin.trace
 
 import com.example.gradle_plugin.util.Utils
 import java.io.File
@@ -10,7 +10,7 @@ import java.util.*
  * date : 2021/10/13
  * description :
  */
-class Config {
+open class Config {
     private val UNNEED_TRACE_CLASS = arrayOf("R.class", "R$", "Manifest", "BuildConfig")
 
     //插桩代码所在类

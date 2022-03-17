@@ -41,7 +41,7 @@ uploadArchives {
         repository(url: uri('../repos'))
         pom.groupId = 'com.example.gradle_plugin'
         pom.artifactId = 'TracePlugin'
-        pom.version = "1.0.0"
+        pom.version = "1.0.2"
     }
 }
 

@@ -1,8 +1,7 @@
-package com.example.gradle_plugin
+package com.example.gradle_plugin.trace
 
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.commons.AdviceAdapter
-import org.objectweb.asm.tree.AbstractInsnNode
 
 /**
  * author : zhang.wenqiang
@@ -39,7 +38,7 @@ class TraceMethodVisitor(
             false
         )
         if (traceConfig.mIsNeedLogTraceInfo) {
-            println("MethodTrace-trace-method: ${methodName ?: "unknown"}")
+            println("MethodTrace-trace-method:{ ${methodName ?: "unknown"}}")
         }
     }
 
