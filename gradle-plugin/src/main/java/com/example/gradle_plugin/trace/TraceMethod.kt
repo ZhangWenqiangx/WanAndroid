@@ -1,4 +1,4 @@
-package com.example.gradle_plugin
+package com.example.gradle_plugin.trace
 
 import org.objectweb.asm.Opcodes
 

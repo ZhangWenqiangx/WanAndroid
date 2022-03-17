@@ -10,7 +10,10 @@ import com.example.module_home.composite.bean.Project
 import com.example.module_home.composite.bean.ProjectTab
 import com.example.module_home.data.source.RemoteDataSource
 import com.example.module_home.home.bean.Article
+import com.example.module_home.home.bean.ArticleResponse
 import com.example.module_home.home.bean.BannerBean
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 
 /**
  * @describe :viewmodel for article firstpage
@@ -48,35 +51,44 @@ class ArticleViewModel constructor(
         })
     }
 
+
     fun getArticles(isRefresh: Boolean = false) {
         launch(tryBlock = {
+            var topAsync: Deferred<BaseResult<MutableList<Article>>>? = null
             if (isRefresh || page == 0) {
-                repository.getTopArticles().let {
-                    if (it is BaseResult.Success) {
-                        page = 0
-                        articleDataList.clear()
-                        articleDataList.addAll(it.data)
-                    }
-                }
+                topAsync = async { repository.getTopArticles() }
             }
-
-            repository.getArticles(page).let {
-                if (it is BaseResult.Success) {
-                    articleDataList.addAll(it.data.datas)
-
-                    articleData.value = articleDataList
-                    page++
-                    mStateLiveData.value = SuccessState
-                } else if (it is BaseResult.Error) {
-                    mStateLiveData.value = ErrorState(it.exception.message)
-                }
-            }
+            val articleAsync = async { repository.getArticles(page) }
+            mergeArticleData(topAsync?.await(), articleAsync.await())
         })
     }
 
-    fun changeCollect(collect: Boolean,id: Int) {
+    private fun mergeArticleData(
+        top: BaseResult<MutableList<Article>>?,
+        article: BaseResult<ArticleResponse>
+    ) {
+        top?.let {
+            if (it is BaseResult.Success) {
+                page = 0
+                articleDataList.clear()
+                articleDataList.addAll(it.data)
+            }
+        }
+        article.let {
+            if (it is BaseResult.Success) {
+                articleDataList.addAll(it.data.datas)
+                articleData.value = articleDataList
+                page++
+                mStateLiveData.value = SuccessState
+            } else if (it is BaseResult.Error) {
+                mStateLiveData.value = ErrorState(it.exception.message)
+            }
+        }
+    }
+
+    fun changeCollect(collect: Boolean, id: Int) {
         launch(tryBlock = {
-            if(collect){
+            if (collect) {
                 repository.collect(id).let {
                     if (it is BaseResult.Success) {
                         mStateLiveData.value = ErrorState("收藏成功")
@@ -84,7 +96,7 @@ class ArticleViewModel constructor(
                         mStateLiveData.value = ErrorState(it.exception.message)
                     }
                 }
-            }else{
+            } else {
                 repository.unCollect(id).let {
                     if (it is BaseResult.Success) {
                         mStateLiveData.value = ErrorState("取消收藏成功")

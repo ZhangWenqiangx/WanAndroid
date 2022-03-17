@@ -13,14 +13,14 @@ import com.example.module_home.search.bean.SearchEntity
 @Dao
 interface SearchDao {
     @Query("SELECT * FROM SearchEntity")
-    suspend fun getAll(): MutableList<SearchEntity>
+    fun getAll(): MutableList<SearchEntity>
 
     @Insert
-    suspend fun insert(search: SearchEntity)
+    fun insert(search: SearchEntity)
 
     @Query("DELETE FROM SearchEntity")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     @Query("DELETE FROM SearchEntity WHERE `key` = :key")
-    suspend fun delete(key: String)
+    fun delete(key: String)
 }

@@ -27,11 +27,11 @@ class ItemReplyProvider : BaseItemProvider<OpenRecBean>() {
 
     override fun convert(helper: BaseViewHolder, item: OpenRecBean) {
         Glide.with(helper.itemView)
-            .load(item.data.user.avatar)
+            .load(item.data?.user?.avatar)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(helper.getView(R.id.iv_user_avatar))
         helper.apply {
-            setText(R.id.tv_title, item.data.user.nickName)
+            setText(R.id.tv_title, item.data?.user?.nickName)
             setText(R.id.tv_content, item.data.message)
             setText(R.id.tv_create_time, DataTimeUtils.getImTime(item.data.createTime.toLong()))
             setText(R.id.tv_like_count, item.data.likeCount)
