@@ -32,4 +32,13 @@ open class BaseViewModel : ViewModel() {
             tryBlock()
         }
     }
+
+    fun launch(
+        tryBlock: suspend CoroutineScope.() -> Unit,
+    ) {
+        mStateLiveData.postValue(LoadingState)
+        viewModelScope.launch(Dispatchers.Main) {
+            tryBlock()
+        }
+    }
 }

@@ -56,26 +56,15 @@ abstract class BaseMvvmFragment<V : ViewDataBinding, VM : BaseViewModel> : BaseF
     }
 
     open fun addObserver() {
-        viewModel.mStateLiveData.observe(viewLifecycleOwner, {
+        viewModel.mStateLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is SuccessState -> LogUtils.d("success")
                 is ErrorState -> LogUtils.d("error ${it.message}")
                 is LoadingState -> LogUtils.d("loading")
                 else -> LogUtils.d("begin")
             }
-        })
+        }
     }
-
-//    private fun createViewModel() {
-//        val type = javaClass.genericSuperclass
-//        if (type is ParameterizedType) {
-//            val tp = type.actualTypeArguments[0]
-//            val tClass = tp as? Class<VM> ?: BaseViewModel::class.java
-//            viewModel = ViewModelProvider(this,
-//                ViewModelFactory()
-//            ).get(tClass) as VM
-//        }
-//    }
 
     abstract fun createViewModel(): VM
 }

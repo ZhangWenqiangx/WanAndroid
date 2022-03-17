@@ -29,6 +29,10 @@ import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import com.idlefish.flutterboost.ListenerRemover
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import kotlin.math.acos
+import kotlin.math.asin
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
 class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
@@ -55,6 +59,11 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             setHasFixedSize(true)
         }
 
+        viewDataBinding.mineTv.setOnLongClickListener {
+            haha(10000000)
+            return@setOnLongClickListener true
+        }
+
         viewDataBinding.mineTv.setOnClickListener {
             if (!viewModel.isLogin()) {
                 ARouter.getInstance().build(AConstance.ACTIVITY_URL_LOGIN).navigation()
@@ -77,6 +86,15 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
                 logout()
             }
         }
+    }
+
+    private fun haha(l: Long): Double {
+        var result = 0.0
+        for (i in 0 until l) {
+            result += acos(cos(i.toDouble()))
+            result -= asin(sin(i.toDouble()))
+        }
+        return result
     }
 
     private fun onItemClick(item: MenuBean) {
@@ -114,7 +132,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
     @SuppressLint("SetTextI18n")
     override fun addObserver() {
         super.addObserver()
-        viewModel.userInfo.observe(this, {
+        viewModel.userInfo.observe(this) {
             val coinCount = it.userInfo.coinCount.toString()
             mAdapter.data[0].stubTitle = coinCount
             mAdapter.data[0].arguments = mapOf(FLUTTER_ARG_COIN_COUNT to coinCount)
@@ -123,7 +141,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             viewDataBinding.mineTv.text = it.userInfo.nickname
             viewDataBinding.mineTvLevel.text = "等级：${it.coinInfo.level}"
             viewDataBinding.mineTvRank.text = "排名：${it.coinInfo.rank}"
-        })
+        }
     }
 
     override fun onDestroy() {
