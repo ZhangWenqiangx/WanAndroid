@@ -3,6 +3,9 @@ package com.example.common_base.base
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.SystemClock
+import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.BuildConfig
 import com.example.common_base.R
@@ -12,6 +15,7 @@ import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.util.CrashHandler
 import com.example.common_base.util.GlobalThreadPools
+import com.example.common_base.web.CommonWebView
 import com.example.common_base.web.URL
 import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
@@ -24,6 +28,7 @@ import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
+import java.lang.reflect.Method
 
 
 /**
@@ -55,6 +60,7 @@ open class BaseApplication : Application() {
         super.onCreate()
         sApplication = this
         CrashHandler.getInstance().init(applicationContext)
+        CommonWebView.preloadWebView(this)
 
         val trace = Trace.Builder(this)
             .logReporter(EvilLogReporter())
