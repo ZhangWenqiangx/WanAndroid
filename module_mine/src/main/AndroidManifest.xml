@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.module_usercenter">
+        package="com.example.module_usercenter">
 
     <application>
-        <activity android:name=".activity.SplashActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/SplashTheme"
-                  android:exported="true">
+        <activity
+                android:name=".activity.SplashActivity"
+                android:exported="true"
+                android:screenOrientation="portrait"
+                android:testOnly="false"
+                android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
                 android:name=".activity.LoginActivity"
-                android:exported="false"/>
+                android:exported="false" />
         <activity
                 android:name=".activity.RegisterActivity"
-                android:exported="false"/>
+                android:exported="false" />
     </application>
 
 </manifest>
