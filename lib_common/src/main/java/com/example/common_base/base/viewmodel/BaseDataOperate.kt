@@ -28,15 +28,13 @@ open class BaseDataOperate {
     /**
      * 将服务器数据转接为BaseResult类型
      */
-    suspend fun <T : Any> convert(
+    fun <T : Any> convert(
         response: BaseResponse<T>
     ): BaseResult<T> {
-        return coroutineScope {
-            if (response.errorCode == 0) {
-                BaseResult.Success(data = response.data)
-            } else {
-                BaseResult.Error(Exception(response.errorMsg))
-            }
+        return if (response.errorCode == 0) {
+            BaseResult.Success(data = response.data)
+        } else {
+            BaseResult.Error(Exception(response.errorMsg))
         }
     }
 }

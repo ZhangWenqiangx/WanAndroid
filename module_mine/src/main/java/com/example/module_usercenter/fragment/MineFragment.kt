@@ -8,12 +8,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.constants.AConstance
-import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
-import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_ARG_COIN_COUNT
 import com.example.common_base.constants.FlutterConstance.FLUTTER_EVENT_TYPE
+import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_IN
 import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_OUT
+import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.ToastUtil
 import com.example.common_base.util.UserHelper
@@ -29,6 +29,10 @@ import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import com.idlefish.flutterboost.ListenerRemover
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import kotlin.math.acos
+import kotlin.math.asin
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Route(path = AConstance.FRAGMENT_URL_MINE)
 class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
@@ -55,6 +59,11 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             setHasFixedSize(true)
         }
 
+        viewDataBinding.mineTv.setOnLongClickListener {
+            haha(10000000)
+            return@setOnLongClickListener true
+        }
+
         viewDataBinding.mineTv.setOnClickListener {
             if (!viewModel.isLogin()) {
                 ARouter.getInstance().build(AConstance.ACTIVITY_URL_LOGIN).navigation()
@@ -77,6 +86,30 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
                 logout()
             }
         }
+    }
+
+    private fun haha(l: Long): Double {
+        val haha2 = haha2(l)
+        val haha3 = haha3(l)
+        return haha2 + haha3
+    }
+
+    private fun haha2(l: Long): Double {
+        var result = 0.0
+        for (i in 0 until l) {
+            result += acos(cos(i.toDouble()))
+            result -= asin(sin(i.toDouble()))
+        }
+        return result
+    }
+
+    private fun haha3(l: Long): Double {
+        var result = 0.0
+        for (i in 0 until l) {
+            result += acos(cos(i.toDouble()))
+            result -= asin(sin(i.toDouble()))
+        }
+        return result
     }
 
     private fun onItemClick(item: MenuBean) {
@@ -114,7 +147,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
     @SuppressLint("SetTextI18n")
     override fun addObserver() {
         super.addObserver()
-        viewModel.userInfo.observe(this, {
+        viewModel.userInfo.observe(this) {
             val coinCount = it.userInfo.coinCount.toString()
             mAdapter.data[0].stubTitle = coinCount
             mAdapter.data[0].arguments = mapOf(FLUTTER_ARG_COIN_COUNT to coinCount)
@@ -123,7 +156,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             viewDataBinding.mineTv.text = it.userInfo.nickname
             viewDataBinding.mineTvLevel.text = "等级：${it.coinInfo.level}"
             viewDataBinding.mineTvRank.text = "排名：${it.coinInfo.rank}"
-        })
+        }
     }
 
     override fun onDestroy() {

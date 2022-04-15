@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.base.viewmodel.ErrorState
 import com.example.common_base.base.viewmodel.SuccessState
@@ -46,6 +47,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        ARouter.getInstance().navigation(UserInfoService::class.java)
         initRecycler()
         initRefresh()
         collectListener = FlutterBoost.instance()
@@ -78,7 +80,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
             addChildClickViewIds(R.id.iv_home_like)
             setOnItemChildClickListener { _, view, position ->
                 if (view.id == R.id.iv_home_like) {
-                    if (!UserHelper.isLogin()) {
+                    if (userService?.isLogged == false) {
                         ToastUtil.showShortToast(
                             requireContext(),
                             getString(R.string.common_login_first)
@@ -112,11 +114,11 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     override fun addObserver() {
         super.addObserver()
-        viewModel.articleData.observe(viewLifecycleOwner, {
+        viewModel.articleData.observe(viewLifecycleOwner) {
             mAdapter.setData(it)
-        })
+        }
 
-        viewModel.mStateLiveData.observe(viewLifecycleOwner, {
+        viewModel.mStateLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is SuccessState -> {
                     srl_refresh.finishRefresh()
@@ -130,7 +132,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
                 else -> {
                 }
             }
-        })
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_first_page

@@ -1,10 +1,13 @@
 package com.example.common_base.web
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.net.http.SslError
+import android.os.Build
+import android.os.SystemClock
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.webkit.*
@@ -13,8 +16,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
+import com.example.common_base.util.ReflectUtils
 import com.example.common_base.util.ToastUtil
 import com.example.common_base.util.dp
+import com.youth.banner.util.LogUtils
 
 
 /**
@@ -134,6 +139,39 @@ class CommonWebView : WebView, LifecycleObserver {
         clearHistory()
         (this.parent as ViewGroup).removeView(this)
         this.destroy()
+    }
+
+    companion object {
+        fun preloadWebView(app: Application) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    app.mainLooper.queue.addIdleHandler {
+                        startChromiumEngine()
+                        false
+                    }
+                }
+            } catch (t: Throwable) {
+                LogUtils.d(t.toString())
+            }
+        }
+
+        private fun startChromiumEngine() {
+            try {
+                val t0 = SystemClock.uptimeMillis()
+                val provider = ReflectUtils.invokeStaticMethod<Any>(
+                    Class.forName("android.webkit.WebViewFactory"),
+                    "getProvider"
+                )
+                ReflectUtils.invokeMethod<Any>(
+                    provider,
+                    "startYourEngines",
+                    arrayOf(Boolean::class.javaPrimitiveType),
+                    arrayOf(true)
+                )
+            } catch (t: Throwable) {
+                LogUtils.d(t.toString())
+            }
+        }
     }
 
     fun setWebViewCallback(onWebViewCallback: OnWebViewCallback) {
