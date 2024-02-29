@@ -20,7 +20,7 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
     companion object {
         val TAG = EvilMethodTracer::class.java.simpleName
         val MARK = "EvilMethodTrace#dispatchBegin"
-        val DURATION = 16
+        val DURATION = 500
     }
 
     private var indexRecord: TraceBeat.IndexRecord? = null
@@ -31,6 +31,8 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
     }
 
     override fun dispatchBegin(beginNs: Long, first: Long) {
+        TraceBeat.resetTraceData()
+        TraceBeat.openTrace = true
         indexRecord = TraceBeat.mark(MARK)
     }
 

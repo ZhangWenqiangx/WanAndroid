@@ -65,7 +65,8 @@ public class TraceBeat {
     public static List<MethodInfo> collectTraceData(int start, int size) {
         synchronized (methodList) {
             List<MethodInfo> resultList = new ArrayList();
-            for (int i = start; i < size; i++) {
+//            for (int i = start; i < size; i++) {
+            for (int i = 0; i < methodList.size(); i++) {
                 Entity startEntity = methodList.get(i);
                 if (!startEntity.isStart) {
                     continue;

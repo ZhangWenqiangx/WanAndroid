@@ -21,13 +21,13 @@ import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.example.lib_trace.Trace
 import com.example.lib_trace.listeners.LogReporter
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.FlutterBoostDelegate
-import com.idlefish.flutterboost.FlutterBoostRouteOptions
-import com.idlefish.flutterboost.containers.FlutterBoostActivity
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.FlutterBoostDelegate
+//import com.idlefish.flutterboost.FlutterBoostRouteOptions
+//import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import io.flutter.embedding.android.FlutterActivityLaunchConfigs
+//import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import java.lang.reflect.Method
 
 
@@ -88,32 +88,32 @@ open class BaseApplication : Application() {
     }
 
     private fun initFlutter() {
-        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
-            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
-                if (options.pageName().equals(FLUTTER_PAGE_WEB)) {
-                    val intent = Intent(
-                        FlutterBoost.instance().currentActivity(),
-                        WebViewActivity::class.java
-                    )
-                    intent.putExtra(URL, options.arguments()["url"].toString())
-                    FlutterBoost.instance().currentActivity()
-                        .startActivityForResult(intent, options.requestCode())
-                }
-            }
-
-            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
-                val intent: Intent = FlutterBoostActivity.CachedEngineIntentBuilder(
-                    FlutterBoostActivity::class.java
-                )
-                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
-                    .destroyEngineWithActivity(false)
-                    .uniqueId(options.uniqueId())
-                    .url(options.pageName())
-                    .urlParams(options.arguments())
-                    .build(FlutterBoost.instance().currentActivity())
-                FlutterBoost.instance().currentActivity().startActivity(intent)
-            }
-        }) {}
+//        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
+//            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
+//                if (options.pageName().equals(FLUTTER_PAGE_WEB)) {
+//                    val intent = Intent(
+//                        FlutterBoost.instance().currentActivity(),
+//                        WebViewActivity::class.java
+//                    )
+//                    intent.putExtra(URL, options.arguments()["url"].toString())
+//                    FlutterBoost.instance().currentActivity()
+//                        .startActivityForResult(intent, options.requestCode())
+//                }
+//            }
+//
+//            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
+//                val intent: Intent = FlutterBoostActivity.CachedEngineIntentBuilder(
+//                    FlutterBoostActivity::class.java
+//                )
+//                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
+//                    .destroyEngineWithActivity(false)
+//                    .uniqueId(options.uniqueId())
+//                    .url(options.pageName())
+//                    .urlParams(options.arguments())
+//                    .build(FlutterBoost.instance().currentActivity())
+//                FlutterBoost.instance().currentActivity().startActivity(intent)
+//            }
+//        }) {}
     }
 
     private fun initArouter() {

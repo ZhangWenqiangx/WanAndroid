@@ -24,9 +24,9 @@ import com.example.module_usercenter.adapter.MineSettingAdapter
 import com.example.module_usercenter.bean.MenuBean
 import com.example.module_usercenter.databinding.MineFragmentBinding
 import com.example.module_usercenter.event.LoginEvent
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.FlutterBoostRouteOptions
-import com.idlefish.flutterboost.ListenerRemover
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.FlutterBoostRouteOptions
+//import com.idlefish.flutterboost.ListenerRemover
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import kotlin.math.acos
@@ -38,7 +38,7 @@ import kotlin.math.sin
 class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
 
     private lateinit var mAdapter: MineSettingAdapter
-    private lateinit var remover: ListenerRemover
+//    private lateinit var remover: ListenerRemover
 
     override fun initView(view: View?) {
         EventBus.getDefault().register(this)
@@ -78,14 +78,14 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             viewModel.getUserInfo()
         }
 
-        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_LOGIN) { _, args ->
-            val type = args[FLUTTER_EVENT_TYPE]
-            if (type == FLUTTER_TYPE_LOGIN_IN) {
-                viewModel.getUserInfo()
-            } else if (type == FLUTTER_TYPE_LOGIN_OUT) {
-                logout()
-            }
-        }
+//        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_LOGIN) { _, args ->
+//            val type = args[FLUTTER_EVENT_TYPE]
+//            if (type == FLUTTER_TYPE_LOGIN_IN) {
+//                viewModel.getUserInfo()
+//            } else if (type == FLUTTER_TYPE_LOGIN_OUT) {
+//                logout()
+//            }
+//        }
     }
 
     private fun haha(l: Long): Double {
@@ -123,11 +123,11 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
     }
 
     private fun openRoute(name: String, arguments: Map<String, Any>? = mapOf()) {
-        val options = FlutterBoostRouteOptions.Builder()
-            .pageName(name)
-            .arguments(arguments)
-            .build()
-        FlutterBoost.instance().open(options)
+//        val options = FlutterBoostRouteOptions.Builder()
+//            .pageName(name)
+//            .arguments(arguments)
+//            .build()
+//        FlutterBoost.instance().open(options)
     }
 
     @Subscribe
@@ -161,7 +161,7 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        remover.remove()
+//        remover.remove()
         EventBus.getDefault().unregister(this)
     }
 
