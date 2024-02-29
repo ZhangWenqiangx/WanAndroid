@@ -6,6 +6,7 @@ buildscript {
     }
     repositories {
         maven { url uri('../mvp-wAndroid/repos') }
+        maven { url uri('../WanAndroid/repos') }
         google()
         jcenter()
         mavenCentral()
@@ -13,7 +14,7 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.example.gradle_plugin:TracePlugin:1.0.2'

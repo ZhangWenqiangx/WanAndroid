@@ -19,9 +19,9 @@ import com.example.common_base.util.StatusBarUtil
 import com.example.module_main.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.idlefish.flutterboost.EventListener
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.ListenerRemover
+//import com.idlefish.flutterboost.EventListener
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.ListenerRemover
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var viewPager: ViewPager2
     private var tabList = mutableListOf<TabItemBean>()
-    private lateinit var remover: ListenerRemover;
+//    private lateinit var remover: ListenerRemover;
     override fun getLayoutResId(): Int = R.layout.activity_main
 
     override fun initView() {
@@ -45,11 +45,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initFlutterEvent() {
-        val listener = EventListener { _, _ ->
-            FlutterBoost.instance()
-                .sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
-        }
-        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_COOKIE, listener)
+//        val listener = EventListener { _, _ ->
+//            FlutterBoost.instance()
+//                .sendEventToFlutter(TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
+//        }
+//        remover = FlutterBoost.instance().addEventListener(FROM_FLUTTER_EVENT_COOKIE, listener)
     }
 
     private fun initViewPager() {
@@ -117,7 +117,7 @@ class MainActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        remover.remove()
+//        remover.remove()
     }
 
     private inner class TabItemBean(

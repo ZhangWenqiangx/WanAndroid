@@ -26,6 +26,7 @@ import com.example.module_home.search.SearchActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.RectangleIndicator
 import kotlinx.android.synthetic.main.article_fragment_home.*
+import kotlin.random.Random
 
 /**
  * Home页
@@ -62,12 +63,19 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
         viewDataBinding.searchInput.apply {
             queryHint = getString(R.string.str_input_key)
             setOnClickListener {
-                startActivity(
-                    Intent(
-                        requireActivity(),
-                        SearchActivity::class.java
-                    )
-                )
+                val randomNumber = Random.nextInt(0, 101)
+                 when {
+                    randomNumber < 33 -> funA()
+                    randomNumber < 66 -> test()
+                    else -> {
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                SearchActivity::class.java
+                            )
+                        )
+                    }
+                }
             }
         }
 
@@ -92,11 +100,50 @@ class ArticleFragment : BaseMvvmFragment<ArticleFragmentHomeBinding, ArticleView
             .recordingTimeTag("ArticleFragment-initView-end")
     }
 
+    private fun method(i: Int) {
+        if (i == 1) {
+            println("1*1=1")
+        } else {
+            for (j in 1 until i) {
+                print(j.toString() + "*" + i + "=" + j * i + " ")
+            }
+            println()
+            method(i - 1)
+        }
+    }
+
+    private fun test() {
+        for (i in 0..999999) {
+            val a = "1${i + 1}"
+            var b = a.plus("12")
+        }
+        method(9)
+        for (i in 0..999999) {
+            val a = "2${i + 1}"
+            var b = a.plus("11")
+        }
+        funC()
+    }
+
+    fun funA() {
+        Thread.sleep(110)
+        funB()
+    }
+
+    fun funB() {
+        Thread.sleep(812)
+        funC()
+    }
+
+    fun funC() {
+        Thread.sleep(101)
+    }
+
     override fun addObserver() {
         super.addObserver()
-        viewModel.bannersData.observe(viewLifecycleOwner, {
+        viewModel.bannersData.observe(viewLifecycleOwner) {
             viewDataBinding.banner.setDatas(it)
-        })
+        }
     }
 
     override fun getLayoutResId(): Int =

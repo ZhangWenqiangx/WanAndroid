@@ -24,8 +24,8 @@ import com.example.module_home.R
 import com.example.module_home.databinding.FragmentFirstPageBinding
 import com.example.module_home.home.adapter.RecommendAdapter
 import com.example.module_home.home.bean.Article
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.ListenerRemover
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.ListenerRemover
 import kotlinx.android.synthetic.main.fragment_first_page.*
 
 /**
@@ -34,8 +34,8 @@ import kotlinx.android.synthetic.main.fragment_first_page.*
 class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel>() {
 
     private lateinit var mAdapter: RecommendAdapter
-    private lateinit var collectListener: ListenerRemover
-    private lateinit var loginListener: ListenerRemover
+//    private lateinit var collectListener: ListenerRemover
+//    private lateinit var loginListener: ListenerRemover
 
     @JvmField
     @Autowired
@@ -50,17 +50,17 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
         ARouter.getInstance().navigation(UserInfoService::class.java)
         initRecycler()
         initRefresh()
-        collectListener = FlutterBoost.instance()
-            .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_COLLECT) { _, _ ->
-                viewModel.getArticles(isRefresh = true)
-            }
-        loginListener = FlutterBoost.instance()
-            .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_LOGIN) { _, args ->
-                if (args[FLUTTER_EVENT_TYPE] == FLUTTER_TYPE_LOGIN_OUT) {
-                    CookieHelper.clearCookie()
-                    viewModel.getArticles(isRefresh = true)
-                }
-            }
+//        collectListener = FlutterBoost.instance()
+//            .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_COLLECT) { _, _ ->
+//                viewModel.getArticles(isRefresh = true)
+//            }
+//        loginListener = FlutterBoost.instance()
+//            .addEventListener(FlutterConstance.FROM_FLUTTER_EVENT_LOGIN) { _, args ->
+//                if (args[FLUTTER_EVENT_TYPE] == FLUTTER_TYPE_LOGIN_OUT) {
+//                    CookieHelper.clearCookie()
+//                    viewModel.getArticles(isRefresh = true)
+//                }
+//            }
         TimeMonitorManager.getTimeMonitor(TIME_MONITOR_APP_ONCREATE)
             .recordingTimeTag("HomeFragment-onActivityCreated-end")
     }
@@ -139,7 +139,7 @@ class HomeFragment : BaseMvvmFragment<FragmentFirstPageBinding, ArticleViewModel
 
     override fun onDestroy() {
         super.onDestroy()
-        collectListener.remove()
-        loginListener.remove()
+//        collectListener.remove()
+//        loginListener.remove()
     }
 }

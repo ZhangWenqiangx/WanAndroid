@@ -24,7 +24,7 @@ import com.example.module_usercenter.bean.LoginResult
 import com.example.module_usercenter.contract.LoginContract
 import com.example.module_usercenter.event.LoginEvent
 import com.example.module_usercenter.presenter.LoginPresenter
-import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.FlutterBoost
 import kotlinx.android.synthetic.main.mine_activity_login.*
 import org.greenrobot.eventbus.EventBus
 
@@ -49,7 +49,7 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), LoginContract.View, Vie
         )
         ARouter.getInstance().build(ACTIVITY_URL_MAIN).navigation()
         EventBus.getDefault().post(LoginEvent())
-        FlutterBoost.instance().sendEventToFlutter(FlutterConstance.TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
+//        FlutterBoost.instance().sendEventToFlutter(FlutterConstance.TO_FLUTTER_EVENT_COOKIE, CookieHelper.getDefCookieMap())
         finish()
     }
 
