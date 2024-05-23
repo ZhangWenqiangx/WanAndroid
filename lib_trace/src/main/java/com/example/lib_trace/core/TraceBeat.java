@@ -3,7 +3,9 @@ package com.example.lib_trace.core;
 import android.os.Build;
 import android.os.Looper;
 import android.os.Trace;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.example.lib_trace.bean.MethodInfo;
@@ -19,7 +21,6 @@ import java.util.List;
 public class TraceBeat {
 
     public static boolean openTrace = false;
-    private static int sIndex = 0;
     private static final List<Entity> methodList = new LinkedList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -29,7 +30,6 @@ public class TraceBeat {
             synchronized (methodList) {
                 methodList.add(new Entity(name, System.currentTimeMillis(), true, isInMainThread()));
             }
-            ++sIndex;
         }
     }
 
@@ -40,16 +40,7 @@ public class TraceBeat {
             synchronized (methodList) {
                 methodList.add(new Entity(name, System.currentTimeMillis(), false, isInMainThread()));
             }
-            ++sIndex;
         }
-    }
-
-    private static IndexRecord sIndexRecordHead = null;
-
-    public static IndexRecord mark(String source) {
-        sIndexRecordHead = new IndexRecord(sIndex - 1);
-        sIndexRecordHead.source = source;
-        return sIndexRecordHead;
     }
 
     public static void resetTraceData() {
@@ -58,31 +49,34 @@ public class TraceBeat {
         }
     }
 
-    public static List<MethodInfo> collectTraceData(IndexRecord startIndex) {
-        return collectTraceData(startIndex.index, sIndex - 1);
-    }
-
-    public static List<MethodInfo> collectTraceData(int start, int size) {
+    public static List<MethodInfo> collectTraceData() {
+        List<Entity> methodListCopy = new LinkedList<>();
         synchronized (methodList) {
-            List<MethodInfo> resultList = new ArrayList();
-//            for (int i = start; i < size; i++) {
-            for (int i = 0; i < methodList.size(); i++) {
-                Entity startEntity = methodList.get(i);
-                if (!startEntity.isStart) {
-                    continue;
-                }
-                startEntity.pos = i;
-                Entity endEntity = findEndEntity(startEntity.name, i + 1);
-                if (endEntity != null && endEntity.time - startEntity.time > 0) {
-                    MethodInfo methodInfo = createMethodInfo(startEntity, endEntity);
-                    resultList.add(methodInfo);
+            for (Entity entity : methodList) {
+                try {
+                    methodListCopy.add((Entity) entity.clone());
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
                 }
             }
-            return resultList;
         }
+        List<MethodInfo> resultList = new ArrayList<>();
+        for (int i = 0; i < methodListCopy.size(); i++) {
+            Entity startEntity = methodListCopy.get(i);
+            if (!startEntity.isStart) {
+                continue;
+            }
+            startEntity.pos = i;
+            Entity endEntity = findEndEntity(methodListCopy,startEntity.name, i + 1);
+            if (endEntity != null && endEntity.time - startEntity.time > 0) {
+                MethodInfo methodInfo = createMethodInfo(startEntity, endEntity);
+                resultList.add(methodInfo);
+            }
+        }
+        return resultList;
     }
 
-    private static Entity findEndEntity(String name, int startPos) {
+    private static Entity findEndEntity(List<Entity> methodList,String name, int startPos) {
         int sameCount = 1;
         for (int i = startPos; i < methodList.size(); i++) {
             Entity endEntity = methodList.get(i);
@@ -117,7 +111,7 @@ public class TraceBeat {
         return openTrace;
     }
 
-    public static final class Entity {
+    public static final class Entity implements Cloneable {
         public String name;
         public Long time;
         public boolean isStart;
@@ -129,6 +123,18 @@ public class TraceBeat {
             this.time = time;
             this.isStart = isStart;
             this.isMainThread = isMainThread;
+        }
+
+        @NonNull
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            // 使用父类的 clone 方法，保证克隆对象的基本字段复制
+            Entity cloned = (Entity) super.clone();
+            // 手动复制引用类型字段
+            cloned.name = this.name; // 深拷贝 String
+            cloned.time = this.time;   // 深拷贝 Long
+            // 布尔和整型字段无需深拷贝，因为它们是基本类型
+            return cloned;
         }
     }
 

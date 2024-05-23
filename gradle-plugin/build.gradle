@@ -37,6 +37,24 @@ compileGroovy {
     classpath += files(compileKotlin.destinationDir)
 }
 
+version = "1.0.2"    //配置插件的版本号
+group = "com.example.traceMethodPlugin"   //插件的群组，插件的classpath会用到
+
+pluginBundle {
+
+    website = 'http://www.gradle.org/'
+    vcsUrl = 'https://github.com/gradle/gradle'
+    description = 'trace plugin'  //插件描述
+    tags = ['trace', 'plugin']  //插件的tag。可以通过这个在插件门户上搜索
+
+    plugins {
+        greetingsPlugin {
+            id = 'com.example.trace-method-plugin'   //插件的id，到时候apply的插件id
+            displayName = 'Trace plugin'
+        }
+    }
+}
+
 /**
  * 上传到本地Maven
  */

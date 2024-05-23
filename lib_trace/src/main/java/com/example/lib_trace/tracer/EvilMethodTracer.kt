@@ -23,8 +23,6 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
         val DURATION = 500
     }
 
-    private var indexRecord: TraceBeat.IndexRecord? = null
-
     init {
         TraceBeat.openTrace = true
         TraceBeat.resetTraceData()
@@ -33,13 +31,12 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
     override fun dispatchBegin(beginNs: Long, first: Long) {
         TraceBeat.resetTraceData()
         TraceBeat.openTrace = true
-        indexRecord = TraceBeat.mark(MARK)
     }
 
     override fun dispatchEnd(beginNs: Long, endNs: Long) {
         if (isBlock(endNs - beginNs)) {
             TraceBeat.openTrace = false
-            TraceHandlerThread.getDefaultHandler().post(AnalyseTask(indexRecord!!, reporter))
+            TraceHandlerThread.getDefaultHandler().post(AnalyseTask(reporter))
         }
     }
 
@@ -48,7 +45,6 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
     }
 
     private class AnalyseTask(
-        val indexRecord: TraceBeat.IndexRecord,
         val reporter: LogReporter? = null
     ) : Runnable {
 
@@ -57,7 +53,7 @@ class EvilMethodTracer(private val reporter: LogReporter? = null) : LooperObserv
         }
 
         fun analyse() {
-            val data = TraceBeat.collectTraceData(indexRecord)
+            val data = TraceBeat.collectTraceData()
             TraceBeat.openTrace = true
             LogUtils.e(TAG, stackTraceToString(data))
             reporter?.report(data.toString())
