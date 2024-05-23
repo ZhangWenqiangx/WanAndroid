@@ -1,6 +1,10 @@
 package com.example.module_usercenter.fragment
 
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.FlutterBoostRouteOptions
+//import com.idlefish.flutterboost.ListenerRemover
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,24 +13,18 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.base.mvvm.BaseMvvmFragment
 import com.example.common_base.constants.AConstance
 import com.example.common_base.constants.FlutterConstance.FLUTTER_ARG_COIN_COUNT
-import com.example.common_base.constants.FlutterConstance.FLUTTER_EVENT_TYPE
 import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_LOGIN
-import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_IN
-import com.example.common_base.constants.FlutterConstance.FLUTTER_TYPE_LOGIN_OUT
-import com.example.common_base.constants.FlutterConstance.FROM_FLUTTER_EVENT_LOGIN
 import com.example.common_base.util.CookieHelper
 import com.example.common_base.util.ToastUtil
 import com.example.common_base.util.UserHelper
 import com.example.module_usercenter.MineViewModel
 import com.example.module_usercenter.MineViewModelFactory
 import com.example.module_usercenter.R
+import com.example.module_usercenter.activity.TestActivity
 import com.example.module_usercenter.adapter.MineSettingAdapter
 import com.example.module_usercenter.bean.MenuBean
 import com.example.module_usercenter.databinding.MineFragmentBinding
 import com.example.module_usercenter.event.LoginEvent
-//import com.idlefish.flutterboost.FlutterBoost
-//import com.idlefish.flutterboost.FlutterBoostRouteOptions
-//import com.idlefish.flutterboost.ListenerRemover
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import kotlin.math.acos
@@ -58,12 +56,6 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
             isNestedScrollingEnabled = false
             setHasFixedSize(true)
         }
-
-        viewDataBinding.mineTv.setOnLongClickListener {
-            haha(10000000)
-            return@setOnLongClickListener true
-        }
-
         viewDataBinding.mineTv.setOnClickListener {
             if (!viewModel.isLogin()) {
                 ARouter.getInstance().build(AConstance.ACTIVITY_URL_LOGIN).navigation()
@@ -88,30 +80,6 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
 //        }
     }
 
-    private fun haha(l: Long): Double {
-        val haha2 = haha2(l)
-        val haha3 = haha3(l)
-        return haha2 + haha3
-    }
-
-    private fun haha2(l: Long): Double {
-        var result = 0.0
-        for (i in 0 until l) {
-            result += acos(cos(i.toDouble()))
-            result -= asin(sin(i.toDouble()))
-        }
-        return result
-    }
-
-    private fun haha3(l: Long): Double {
-        var result = 0.0
-        for (i in 0 until l) {
-            result += acos(cos(i.toDouble()))
-            result -= asin(sin(i.toDouble()))
-        }
-        return result
-    }
-
     private fun onItemClick(item: MenuBean) {
         if (item.checkLogin) {
             if (!UserHelper.isLogin()) {
@@ -119,7 +87,11 @@ class MineFragment : BaseMvvmFragment<MineFragmentBinding, MineViewModel>() {
                 return
             }
         }
-        openRoute(item.routeUrl, item.arguments)
+        if (item.routeUrl == "activity") {
+            startActivity(Intent(this.context,TestActivity::class.java))
+        } else {
+            openRoute(item.routeUrl, item.arguments)
+        }
     }
 
     private fun openRoute(name: String, arguments: Map<String, Any>? = mapOf()) {

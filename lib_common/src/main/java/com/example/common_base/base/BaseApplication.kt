@@ -1,34 +1,26 @@
 package com.example.common_base.base
 
+//import com.idlefish.flutterboost.FlutterBoost
+//import com.idlefish.flutterboost.FlutterBoostDelegate
+//import com.idlefish.flutterboost.FlutterBoostRouteOptions
+//import com.idlefish.flutterboost.containers.FlutterBoostActivity
+//import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import android.app.Application
 import android.content.Context
-import android.content.Intent
-import android.os.Build
-import android.os.SystemClock
-import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common_base.BuildConfig
 import com.example.common_base.R
-import com.example.common_base.constants.FlutterConstance.FLUTTER_PAGE_WEB
 import com.example.common_base.hotfix.HotFix
 import com.example.common_base.performance.TIME_MONITOR_APP_ONCREATE
 import com.example.common_base.performance.TimeMonitorManager
 import com.example.common_base.util.CrashHandler
 import com.example.common_base.util.GlobalThreadPools
 import com.example.common_base.web.CommonWebView
-import com.example.common_base.web.URL
-import com.example.common_base.web.WebViewActivity
 import com.example.common_base.widget.refresh.ClassicsHeader
 import com.example.lib_trace.Trace
 import com.example.lib_trace.listeners.LogReporter
-//import com.idlefish.flutterboost.FlutterBoost
-//import com.idlefish.flutterboost.FlutterBoostDelegate
-//import com.idlefish.flutterboost.FlutterBoostRouteOptions
-//import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-//import io.flutter.embedding.android.FlutterActivityLaunchConfigs
-import java.lang.reflect.Method
 
 
 /**
@@ -117,11 +109,19 @@ open class BaseApplication : Application() {
     }
 
     private fun initArouter() {
-        if (isDebug()) {
-//            ARouter.openLog()
-//            ARouter.openDebug()
+        try {
+            if (isDebug()) {
+                ARouter.openLog()
+                ARouter.openDebug()
+                ARouter.printStackTrace()
+            }
+            ARouter.init(this)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            //异常后建议清除映射表官方文档说 开发模式会清除
+            ARouter.openDebug()
+            ARouter.init(this)
         }
-        ARouter.init(this)
     }
 
     private fun isDebug(): Boolean = BuildConfig.DEBUG

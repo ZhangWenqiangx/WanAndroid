@@ -72,6 +72,13 @@ class MineViewModel(
             )
             add(
                 MenuBean(
+                    imageResId = R.drawable.ic_test,
+                    title = "实验室",
+                    routeUrl = "activity",
+                )
+            )
+            add(
+                MenuBean(
                     imageResId = R.drawable.ic_mine_setting,
                     title = "系统设置",
                     routeUrl = FlutterConstance.FLUTTER_PAGE_SETTING,

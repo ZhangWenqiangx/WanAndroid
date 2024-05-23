@@ -16,7 +16,7 @@ class SplashActivity : BaseActivity() {
     override fun getLayoutResId(): Int = R.layout.activity_splash
 
     override fun initView() {
-        if (Random.nextBoolean() && YearUtil[applicationContext] > CLASS_2016) {
+        if (Random.nextBoolean()) {
             playAnimation()
         } else {
             toMainPage()
